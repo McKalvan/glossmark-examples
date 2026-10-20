@@ -1,0 +1,17 @@
+Landscape: shipment-core, dispatch, tracking
+
+Context map (publishes → subscribes, produces → consumes across boundaries)
+  dispatch:planner → shipcore:shipment-service via frt:Shipment, frt:ShipmentBooked
+  shipcore:shipment-service → dispatch:planner via frt:ShipmentPickedUp
+  shipcore:shipment-service → tracking:tracker via frt:ShipmentDelivered
+  tracking:tracker → dispatch:planner via frt:Route, frt:ShipmentPickedUp
+
+Ontology drift
+
+△ Implemented but untested
+  frt:ShipmentVisibility is implemented but nothing tests or verifies it  [ontology/frt.gloss.yaml:50]
+  trk:PickedUpIntake is implemented but nothing tests or verifies it (nor frt:Tracking, which it realizes)  [ontology/trk.gloss.yaml:6]
+  trk:PingIngestor is implemented but nothing tests or verifies it (nor frt:Tracking, which it realizes)  [ontology/trk.gloss.yaml:12]
+  trk:PlannedStopSync is implemented but nothing tests or verifies it (nor frt:Tracking, which it realizes)  [ontology/trk.gloss.yaml:7]
+
+Concepts covered 77% (17/22 with an artifact and a verifier)   Files 57% (69/121)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 0

@@ -1,0 +1,6 @@
+Ontology drift
+
+Decision requests
+  dsp:ExpressPickup extends imported frt:Pickup; if the core should have it, propose frt:ExpressPickup upstream and deprecate dsp:ExpressPickup with replaced-by (ontology/dsp.gloss.yaml:22)
+
+Concepts covered 100% (6/6 with an artifact and a verifier)   Files 56% (18/32)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0

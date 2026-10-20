@@ -155,3 +155,20 @@ CLI commands	coverage	library-legacy	demo/ratchet.sh@@--fail-under current
 File-format features	policy.waivers	library-legacy	glossmark.yaml@@waivers:
 File-format features	policy.coverage-fail-under: current	library-legacy	README.md@@cannot unmarshal
 File-format features	deprecated + replaced-by	library-legacy	ontology/lib.gloss.yaml@@replaced-by: Patron
+Inline relations (@gloss markers)	publishes	freight-federation	dispatch/src/events/publisher.ts:52
+Inline relations (@gloss markers)	subscribes	freight-federation	tracking/src/consumers/picked_up.rs:15
+Inline relations (@gloss markers)	verifies	freight-federation	dispatch/test/contract/shipmentBooked.contract.test.ts:1
+Inline relations (@gloss markers)	documents	freight-federation	shipment-core/docs/event-catalogue.md:13
+Ontology relations (*.gloss.yaml)	published-as	freight-federation	shipment-core/ontology/shc.gloss.yaml@@published: { as: frt:ShipmentBooked }
+Ontology relations (*.gloss.yaml)	has-part	freight-federation	shipment-core/ontology/frt.gloss.yaml@@has-part:
+Ontology relations (*.gloss.yaml)	is-a	freight-federation	dispatch/ontology/dsp.gloss.yaml@@is-a: frt:Pickup
+Ontology relations (*.gloss.yaml)	part-of	freight-federation	tracking/ontology/trk.gloss.yaml@@part-of: frt:Delivery
+Derived and reserved relations	depends-on	freight-federation	expected-landscape.txt@@Context map
+Concept kinds	event	freight-federation	shipment-core/ontology/frt.gloss.yaml@@kind: event
+Gates	HARD	freight-federation	README.md@@gate HARD   criticality high
+CLI commands	lock	freight-federation	dispatch/glossmark.lock
+CLI commands	publish	freight-federation	demo/publish.sh@@gloss publish -o
+CLI commands	landscape	freight-federation	expected-landscape.txt
+CLI commands	diff	freight-federation	demo/published-change.sh
+File-format features	imports with a version range	freight-federation	dispatch/glossmark.yaml@@version: "^1.4"
+File-format features	glossmark.lock	freight-federation	tracking/glossmark.lock

@@ -3,3 +3,6 @@ showcase/clinic-booking	violation,gap,value-drift,dangling,rogue,stale,proposed	
 showcase/claims-events	dangling,rogue,presented-only,stale,proposed	false	0
 showcase/kitchen-agents	violation,gap,value-drift,dangling,orphan,presented-only	true	0
 showcase/library-legacy	violation,gap,value-drift,dangling,rogue,stale	true	current
+showcase/freight-federation/shipment-core	violation,value-drift,dangling,rogue,stale,proposed	true	0
+showcase/freight-federation/dispatch	violation,gap,value-drift,dangling,rogue,orphan,untested,stale,proposed	true	0
+showcase/freight-federation/tracking	violation,gap,value-drift,dangling,rogue,orphan,stale,proposed	true	0
