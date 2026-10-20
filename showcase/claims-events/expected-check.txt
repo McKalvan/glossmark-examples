@@ -1,0 +1,2 @@
+services/assessment/assessment/referral.py:33: warning: publishes claim:ClaimReferred is outside the allowed set derived from services/assessment/.gloss.yaml (HARD gate); declare the concept there, or write allowed: to widen it (gloss check --explain shows the set) [GM503]
+gloss check: 0 errors, 1 warning
