@@ -1,0 +1,6 @@
+# glossmark.yaml: a boundary whose part-of names a sibling directory's boundary (lab: deep hierarchies).
+grammar: 1
+repo-iri: https://onto.spokewise.example/sibling/
+owns:
+  cyc: { iri: https://onto.spokewise.example/core/, tier: core,           version: 0.1.0 }
+  spk: { iri: https://onto.spokewise.example/impl/, tier: implementation, version: 0.1.0 }

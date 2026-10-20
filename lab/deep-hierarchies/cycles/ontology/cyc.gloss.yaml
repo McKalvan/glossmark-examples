@@ -1,0 +1,15 @@
+# ontology/cyc.gloss.yaml: three deliberate cycles.
+namespace: cyc
+version: 0.1.0
+concepts:
+  # A bad merge: Product is-a Lighting closes Product > Accessory > Lighting > Product.
+  Product:   { kind: entity, is-a: Lighting, doc: "Anything the shop lists and sells." }
+  Component: { is-a: Product, doc: "A part fitted to a bicycle." }
+  Cassette:  { is-a: Component, doc: "The rear sprocket cluster." }
+  Accessory: { is-a: Product, doc: "Something carried on or with the bicycle." }
+  Lighting:  { is-a: Accessory, doc: "Lights and reflectors." }
+  # A self-loop.
+  Brake:     { is-a: Brake, doc: "A complete brake." }
+  # A part-of cycle in the core.
+  Picking:   { kind: process, part-of: BinPick, doc: "Collecting an order's items." }
+  BinPick:   { kind: process, part-of: Picking, doc: "Taking items from one bin." }

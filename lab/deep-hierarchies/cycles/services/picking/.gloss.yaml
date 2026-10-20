@@ -1,0 +1,5 @@
+# A boundary part-of cycle: listing is part of picking, picking is part of listing.
+boundary: spw:picking
+level: container
+part-of: spw:listing
+realizes: [spk:BinRouter]

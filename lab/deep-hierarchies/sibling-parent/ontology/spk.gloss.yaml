@@ -1,0 +1,5 @@
+namespace: spk
+version: 0.1.0
+concepts:
+  CheckoutFlow:   { kind: process, realizes: cyc:Checkout, doc: "The checkout handler." }
+  PaymentGateway: { kind: process, realizes: cyc:Payment, doc: "The card processor client." }

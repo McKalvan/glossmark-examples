@@ -1,0 +1,5 @@
+# Declares only lighting; the code lists cassettes. Without the cycle this is a violation.
+boundary: spw:listing
+level: container
+part-of: spw:picking
+realizes: [cyc:Lighting]

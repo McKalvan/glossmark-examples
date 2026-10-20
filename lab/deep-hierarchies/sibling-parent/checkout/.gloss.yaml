@@ -1,0 +1,6 @@
+# The checkout app is part of the platform, a sibling directory that sorts after it.
+boundary: spw:checkout
+level: container
+part-of: spw:platform
+realizes: [cyc:Checkout]
+owner: checkout-team
