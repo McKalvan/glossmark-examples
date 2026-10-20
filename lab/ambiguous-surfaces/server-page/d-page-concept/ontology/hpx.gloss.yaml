@@ -1,0 +1,8 @@
+# ontology/hpx.gloss.yaml: the implementation tier.
+namespace: hpx
+version: 0.1.0
+concepts:
+  QuotePage:
+    kind: process
+    presents: hp:Pricing
+    doc: "The storefront quote page: price per case, subtotal, volume discount and total for N cases."

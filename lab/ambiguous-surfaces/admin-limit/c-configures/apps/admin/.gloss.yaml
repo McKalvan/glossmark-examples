@@ -1,0 +1,5 @@
+boundary: hpb:admin
+level: container
+label: Admin console
+part-of: hpb:harbor
+default-namespace: hpx

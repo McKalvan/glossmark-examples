@@ -1,0 +1,6 @@
+boundary: hpb:admin
+level: container
+label: Admin console
+part-of: hpb:harbor
+presents: [hp:CreditLimit]
+default-namespace: hpx

@@ -1,0 +1,3 @@
+{"type":"ledger","format":1,"generator":"gloss 0.1.0"}
+{"marker_id":"m-39e5f11745","path":"storefront/quotes/views.py","relation":"presents","targets":["hp:Pricing"],"actor":"agent:claude-code","created":"2026-10-20T03:00:05Z","status":"accepted","anchor_fingerprint":"sha256:dad18a273acd5cb7","last_seen":"2026-10-20T03:00:05Z"}
+{"marker_id":"m-ac976f0a0e","path":"storefront/quotes/tests.py","relation":"verifies","targets":["hp:Pricing"],"actor":"agent:claude-code","created":"2026-10-20T03:00:05Z","status":"accepted","anchor_fingerprint":"sha256:8a935ac0d519422d","last_seen":"2026-10-20T03:00:05Z"}

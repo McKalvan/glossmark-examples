@@ -1,0 +1,3 @@
+{"type":"ledger","format":1,"generator":"gloss 0.1.0"}
+{"marker_id":"m-6a38976ee8","path":"tools/hpctl/tests/test_close_period.py","relation":"verifies","targets":["hp:PeriodClose"],"actor":"agent:claude-code","created":"2026-10-20T03:00:32Z","status":"accepted","anchor_fingerprint":"sha256:3f53443220948bb7","last_seen":"2026-10-20T03:00:32Z"}
+{"marker_id":"m-bb3e01fd7f","path":"tools/hpctl/hpctl/close_period.py","relation":"presents","targets":["hp:PeriodClose"],"actor":"agent:claude-code","created":"2026-10-20T03:00:32Z","status":"accepted","anchor_fingerprint":"sha256:a2c21a0814333fb8","last_seen":"2026-10-20T03:00:32Z"}

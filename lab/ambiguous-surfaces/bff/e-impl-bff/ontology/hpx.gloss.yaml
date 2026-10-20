@@ -1,0 +1,16 @@
+# ontology/hpx.gloss.yaml: the implementation tier.
+namespace: hpx
+version: 0.1.0
+concepts:
+  OrderIntake:
+    kind: process
+    realizes: hp:OrderPlacement
+    doc: "place_order in the order service: validates lines, runs the credit check, writes the order."
+  CreditCheck:
+    kind: constraint
+    realizes: hp:CreditLimit
+    doc: "check_credit in the order service: refuses an order that would take the open balance over the limit."
+  MobileBff:
+    kind: system-type
+    realizes: hp:OrderPlacement
+    doc: "The backend-for-frontend of the restaurant ordering app: one call per screen, shaped for the app."

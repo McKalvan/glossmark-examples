@@ -1,0 +1,6 @@
+# glossmark.yaml: Harbor Provisions, cli case (lab/ambiguous-surfaces).
+grammar: 1
+repo-iri: https://onto.harbor.example/
+owns:
+  hp:  { iri: https://onto.harbor.example/core/, tier: core,           version: 0.1.0 }
+  hpx: { iri: https://onto.harbor.example/impl/, tier: implementation, version: 0.1.0 }

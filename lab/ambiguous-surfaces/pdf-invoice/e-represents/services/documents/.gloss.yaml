@@ -1,0 +1,6 @@
+boundary: hpb:documents
+level: container
+label: Document renderer
+part-of: hpb:harbor
+holds: [hp:Invoice]
+default-namespace: hpx

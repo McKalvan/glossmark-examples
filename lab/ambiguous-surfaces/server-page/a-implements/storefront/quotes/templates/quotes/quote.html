@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load money %}
+{% block content %}
+<h1>{{ product.name }}</h1>
+<form method="get">
+  <label>Cases <input type="number" name="cases" min="1" value="{{ cases }}"></label>
+  <button type="submit">Update quote</button>
+</form>
+<table class="quote">
+  <tr><th>Price per case{% if contract_price %} (your contract price){% endif %}</th><td>{{ unit_cents|cents }}</td></tr>
+  <tr><th>Subtotal</th><td>{{ subtotal_cents|cents }}</td></tr>
+  {% if discount_cents %}
+  <tr><th>Volume discount</th><td>&minus;{{ discount_cents|cents }}</td></tr>
+  {% else %}
+  <tr><td colspan="2">Order {{ discount_threshold }} cases or more for a volume discount.</td></tr>
+  {% endif %}
+  <tr class="total"><th>Total</th><td>{{ total_cents|cents }}</td></tr>
+</table>
+{% endblock %}

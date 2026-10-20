@@ -37,9 +37,12 @@ for f in check drift; do
 done
 
 if [ "${UPDATE:-}" != 1 ]; then
-  before=$(cat .glossmark/graph.jsonl .glossmark/ledger.jsonl 2>/dev/null | sha256sum)
+  # gloss v0.1.0 writes imported ontologies into graph.jsonl with absolute paths, so a
+  # rebuild in another checkout differs only in that prefix. Compare with it stripped.
+  norm() { sed -E 's#"(/[^"]*)?/(showcase|lab)/#"<root>/\2/#g' .glossmark/graph.jsonl .glossmark/ledger.jsonl 2>/dev/null | sha256sum; }
+  before=$(norm)
   "$GLOSS" build -q >"$out/build.txt" 2>&1
-  after=$(cat .glossmark/graph.jsonl .glossmark/ledger.jsonl | sha256sum)
+  after=$(norm)
   if [ "$before" != "$after" ]; then
     echo "::error::$ws: .glossmark/ was not current; run gloss build and commit graph.jsonl and ledger.jsonl"
     git --no-pager diff --stat -- .glossmark 2>/dev/null || true

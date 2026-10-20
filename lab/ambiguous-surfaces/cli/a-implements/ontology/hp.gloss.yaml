@@ -1,0 +1,8 @@
+# ontology/hp.gloss.yaml: the core tier, what Harbor Provisions finance recognises.
+namespace: hp
+version: 0.1.0
+concepts:
+  PeriodClose:
+    kind: process
+    criticality: critical
+    doc: "Closing an accounting month: accrue delivered but uninvoiced orders, post them to the ledger, and lock the period against further postings."

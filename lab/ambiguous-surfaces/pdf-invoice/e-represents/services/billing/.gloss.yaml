@@ -1,0 +1,7 @@
+boundary: hpb:billing
+level: container
+label: Billing service
+part-of: hpb:harbor
+realizes: [hpx:InvoiceRun]
+holds: [hp:Invoice]
+default-namespace: hpx
