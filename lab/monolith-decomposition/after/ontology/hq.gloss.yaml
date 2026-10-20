@@ -1,0 +1,20 @@
+# The implementation tier of the hirehq monolith.
+namespace: hq
+version: 1.1.1
+concepts:
+  BookingView:
+    kind: process
+    realizes: hire:Booking
+    doc: "POST /hires: validates availability and opens a hire."
+  InvoiceGenerator:
+    kind: process
+    realizes: hire:Invoicing
+    deprecated: true
+    replaced-by: inv:InvoiceRun
+    doc: "Retired: the legacy invoice generator. Concept IDs are permanent, so it stays as a deprecated entry."
+  InvoicingRouter:
+    kind: process
+    realizes: hire:Invoicing
+    deprecated: true
+    replaced-by: inv:InvoiceRun
+    doc: "Retired: the strangler facade that routed between the generator and the invoicing service."

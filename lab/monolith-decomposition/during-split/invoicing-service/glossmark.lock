@@ -1,0 +1,8 @@
+# glossmark.lock: resolved import versions, written by gloss lock. Commit it.
+format: 1
+imports:
+    hire:
+        version: 1.0.0
+        range: ^1.0
+        source: ../hirehq/ontology/hire.gloss.yaml
+        hash: sha256:4904697872238f6a5f795db8604a880d1279ff0a4991a6f2fa5581438dca00ed

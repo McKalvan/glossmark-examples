@@ -1,0 +1,8 @@
+# invoicing-service repository: imports the core hire: namespace from hirehq, owns inv:.
+grammar: 1
+owns:
+  inv: { iri: https://onto.brightwater.example/inv/, file: ontology/inv.gloss.yaml, tier: implementation, version: 0.1.0, owner: invoicing-eng }
+imports:
+  hire: { iri: https://onto.brightwater.example/hire/, version: "^1.0", source: ../hirehq/ontology/hire.gloss.yaml }
+prefixes:
+  bw: https://arch.brightwater.example/boundaries/

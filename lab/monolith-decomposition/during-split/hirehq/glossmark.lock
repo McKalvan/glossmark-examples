@@ -1,0 +1,8 @@
+# glossmark.lock: resolved import versions, written by gloss lock. Commit it.
+format: 1
+imports:
+    inv:
+        version: 0.1.0
+        range: ^0.1
+        source: ../invoicing-service/ontology/inv.gloss.yaml
+        hash: sha256:4ad813390e20cc0711724bab69a219fbea7ce8759fb0c434875aec986fa11c6e

@@ -1,0 +1,9 @@
+views:
+  business:
+    include: [hire:*]
+    collapse: { "inv:*": via realizes }
+    relations: [produces, consumes, realizes]
+    zoom: system
+  engineering:
+    include: [hire:*, inv:*]
+    zoom: container
