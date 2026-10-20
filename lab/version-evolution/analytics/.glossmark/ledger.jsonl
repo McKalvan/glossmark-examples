@@ -1,0 +1,4 @@
+{"type":"ledger","format":1,"generator":"gloss 0.1.0"}
+{"marker_id":"m-32ce952073","path":"models/smart_meter_fleet.sql","relation":"represents","targets":["grid:SmartMeter"],"actor":"agent:claude-code","created":"2026-10-20T02:55:48Z","status":"accepted","anchor_fingerprint":"sha256:d461f227deb81f9b","last_seen":"2026-10-20T02:55:48Z"}
+{"marker_id":"m-640fac33bd","path":"models/outage_minutes.sql","relation":"represents","targets":["grid:Outage"],"actor":"agent:claude-code","created":"2026-10-20T02:55:48Z","status":"accepted","anchor_fingerprint":"sha256:dd9433a14d1f6ef2","last_seen":"2026-10-20T02:55:48Z"}
+{"marker_id":"m-64bd129ce3","path":"models/tariff_bands.sql","relation":"represents","targets":["grid:Tariff"],"actor":"agent:claude-code","created":"2026-10-20T02:55:48Z","status":"accepted","anchor_fingerprint":"sha256:de7f9b9b717f5823","last_seen":"2026-10-20T02:55:48Z"}

@@ -1,0 +1,7 @@
+# mc: how meter-core collects readings. Only ReadingFeed is published; everything else is internal to this repository.
+namespace: mc
+iri: https://onto.gridco.example/mc/
+version: 1.0.0
+concepts:
+  ReadingIngestor: { kind: process, realizes: grid:ReadingCollection, publishes: [ReadingFeed], doc: "Polls head-end systems and normalises register values." }
+  ReadingFeed:     { kind: event, realizes: grid:MeterReading, published: { as: grid:MeterReading }, doc: "The normalised reading stream other services subscribe to." }

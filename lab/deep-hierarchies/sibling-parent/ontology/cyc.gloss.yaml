@@ -1,0 +1,6 @@
+namespace: cyc
+version: 0.1.0
+concepts:
+  Checkout: { kind: process, doc: "Paying for a basket." }
+  Payment:  { kind: process, doc: "Taking the money." }
+  Refund:   { kind: process, doc: "Giving the money back." }

@@ -1,0 +1,45 @@
+# Ground truth: the public surfaces of opstool/ and the core concept(s) a warehouse supervisor
+# would link each to. Columns: path, symbol (as gloss names it), acceptable wh: concepts
+# (domain names, plus the naive variant's names where they denote the same thing).
+# Any (path, symbol) not listed here should stay unmarked: utils/, glue, formatters.
+# nested=1 marks a method inside a class.
+#path	symbol	acceptable	nested
+app.py	upload	CycleCount	0
+app.py	run	Replenishment,WavePlanning	0
+app.py	rma	ReturnsProcessing,Rma	0
+app.py	do	StockAdjustment	0
+helpers.py	TOL	CountTolerance	0
+helpers.py	process_data	CycleCount	0
+helpers.py	calc	CountVariance	0
+helpers.py	chk	CountTolerance	0
+helpers.py	handle	StockAdjustment,AdjustmentApproval	0
+core/Manager.py	doIt	Replenishment	1
+core/Manager.py	run_batch	WavePlanning	1
+core/Manager.py	_ok	HazmatHandling	1
+core/Processor.py	Processor	ReturnsProcessing	0
+core/Processor.py	process	ReturnsProcessing	1
+common/src/main/java/com/acme/ops/common/StringUtils.java	check	CartonNumber	1
+common/src/main/java/com/acme/ops/common/StringUtils.java	build	CartonNumber	1
+common/src/main/java/com/acme/ops/common/Handler.java	Handler	CartonLabel,Label	0
+common/src/main/java/com/acme/ops/common/Handler.java	handle	CartonLabel,Label	1
+web/misc.js	doIt	Picking	0
+web/misc.js	process	Picking	0
+web/functions.php	process_data	PickList	0
+web/functions.php	do_report	CountVariance,CycleCount	0
+web/functions.php	handle_post	Picking,StockAdjustment	0
+sql/tables.sql	table.tbl_master	Item	0
+sql/tables.sql	table.tbl_loc	Bin,Location	0
+sql/tables.sql	table.tbl_data	StockOnHand	0
+sql/tables.sql	table.tbl_ord	CustomerOrder,Order	0
+sql/tables.sql	table.tbl_queue	PickList,Replenishment	0
+sql/tables.sql	table.tbl_cnt	CycleCount,CountVariance	0
+sql/tables.sql	table.tbl_rma	ReturnAuthorization,Rma	0
+sql/tables.sql	table.tbl_rma_vendor	ReturnsProcessing,ReturnAuthorization,Rma	0
+sql/tables.sql	table.tbl_log	StockAdjustment	0
+tests/test_helpers.py	test_calc	CountVariance	0
+tests/test_helpers.py	test_chk	CountTolerance	0
+tests/test_helpers.py	test_process_data	CycleCount	0
+tests/test_manager.py	test_doIt	Replenishment	0
+tests/test_manager.py	test_ok	HazmatHandling	0
+jobs/nightly.sh	(file)	Replenishment,WavePlanning	0
+web/page2.php	(file)	PickList,Picking	0

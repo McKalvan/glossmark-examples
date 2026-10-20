@@ -1,0 +1,6 @@
+# meter-core owns the shared metering vocabulary (grid:) and publishes one implementation concept (mc:ReadingFeed).
+grammar: 1
+repo-iri: https://onto.gridco.example/meter-core/
+owns:
+  grid: { iri: https://onto.gridco.example/grid/, file: ontology/grid.gloss.yaml, tier: core,           version: 1.0.0, owner: metering-product }
+  mc:   { iri: https://onto.gridco.example/mc/,   file: ontology/mc.gloss.yaml,   tier: implementation, version: 1.0.0, owner: metering-eng }

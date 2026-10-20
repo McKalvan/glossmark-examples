@@ -1,0 +1,12 @@
+# ontology/hpx.gloss.yaml: the implementation tier.
+namespace: hpx
+version: 0.1.0
+concepts:
+  InvoiceRun:
+    kind: process
+    realizes: hp:Invoicing
+    doc: "The weekly billing job: groups uninvoiced deliveries per customer, prices them and writes the invoice."
+  InvoiceDocument:
+    kind: process
+    realizes: hp:Invoicing
+    doc: "render_invoice_pdf: the PDF invoice of record, with the fields the tax authority requires."

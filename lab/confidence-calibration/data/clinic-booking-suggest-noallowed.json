@@ -1,0 +1,1262 @@
+[
+  {
+    "path": "apps/web/app/admin/no-shows/page.tsx",
+    "line": 3,
+    "symbol": "ClinicNoShow",
+    "relation": "represents",
+    "target": "clinic:NoShowRate",
+    "conf": 0.55,
+    "matched": "name:no,show",
+    "marker": "// @gloss? represents clinic:NoShowRate conf=0.55"
+  },
+  {
+    "path": "apps/web/app/admin/no-shows/page.tsx",
+    "line": 12,
+    "symbol": "NoShowDashboard",
+    "relation": "implements",
+    "target": ".NoShowDashboard",
+    "conf": 0.95,
+    "matched": "name:NoShowDashboard",
+    "marker": "// @gloss? implements .NoShowDashboard conf=0.95"
+  },
+  {
+    "path": "apps/web/app/appointments/[id]/page.tsx",
+    "line": 7,
+    "symbol": "CANCELLATION_WINDOW_HOURS",
+    "relation": "implements",
+    "target": "clinic:CancellationWindow",
+    "conf": 0.55,
+    "matched": "name:cancell,window",
+    "marker": "// @gloss? implements clinic:CancellationWindow conf=0.55"
+  },
+  {
+    "path": "apps/web/app/appointments/[id]/page.tsx",
+    "line": 9,
+    "symbol": "AppointmentPage",
+    "relation": "implements",
+    "target": ".AppointmentPage",
+    "conf": 0.95,
+    "matched": "name:AppointmentPage",
+    "marker": "// @gloss? implements .AppointmentPage conf=0.95"
+  },
+  {
+    "path": "apps/web/app/appointments/page.tsx",
+    "line": 13,
+    "symbol": "AppointmentsPage",
+    "relation": "implements",
+    "target": ".AppointmentPage",
+    "conf": 0.91,
+    "matched": "name:AppointmentPage",
+    "marker": "// @gloss? implements .AppointmentPage conf=0.91"
+  },
+  {
+    "path": "apps/web/app/book/actions.ts",
+    "line": 7,
+    "symbol": "book",
+    "relation": "implements",
+    "target": "clinic:Booking",
+    "conf": 0.91,
+    "matched": "name:Booking",
+    "marker": "// @gloss? implements clinic:Booking conf=0.91"
+  },
+  {
+    "path": "apps/web/app/book/actions.ts",
+    "line": 18,
+    "symbol": "cancel",
+    "relation": "implements",
+    "target": "clinic:Cancellation",
+    "conf": 0.55,
+    "matched": "name:Cancellation",
+    "marker": "// @gloss? implements clinic:Cancellation conf=0.55"
+  },
+  {
+    "path": "apps/web/app/book/page.tsx",
+    "line": 6,
+    "symbol": "BookPage",
+    "relation": "implements",
+    "target": ".BookingPage",
+    "conf": 0.91,
+    "matched": "name:BookingPage",
+    "marker": "// @gloss? implements .BookingPage conf=0.91"
+  },
+  {
+    "path": "apps/web/app/page.tsx",
+    "line": 3,
+    "symbol": "HomePage",
+    "relation": "implements",
+    "target": ".BookingPage",
+    "conf": 0.45,
+    "matched": "name:page",
+    "marker": "// @gloss? implements .BookingPage conf=0.45"
+  },
+  {
+    "path": "apps/web/app/practitioners/page.tsx",
+    "line": 5,
+    "symbol": "PractitionersPage",
+    "relation": "implements",
+    "target": ".PractitionerDirectory",
+    "conf": 0.45,
+    "matched": "name:practition",
+    "marker": "// @gloss? implements .PractitionerDirectory conf=0.45"
+  },
+  {
+    "path": "apps/web/app/waitlist/page.tsx",
+    "line": 5,
+    "symbol": "WaitlistPage",
+    "relation": "implements",
+    "target": ".WaitlistPage",
+    "conf": 0.95,
+    "matched": "name:WaitlistPage",
+    "marker": "// @gloss? implements .WaitlistPage conf=0.95"
+  },
+  {
+    "path": "apps/web/components/AppointmentCard.tsx",
+    "line": 5,
+    "symbol": "AppointmentCard",
+    "relation": "implements",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? implements clinic:AppointmentReminding conf=0.45"
+  },
+  {
+    "path": "apps/web/components/SlotPicker.tsx",
+    "line": 5,
+    "symbol": "SlotPicker",
+    "relation": "implements",
+    "target": ".SlotSearch",
+    "conf": 0.45,
+    "matched": "name:slot",
+    "marker": "// @gloss? implements .SlotSearch conf=0.45"
+  },
+  {
+    "path": "apps/web/lib/api.ts",
+    "line": 18,
+    "symbol": "ApiError",
+    "relation": "implements",
+    "target": ".BookingApiService",
+    "conf": 0.45,
+    "matched": "name:api",
+    "marker": "// @gloss? implements .BookingApiService conf=0.45"
+  },
+  {
+    "path": "apps/web/lib/api.ts",
+    "line": 24,
+    "symbol": "listPractitioners",
+    "relation": "implements",
+    "target": ".PractitionerDirectory",
+    "conf": 0.45,
+    "matched": "name:practition",
+    "marker": "// @gloss? implements .PractitionerDirectory conf=0.45"
+  },
+  {
+    "path": "apps/web/lib/api.ts",
+    "line": 27,
+    "symbol": "listOpenSlots",
+    "relation": "implements",
+    "target": ".SlotSearch",
+    "conf": 0.45,
+    "matched": "name:slot",
+    "marker": "// @gloss? implements .SlotSearch conf=0.45"
+  },
+  {
+    "path": "apps/web/lib/api.ts",
+    "line": 30,
+    "symbol": "bookAppointment",
+    "relation": "implements",
+    "target": "clinic:Booking",
+    "conf": 0.45,
+    "matched": "name:book",
+    "marker": "// @gloss? implements clinic:Booking conf=0.45"
+  },
+  {
+    "path": "apps/web/lib/api.ts",
+    "line": 33,
+    "symbol": "cancelAppointment",
+    "relation": "implements",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? implements clinic:AppointmentReminding conf=0.45"
+  },
+  {
+    "path": "apps/web/lib/types.ts",
+    "line": 1,
+    "symbol": "AppointmentStatus",
+    "relation": "represents",
+    "target": "clinic:Appointment",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? represents clinic:Appointment conf=0.45"
+  },
+  {
+    "path": "apps/web/lib/types.ts",
+    "line": 3,
+    "symbol": "Practitioner",
+    "relation": "represents",
+    "target": "clinic:Practitioner",
+    "conf": 0.95,
+    "matched": "name:Practitioner",
+    "marker": "// @gloss? represents clinic:Practitioner conf=0.95"
+  },
+  {
+    "path": "apps/web/lib/types.ts",
+    "line": 11,
+    "symbol": "Slot",
+    "relation": "represents",
+    "target": "clinic:Slot",
+    "conf": 0.95,
+    "matched": "name:Slot",
+    "marker": "// @gloss? represents clinic:Slot conf=0.95"
+  },
+  {
+    "path": "apps/web/lib/types.ts",
+    "line": 20,
+    "symbol": "Appointment",
+    "relation": "represents",
+    "target": "clinic:Appointment",
+    "conf": 0.95,
+    "matched": "name:Appointment",
+    "marker": "// @gloss? represents clinic:Appointment conf=0.95"
+  },
+  {
+    "path": "db/migrations/0001_clinics_and_practitioners.sql",
+    "line": 3,
+    "symbol": "table.clinics",
+    "relation": "represents",
+    "target": "clinic:Clinic",
+    "conf": 0.91,
+    "matched": "name:Clinic",
+    "marker": "-- @gloss? represents clinic:Clinic conf=0.91"
+  },
+  {
+    "path": "db/migrations/0001_clinics_and_practitioners.sql",
+    "line": 10,
+    "symbol": "table.practitioners",
+    "relation": "represents",
+    "target": "clinic:Practitioner",
+    "conf": 0.91,
+    "matched": "name:Practitioner",
+    "marker": "-- @gloss? represents clinic:Practitioner conf=0.91"
+  },
+  {
+    "path": "db/migrations/0001_clinics_and_practitioners.sql",
+    "line": 17,
+    "symbol": "table.practitioner_clinics",
+    "relation": "represents",
+    "target": "clinic:Practitioner",
+    "conf": 0.45,
+    "matched": "name:practition",
+    "marker": "-- @gloss? represents clinic:Practitioner conf=0.45"
+  },
+  {
+    "path": "db/migrations/0002_patients.sql",
+    "line": 2,
+    "symbol": "table.patients",
+    "relation": "represents",
+    "target": "clinic:Patient",
+    "conf": 0.91,
+    "matched": "name:Patient",
+    "marker": "-- @gloss? represents clinic:Patient conf=0.91"
+  },
+  {
+    "path": "db/migrations/0002_patients.sql",
+    "line": 13,
+    "symbol": "index.patients_email_key",
+    "relation": "represents",
+    "target": "clinic:Patient",
+    "conf": 0.45,
+    "matched": "name:patient",
+    "marker": "-- @gloss? represents clinic:Patient conf=0.45"
+  },
+  {
+    "path": "db/migrations/0003_slots.sql",
+    "line": 1,
+    "symbol": "table.slots",
+    "relation": "represents",
+    "target": "clinic:Slot",
+    "conf": 0.91,
+    "matched": "name:Slot",
+    "marker": "-- @gloss? represents clinic:Slot conf=0.91"
+  },
+  {
+    "path": "db/migrations/0003_slots.sql",
+    "line": 11,
+    "symbol": "index.slots_open_idx",
+    "relation": "represents",
+    "target": "clinic:Slot",
+    "conf": 0.45,
+    "matched": "name:slot",
+    "marker": "-- @gloss? represents clinic:Slot conf=0.45"
+  },
+  {
+    "path": "db/migrations/0004_appointments.sql",
+    "line": 1,
+    "symbol": "type.appointment_status",
+    "relation": "represents",
+    "target": "clinic:Appointment",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "-- @gloss? represents clinic:Appointment conf=0.45"
+  },
+  {
+    "path": "db/migrations/0004_appointments.sql",
+    "line": 3,
+    "symbol": "table.appointments",
+    "relation": "represents",
+    "target": "clinic:Appointment",
+    "conf": 0.91,
+    "matched": "name:Appointment",
+    "marker": "-- @gloss? represents clinic:Appointment conf=0.91"
+  },
+  {
+    "path": "db/migrations/0004_appointments.sql",
+    "line": 16,
+    "symbol": "index.appointments_live_slot_key",
+    "relation": "represents",
+    "target": "clinic:Appointment",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "-- @gloss? represents clinic:Appointment conf=0.45"
+  },
+  {
+    "path": "db/migrations/0004_appointments.sql",
+    "line": 17,
+    "symbol": "index.appointments_patient_idx",
+    "relation": "represents",
+    "target": "clinic:Appointment",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "-- @gloss? represents clinic:Appointment conf=0.45"
+  },
+  {
+    "path": "db/migrations/0005_outbox_and_reminders.sql",
+    "line": 10,
+    "symbol": "table.reminders",
+    "relation": "represents",
+    "target": "clinic:ReminderLeadTime",
+    "conf": 0.64,
+    "matched": "name:remind",
+    "marker": "-- @gloss? represents clinic:ReminderLeadTime conf=0.64"
+  },
+  {
+    "path": "db/migrations/0005_outbox_and_reminders.sql",
+    "line": 19,
+    "symbol": "index.reminders_due_idx",
+    "relation": "represents",
+    "target": "clinic:ReminderLeadTime",
+    "conf": 0.45,
+    "matched": "name:remind",
+    "marker": "-- @gloss? represents clinic:ReminderLeadTime conf=0.45"
+  },
+  {
+    "path": "infra/terraform/cluster.tf",
+    "line": 20,
+    "symbol": "resource.aws_iam_role.reminders",
+    "relation": "provisions",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.86,
+    "matched": "alias:reminders",
+    "marker": "# @gloss? provisions clinic:AppointmentReminding conf=0.86"
+  },
+  {
+    "path": "infra/terraform/database.tf",
+    "line": 1,
+    "symbol": "resource.aws_db_subnet_group.booking",
+    "relation": "provisions",
+    "target": "clinic:Booking",
+    "conf": 0.95,
+    "matched": "name:Booking",
+    "marker": "# @gloss? provisions clinic:Booking conf=0.95"
+  },
+  {
+    "path": "infra/terraform/database.tf",
+    "line": 6,
+    "symbol": "resource.aws_kms_key.patient_data",
+    "relation": "provisions",
+    "target": "clinic:Patient",
+    "conf": 0.45,
+    "matched": "name:patient",
+    "marker": "# @gloss? provisions clinic:Patient conf=0.45"
+  },
+  {
+    "path": "infra/terraform/database.tf",
+    "line": 11,
+    "symbol": "resource.aws_db_instance.booking",
+    "relation": "provisions",
+    "target": "clinic:Booking",
+    "conf": 0.95,
+    "matched": "name:Booking",
+    "marker": "# @gloss? provisions clinic:Booking conf=0.95"
+  },
+  {
+    "path": "infra/terraform/outputs.tf",
+    "line": 5,
+    "symbol": "output.reminder_queue_url",
+    "relation": "implements",
+    "target": "clinic:ReminderLeadTime",
+    "conf": 0.45,
+    "matched": "name:remind",
+    "marker": "# @gloss? implements clinic:ReminderLeadTime conf=0.45"
+  },
+  {
+    "path": "infra/terraform/queue.tf",
+    "line": 7,
+    "symbol": "resource.aws_sqs_queue.reminder_events",
+    "relation": "provisions",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.59,
+    "matched": "alias:reminders",
+    "marker": "# @gloss? provisions clinic:AppointmentReminding conf=0.59"
+  },
+  {
+    "path": "services/booking-api/internal/booking/availability.go",
+    "line": 1,
+    "symbol": "booking",
+    "relation": "implements",
+    "target": "clinic:Booking",
+    "conf": 0.95,
+    "matched": "name:Booking",
+    "marker": "// @gloss? implements clinic:Booking conf=0.95"
+  },
+  {
+    "path": "services/booking-api/internal/booking/availability.go",
+    "line": 14,
+    "symbol": "MaxSearchHorizon",
+    "relation": "implements",
+    "target": ".SlotSearch",
+    "conf": 0.45,
+    "matched": "doc name:search,search,slot",
+    "marker": "// @gloss? implements .SlotSearch conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/availability.go",
+    "line": 17,
+    "symbol": "Service.FindOpenSlots",
+    "relation": "implements",
+    "target": ".SlotSearch",
+    "conf": 0.36,
+    "matched": "doc name:slot,slot",
+    "marker": "// @gloss? implements .SlotSearch conf=0.36"
+  },
+  {
+    "path": "services/booking-api/internal/booking/cancellation.go",
+    "line": 1,
+    "symbol": "booking",
+    "relation": "implements",
+    "target": "clinic:Booking",
+    "conf": 0.95,
+    "matched": "name:Booking",
+    "marker": "// @gloss? implements clinic:Booking conf=0.95"
+  },
+  {
+    "path": "services/booking-api/internal/booking/cancellation.go",
+    "line": 15,
+    "symbol": "CancellationWindow",
+    "relation": "implements",
+    "target": "clinic:CancellationWindow",
+    "conf": 0.95,
+    "matched": "name:CancellationWindow",
+    "marker": "// @gloss? implements clinic:CancellationWindow conf=0.95"
+  },
+  {
+    "path": "services/booking-api/internal/booking/cancellation.go",
+    "line": 19,
+    "symbol": "Service.Cancel",
+    "relation": "implements",
+    "target": "clinic:Cancellation",
+    "conf": 0.55,
+    "matched": "name:Cancellation",
+    "marker": "// @gloss? implements clinic:Cancellation conf=0.55"
+  },
+  {
+    "path": "services/booking-api/internal/booking/cancellation_test.go",
+    "line": 1,
+    "symbol": "booking",
+    "relation": "verifies",
+    "target": "clinic:Booking",
+    "conf": 0.95,
+    "matched": "name:Booking",
+    "marker": "// @gloss? verifies clinic:Booking conf=0.95"
+  },
+  {
+    "path": "services/booking-api/internal/booking/cancellation_test.go",
+    "line": 11,
+    "symbol": "TestCancelOutsideWindowIsNotLate",
+    "relation": "verifies",
+    "target": "clinic:CancellationWindow",
+    "conf": 0.45,
+    "matched": "name:window",
+    "marker": "// @gloss? verifies clinic:CancellationWindow conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/cancellation_test.go",
+    "line": 28,
+    "symbol": "TestCancelInsideWindowIsLate",
+    "relation": "verifies",
+    "target": "clinic:CancellationWindow",
+    "conf": 0.45,
+    "matched": "name:window",
+    "marker": "// @gloss? verifies clinic:CancellationWindow conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/fake_test.go",
+    "line": 1,
+    "symbol": "booking",
+    "relation": "verifies",
+    "target": "clinic:Booking",
+    "conf": 0.95,
+    "matched": "name:Booking",
+    "marker": "// @gloss? verifies clinic:Booking conf=0.95"
+  },
+  {
+    "path": "services/booking-api/internal/booking/fake_test.go",
+    "line": 22,
+    "symbol": "fakeRepo.addSlot",
+    "relation": "verifies",
+    "target": "clinic:Slot",
+    "conf": 0.45,
+    "matched": "name:slot",
+    "marker": "// @gloss? verifies clinic:Slot conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/fake_test.go",
+    "line": 28,
+    "symbol": "fakeRepo.GetSlot",
+    "relation": "verifies",
+    "target": "clinic:Slot",
+    "conf": 0.45,
+    "matched": "name:slot",
+    "marker": "// @gloss? verifies clinic:Slot conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/fake_test.go",
+    "line": 32,
+    "symbol": "fakeRepo.ListOpenSlots",
+    "relation": "verifies",
+    "target": "clinic:Slot",
+    "conf": 0.45,
+    "matched": "name:slot",
+    "marker": "// @gloss? verifies clinic:Slot conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/fake_test.go",
+    "line": 42,
+    "symbol": "fakeRepo.MarkSlotBooked",
+    "relation": "verifies",
+    "target": "clinic:Slot",
+    "conf": 0.45,
+    "matched": "name:slot",
+    "marker": "// @gloss? verifies clinic:Slot conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/fake_test.go",
+    "line": 49,
+    "symbol": "fakeRepo.CreateAppointment",
+    "relation": "verifies",
+    "target": "clinic:Appointment",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? verifies clinic:Appointment conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/fake_test.go",
+    "line": 54,
+    "symbol": "fakeRepo.GetAppointment",
+    "relation": "verifies",
+    "target": "clinic:Appointment",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? verifies clinic:Appointment conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/fake_test.go",
+    "line": 58,
+    "symbol": "fakeRepo.UpdateAppointment",
+    "relation": "verifies",
+    "target": "clinic:Appointment",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? verifies clinic:Appointment conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/fake_test.go",
+    "line": 63,
+    "symbol": "fakeRepo.ListPatientAppointments",
+    "relation": "verifies",
+    "target": "clinic:Appointment",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? verifies clinic:Appointment conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/service.go",
+    "line": 2,
+    "symbol": "booking",
+    "relation": "implements",
+    "target": "clinic:Booking",
+    "conf": 0.95,
+    "matched": "name:Booking",
+    "marker": "// @gloss? implements clinic:Booking conf=0.95"
+  },
+  {
+    "path": "services/booking-api/internal/booking/service.go",
+    "line": 23,
+    "symbol": "SlotRepo",
+    "relation": "represents",
+    "target": "clinic:Slot",
+    "conf": 0.45,
+    "matched": "name:slot",
+    "marker": "// @gloss? represents clinic:Slot conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/service.go",
+    "line": 29,
+    "symbol": "AppointmentRepo",
+    "relation": "represents",
+    "target": "clinic:Appointment",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? represents clinic:Appointment conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/service.go",
+    "line": 40,
+    "symbol": "Service",
+    "relation": "implements",
+    "target": ".ReminderService",
+    "conf": 0.64,
+    "matched": "name:servic",
+    "marker": "// @gloss? implements .ReminderService conf=0.64"
+  },
+  {
+    "path": "services/booking-api/internal/booking/service.go",
+    "line": 47,
+    "symbol": "NewService",
+    "relation": "implements",
+    "target": ".ReminderService",
+    "conf": 0.45,
+    "matched": "name:servic",
+    "marker": "// @gloss? implements .ReminderService conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/service.go",
+    "line": 51,
+    "symbol": "BookRequest",
+    "relation": "implements",
+    "target": "clinic:Booking",
+    "conf": 0.45,
+    "matched": "name:book",
+    "marker": "// @gloss? implements clinic:Booking conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/service.go",
+    "line": 58,
+    "symbol": "Service.Book",
+    "relation": "implements",
+    "target": "clinic:Booking",
+    "conf": 0.91,
+    "matched": "name:Booking",
+    "marker": "// @gloss? implements clinic:Booking conf=0.91"
+  },
+  {
+    "path": "services/booking-api/internal/booking/service_test.go",
+    "line": 1,
+    "symbol": "booking",
+    "relation": "verifies",
+    "target": "clinic:Booking",
+    "conf": 0.95,
+    "matched": "name:Booking",
+    "marker": "// @gloss? verifies clinic:Booking conf=0.95"
+  },
+  {
+    "path": "services/booking-api/internal/booking/service_test.go",
+    "line": 16,
+    "symbol": "newTestService",
+    "relation": "verifies",
+    "target": ".ReminderService",
+    "conf": 0.45,
+    "matched": "name:servic",
+    "marker": "// @gloss? verifies .ReminderService conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/service_test.go",
+    "line": 20,
+    "symbol": "TestBookReservesSlotAndEnqueuesReminder",
+    "relation": "verifies",
+    "target": "clinic:ReminderLeadTime",
+    "conf": 0.45,
+    "matched": "name:remind",
+    "marker": "// @gloss? verifies clinic:ReminderLeadTime conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/service_test.go",
+    "line": 38,
+    "symbol": "TestBookRejectsTakenSlot",
+    "relation": "verifies",
+    "target": "clinic:Booking",
+    "conf": 0.45,
+    "matched": "name:book",
+    "marker": "// @gloss? verifies clinic:Booking conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/booking/service_test.go",
+    "line": 48,
+    "symbol": "TestBookRejectsDoubleBooking",
+    "relation": "verifies",
+    "target": "clinic:Booking",
+    "conf": 0.55,
+    "matched": "name:book,book",
+    "marker": "// @gloss? verifies clinic:Booking conf=0.55"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/appointments.go",
+    "line": 17,
+    "symbol": "Booker",
+    "relation": "implements",
+    "target": "clinic:Booking",
+    "conf": 0.91,
+    "matched": "name:Booking",
+    "marker": "// @gloss? implements clinic:Booking conf=0.91"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/appointments.go",
+    "line": 23,
+    "symbol": "handlers",
+    "relation": "implements",
+    "target": ".BookingHandler",
+    "conf": 0.64,
+    "matched": "name:handl",
+    "marker": "// @gloss? implements .BookingHandler conf=0.64"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/appointments.go",
+    "line": 28,
+    "symbol": "handlers.createAppointment",
+    "relation": "implements",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? implements clinic:AppointmentReminding conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/appointments.go",
+    "line": 47,
+    "symbol": "handlers.getAppointment",
+    "relation": "implements",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? implements clinic:AppointmentReminding conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/appointments.go",
+    "line": 51,
+    "symbol": "handlers.cancelAppointment",
+    "relation": "implements",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? implements clinic:AppointmentReminding conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/appointments_test.go",
+    "line": 19,
+    "symbol": "stubBooker",
+    "relation": "verifies",
+    "target": "clinic:Booking",
+    "conf": 0.45,
+    "matched": "name:book",
+    "marker": "// @gloss? verifies clinic:Booking conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/appointments_test.go",
+    "line": 21,
+    "symbol": "stubBooker.Book",
+    "relation": "verifies",
+    "target": "clinic:Booking",
+    "conf": 0.91,
+    "matched": "name:Booking",
+    "marker": "// @gloss? verifies clinic:Booking conf=0.91"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/appointments_test.go",
+    "line": 24,
+    "symbol": "stubBooker.Cancel",
+    "relation": "verifies",
+    "target": "clinic:Cancellation",
+    "conf": 0.55,
+    "matched": "name:Cancellation",
+    "marker": "// @gloss? verifies clinic:Cancellation conf=0.55"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/appointments_test.go",
+    "line": 27,
+    "symbol": "stubBooker.FindOpenSlots",
+    "relation": "verifies",
+    "target": "clinic:Slot",
+    "conf": 0.45,
+    "matched": "name:slot",
+    "marker": "// @gloss? verifies clinic:Slot conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/appointments_test.go",
+    "line": 31,
+    "symbol": "noPractitioners",
+    "relation": "verifies",
+    "target": "clinic:Practitioner",
+    "conf": 0.45,
+    "matched": "name:practition",
+    "marker": "// @gloss? verifies clinic:Practitioner conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/appointments_test.go",
+    "line": 37,
+    "symbol": "TestCreateAppointmentMapsConflict",
+    "relation": "verifies",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? verifies clinic:AppointmentReminding conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/middleware.go",
+    "line": 21,
+    "symbol": "requirePatientSession",
+    "relation": "implements",
+    "target": ".PatientSite",
+    "conf": 0.45,
+    "matched": "name:patient",
+    "marker": "// @gloss? implements .PatientSite conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/router.go",
+    "line": 2,
+    "symbol": "httpapi",
+    "relation": "implements",
+    "target": ".BookingApiService",
+    "conf": 0.36,
+    "matched": "doc name:book,servic",
+    "marker": "// @gloss? implements .BookingApiService conf=0.36"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/router.go",
+    "line": 16,
+    "symbol": "PractitionerLister",
+    "relation": "represents",
+    "target": "clinic:Practitioner",
+    "conf": 0.45,
+    "matched": "name:practition",
+    "marker": "// @gloss? represents clinic:Practitioner conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/slots.go",
+    "line": 11,
+    "symbol": "handlers.listSlots",
+    "relation": "implements",
+    "target": ".SlotSearch",
+    "conf": 0.45,
+    "matched": "name:slot",
+    "marker": "// @gloss? implements .SlotSearch conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/httpapi/slots.go",
+    "line": 30,
+    "symbol": "handlers.listPractitioners",
+    "relation": "implements",
+    "target": ".PractitionerDirectory",
+    "conf": 0.45,
+    "matched": "name:practition",
+    "marker": "// @gloss? implements .PractitionerDirectory conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/models/appointment.go",
+    "line": 9,
+    "symbol": "AppointmentStatus",
+    "relation": "represents",
+    "target": "clinic:Appointment",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? represents clinic:Appointment conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/models/appointment.go",
+    "line": 19,
+    "symbol": "Appointment",
+    "relation": "represents",
+    "target": "clinic:Appointment",
+    "conf": 0.95,
+    "matched": "name:Appointment",
+    "marker": "// @gloss? represents clinic:Appointment conf=0.95"
+  },
+  {
+    "path": "services/booking-api/internal/models/patient.go",
+    "line": 10,
+    "symbol": "Patient",
+    "relation": "represents",
+    "target": "clinic:Patient",
+    "conf": 0.95,
+    "matched": "name:Patient",
+    "marker": "// @gloss? represents clinic:Patient conf=0.95"
+  },
+  {
+    "path": "services/booking-api/internal/models/practitioner.go",
+    "line": 6,
+    "symbol": "Practitioner",
+    "relation": "represents",
+    "target": "clinic:Practitioner",
+    "conf": 0.95,
+    "matched": "name:Practitioner",
+    "marker": "// @gloss? represents clinic:Practitioner conf=0.95"
+  },
+  {
+    "path": "services/booking-api/internal/models/slot.go",
+    "line": 10,
+    "symbol": "Slot",
+    "relation": "represents",
+    "target": "clinic:Slot",
+    "conf": 0.95,
+    "matched": "name:Slot",
+    "marker": "// @gloss? represents clinic:Slot conf=0.95"
+  },
+  {
+    "path": "services/booking-api/internal/outbox/relay.go",
+    "line": 2,
+    "symbol": "outbox",
+    "relation": "implements",
+    "target": ".OutboxRelay",
+    "conf": 0.64,
+    "matched": "name:outbox",
+    "marker": "// @gloss? implements .OutboxRelay conf=0.64"
+  },
+  {
+    "path": "services/booking-api/internal/outbox/relay.go",
+    "line": 12,
+    "symbol": "Relay",
+    "relation": "implements",
+    "target": ".OutboxRelay",
+    "conf": 0.64,
+    "matched": "name:relay",
+    "marker": "// @gloss? implements .OutboxRelay conf=0.64"
+  },
+  {
+    "path": "services/booking-api/internal/outbox/relay.go",
+    "line": 19,
+    "symbol": "NewRelay",
+    "relation": "implements",
+    "target": ".OutboxRelay",
+    "conf": 0.45,
+    "matched": "name:relay",
+    "marker": "// @gloss? implements .OutboxRelay conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/outbox/sqs.go",
+    "line": 1,
+    "symbol": "outbox",
+    "relation": "implements",
+    "target": ".OutboxRelay",
+    "conf": 0.64,
+    "matched": "name:outbox",
+    "marker": "// @gloss? implements .OutboxRelay conf=0.64"
+  },
+  {
+    "path": "services/booking-api/internal/store/appointments.go",
+    "line": 12,
+    "symbol": "appointmentColumns",
+    "relation": "implements",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? implements clinic:AppointmentReminding conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/store/appointments.go",
+    "line": 14,
+    "symbol": "scanAppointment",
+    "relation": "implements",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? implements clinic:AppointmentReminding conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/store/appointments.go",
+    "line": 21,
+    "symbol": "DB.CreateAppointment",
+    "relation": "implements",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? implements clinic:AppointmentReminding conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/store/appointments.go",
+    "line": 28,
+    "symbol": "DB.GetAppointment",
+    "relation": "implements",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? implements clinic:AppointmentReminding conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/store/appointments.go",
+    "line": 32,
+    "symbol": "DB.UpdateAppointment",
+    "relation": "implements",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? implements clinic:AppointmentReminding conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/store/appointments.go",
+    "line": 38,
+    "symbol": "DB.ListPatientAppointments",
+    "relation": "implements",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.45,
+    "matched": "name:appointment",
+    "marker": "// @gloss? implements clinic:AppointmentReminding conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/store/outbox.go",
+    "line": 11,
+    "symbol": "OutboxMessage",
+    "relation": "implements",
+    "target": ".OutboxRelay",
+    "conf": 0.45,
+    "matched": "name:outbox",
+    "marker": "// @gloss? implements .OutboxRelay conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/store/outbox.go",
+    "line": 27,
+    "symbol": "DB.ClaimOutbox",
+    "relation": "implements",
+    "target": ".OutboxRelay",
+    "conf": 0.45,
+    "matched": "name:outbox",
+    "marker": "// @gloss? implements .OutboxRelay conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/store/postgres.go",
+    "line": 2,
+    "symbol": "store",
+    "relation": "implements",
+    "target": ".BookingApiService",
+    "conf": 0.36,
+    "matched": "doc name:book,api",
+    "marker": "// @gloss? implements .BookingApiService conf=0.36"
+  },
+  {
+    "path": "services/booking-api/internal/store/postgres.go",
+    "line": 12,
+    "symbol": "ErrNoRows",
+    "relation": "implements",
+    "target": "clinic:NoShowRate",
+    "conf": 0.45,
+    "matched": "name:no",
+    "marker": "// @gloss? implements clinic:NoShowRate conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/store/practitioners.go",
+    "line": 9,
+    "symbol": "DB.ListPractitioners",
+    "relation": "implements",
+    "target": ".PractitionerDirectory",
+    "conf": 0.45,
+    "matched": "name:practition",
+    "marker": "// @gloss? implements .PractitionerDirectory conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/store/slots.go",
+    "line": 12,
+    "symbol": "DB.GetSlot",
+    "relation": "implements",
+    "target": ".SlotSearch",
+    "conf": 0.45,
+    "matched": "name:slot",
+    "marker": "// @gloss? implements .SlotSearch conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/store/slots.go",
+    "line": 19,
+    "symbol": "DB.ListOpenSlots",
+    "relation": "implements",
+    "target": ".SlotSearch",
+    "conf": 0.45,
+    "matched": "name:slot",
+    "marker": "// @gloss? implements .SlotSearch conf=0.45"
+  },
+  {
+    "path": "services/booking-api/internal/store/slots.go",
+    "line": 37,
+    "symbol": "DB.MarkSlotBooked",
+    "relation": "implements",
+    "target": "clinic:Booking",
+    "conf": 0.45,
+    "matched": "name:book",
+    "marker": "// @gloss? implements clinic:Booking conf=0.45"
+  },
+  {
+    "path": "services/reminders/reminders/main.py",
+    "line": 22,
+    "symbol": "run_noshow_report",
+    "relation": "implements",
+    "target": ".NoShowReport",
+    "conf": 0.45,
+    "matched": "name:report",
+    "marker": "# @gloss? implements .NoShowReport conf=0.45"
+  },
+  {
+    "path": "services/reminders/reminders/models.py",
+    "line": 13,
+    "symbol": "AppointmentEvent",
+    "relation": "represents",
+    "target": "clinic:Appointment",
+    "conf": 0.64,
+    "matched": "name:Appointment",
+    "marker": "# @gloss? represents clinic:Appointment conf=0.64"
+  },
+  {
+    "path": "services/reminders/reminders/models.py",
+    "line": 21,
+    "symbol": "ScheduledReminder",
+    "relation": "implements",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.45,
+    "matched": "name:remind",
+    "marker": "# @gloss? implements clinic:AppointmentReminding conf=0.45"
+  },
+  {
+    "path": "services/reminders/reminders/noshow.py",
+    "line": 5,
+    "symbol": "NoShowReport",
+    "relation": "represents",
+    "target": ".NoShowReport",
+    "conf": 0.95,
+    "matched": "name:NoShowReport",
+    "marker": "# @gloss? represents .NoShowReport conf=0.95"
+  },
+  {
+    "path": "services/reminders/reminders/noshow.py",
+    "line": 18,
+    "symbol": "compute_noshow_report",
+    "relation": "implements",
+    "target": ".NoShowReport",
+    "conf": 0.45,
+    "matched": "name:report",
+    "marker": "# @gloss? implements .NoShowReport conf=0.45"
+  },
+  {
+    "path": "services/reminders/reminders/repository.py",
+    "line": 11,
+    "symbol": "ReminderRepository",
+    "relation": "implements",
+    "target": "clinic:ReminderLeadTime",
+    "conf": 0.45,
+    "matched": "name:remind",
+    "marker": "# @gloss? implements clinic:ReminderLeadTime conf=0.45"
+  },
+  {
+    "path": "services/reminders/reminders/scheduler.py",
+    "line": 8,
+    "symbol": "plan_reminders",
+    "relation": "implements",
+    "target": "clinic:ReminderLeadTime",
+    "conf": 0.45,
+    "matched": "doc name:remind,lead,time",
+    "marker": "# @gloss? implements clinic:ReminderLeadTime conf=0.45"
+  },
+  {
+    "path": "services/reminders/reminders/scheduler.py",
+    "line": 28,
+    "symbol": "cancel_reminders",
+    "relation": "implements",
+    "target": "clinic:AppointmentReminding",
+    "conf": 0.45,
+    "matched": "name:remind",
+    "marker": "# @gloss? implements clinic:AppointmentReminding conf=0.45"
+  },
+  {
+    "path": "services/reminders/reminders/settings.py",
+    "line": 5,
+    "symbol": "REMINDER_LEAD_HOURS",
+    "relation": "implements",
+    "target": "clinic:ReminderLeadTime",
+    "conf": 0.55,
+    "matched": "name:remind,lead",
+    "marker": "# @gloss? implements clinic:ReminderLeadTime conf=0.55"
+  },
+  {
+    "path": "services/reminders/reminders/worker.py",
+    "line": 30,
+    "symbol": "ReminderWorker",
+    "relation": "implements",
+    "target": "clinic:ReminderLeadTime",
+    "conf": 0.45,
+    "matched": "name:remind",
+    "marker": "# @gloss? implements clinic:ReminderLeadTime conf=0.45"
+  },
+  {
+    "path": "services/reminders/tests/test_noshow.py",
+    "line": 4,
+    "symbol": "test_late_cancellations_count_as_no_shows",
+    "relation": "verifies",
+    "target": "clinic:NoShowRate",
+    "conf": 0.55,
+    "matched": "name:no,show",
+    "marker": "# @gloss? verifies clinic:NoShowRate conf=0.55"
+  },
+  {
+    "path": "services/reminders/tests/test_noshow.py",
+    "line": 11,
+    "symbol": "test_empty_clinic_has_zero_rate",
+    "relation": "verifies",
+    "target": "clinic:Clinic",
+    "conf": 0.45,
+    "matched": "name:clinic",
+    "marker": "# @gloss? verifies clinic:Clinic conf=0.45"
+  },
+  {
+    "path": "services/reminders/tests/test_scheduler.py",
+    "line": 10,
+    "symbol": "booked",
+    "relation": "verifies",
+    "target": "clinic:Booking",
+    "conf": 0.91,
+    "matched": "name:Booking",
+    "marker": "# @gloss? verifies clinic:Booking conf=0.91"
+  },
+  {
+    "path": "services/reminders/tests/test_scheduler.py",
+    "line": 14,
+    "symbol": "test_booking_a_week_ahead_plans_lead_reminder_and_nudge",
+    "relation": "verifies",
+    "target": "clinic:ReminderLeadTime",
+    "conf": 0.55,
+    "matched": "name:lead,remind",
+    "marker": "# @gloss? verifies clinic:ReminderLeadTime conf=0.55"
+  },
+  {
+    "path": "services/reminders/tests/test_scheduler.py",
+    "line": 20,
+    "symbol": "test_booking_tomorrow_skips_the_lead_reminder",
+    "relation": "verifies",
+    "target": "clinic:ReminderLeadTime",
+    "conf": 0.55,
+    "matched": "name:lead,remind",
+    "marker": "# @gloss? verifies clinic:ReminderLeadTime conf=0.55"
+  },
+  {
+    "path": "services/reminders/tests/test_scheduler.py",
+    "line": 26,
+    "symbol": "test_cancellation_withdraws_reminders",
+    "relation": "verifies",
+    "target": "clinic:CancellationWindow",
+    "conf": 0.45,
+    "matched": "name:cancell",
+    "marker": "# @gloss? verifies clinic:CancellationWindow conf=0.45"
+  }
+]

@@ -1,0 +1,7 @@
+# .gloss.yaml: the whole metering and billing system.
+boundary: meterb:meterworks
+level: system
+label: Meterworks metering and billing
+realizes: inherit
+default-namespace: mw
+owner: metering-platform

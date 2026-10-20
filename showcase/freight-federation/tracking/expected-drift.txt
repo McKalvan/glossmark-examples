@@ -1,0 +1,9 @@
+Ontology drift
+
+△ Implemented but untested
+  trk:PickedUpIntake is implemented but nothing tests or verifies it (nor frt:Tracking, which it realizes)  [ontology/trk.gloss.yaml:6]
+  trk:PingIngestor is implemented but nothing tests or verifies it (nor frt:Tracking, which it realizes)  [ontology/trk.gloss.yaml:12]
+  trk:PlannedStopSync is implemented but nothing tests or verifies it (nor frt:Tracking, which it realizes)  [ontology/trk.gloss.yaml:7]
+  trk:TrackingQuery is implemented but nothing tests or verifies it (nor frt:ShipmentVisibility, which it realizes)  [ontology/trk.gloss.yaml:29]
+
+Concepts covered 50% (4/8 with an artifact and a verifier)   Files 53% (20/38)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 0

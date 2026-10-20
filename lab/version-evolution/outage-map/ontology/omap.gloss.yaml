@@ -1,0 +1,6 @@
+# omap: the live outage map.
+namespace: omap
+iri: https://onto.gridco.example/omap/
+version: 0.2.0
+concepts:
+  OutageLayer: { kind: process, internal: true, subscribes: [grid:Outage, mc:ReadingFeed], doc: "Infers dark meters from the reading feed and draws reported outages on the map." }

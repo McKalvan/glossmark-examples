@@ -1,0 +1,9 @@
+# @gloss configures .RateLimiting scope=file
+# Token-bucket policies, keyed by the name passed to @rate_limit.
+policies:
+  claims-write:
+    per_minute: 30
+    burst: 10
+  export:
+    per_minute: 2
+    burst: 2

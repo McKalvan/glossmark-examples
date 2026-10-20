@@ -1,0 +1,6 @@
+# The commerce domain: a logical parent that lives in its own directory, beside its children.
+boundary: spw:platform
+level: domain
+label: Commerce platform
+owner: platform-team
+realizes: [cyc:Payment, cyc:Refund]

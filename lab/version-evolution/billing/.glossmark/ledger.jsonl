@@ -1,0 +1,4 @@
+{"type":"ledger","format":1,"generator":"gloss 0.1.0"}
+{"marker_id":"m-236db5502f","path":"billing/run.py","relation":"implements","targets":["bill:BillRun"],"actor":"agent:claude-code","created":"2026-10-20T02:55:48Z","status":"accepted","anchor_fingerprint":"sha256:d1690145ee63f1ea","last_seen":"2026-10-20T02:56:15Z"}
+{"marker_id":"m-506daa2a98","path":"tests/test_run.py","relation":"verifies","targets":["bill:BillRun"],"actor":"agent:claude-code","created":"2026-10-20T02:56:15Z","status":"accepted","anchor_fingerprint":"sha256:bae7201f4a75edb7","last_seen":"2026-10-20T02:56:15Z"}
+{"marker_id":"m-a59905ce64","path":"billing/accounts.py","relation":"represents","targets":["grid:Customer"],"actor":"agent:claude-code","created":"2026-10-20T02:55:48Z","status":"accepted","anchor_fingerprint":"sha256:e53239df7f29ee10","last_seen":"2026-10-20T02:56:15Z"}

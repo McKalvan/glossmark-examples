@@ -1,0 +1,13 @@
+# ontology/hp.gloss.yaml: the core tier, what Harbor Provisions finance recognises.
+namespace: hp
+version: 0.1.0
+concepts:
+  Invoice:
+    kind: entity
+    criticality: critical
+    doc: "The legal bill for delivered orders: number, issue and due dates, our tax ID, lines, sales tax and total."
+  Invoicing:
+    kind: process
+    criticality: critical
+    produces: [Invoice]
+    doc: "Turning a customer's delivered, uninvoiced orders into an invoice each week."

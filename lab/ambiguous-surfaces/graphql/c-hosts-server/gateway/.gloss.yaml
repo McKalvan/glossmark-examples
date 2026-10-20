@@ -1,0 +1,7 @@
+boundary: hpb:gateway
+level: container
+label: GraphQL gateway
+part-of: hpb:harbor
+presents: [hp:OrderPlacement]
+hosts: [hp:OrderPlacement]
+default-namespace: hpx

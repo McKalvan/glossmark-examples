@@ -1,0 +1,3 @@
+<h1>Bill for <%= invoice.period_start %> to <%= invoice.period_end %></h1>
+<p><%= invoice.consumption_kwh %> kWh<%= ", estimated: send us a meter reading to correct it" if invoice.estimated %></p>
+<p>Amount due: £<%= invoice.amount %> by <%= invoice.due_on %></p>

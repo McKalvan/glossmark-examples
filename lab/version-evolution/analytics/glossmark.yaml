@@ -1,0 +1,5 @@
+# analytics accepts anything below grid: 3.0: its models are rebuilt nightly and it would rather break loudly than lag.
+grammar: 1
+repo-iri: https://onto.gridco.example/analytics/
+imports:
+  grid: { iri: https://onto.gridco.example/grid/, version: ">=1.0 <3.0", source: ../meter-core/ontology/grid.gloss.yaml }

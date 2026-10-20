@@ -1,0 +1,5 @@
+{"type":"ledger","format":1,"generator":"gloss 0.1.0"}
+{"marker_id":"m-09e3283f9e","path":"migrations/0001_invoices.sql","relation":"represents","targets":["hire:Invoice"],"actor":"agent:claude-code","created":"2026-10-20T02:56:23Z","status":"accepted","anchor_fingerprint":"sha256:800dab9bf19d047d","last_seen":"2026-10-20T02:56:23Z"}
+{"marker_id":"m-0cfaa3b2b6","path":"internal/invoice/run_test.go","relation":"verifies","targets":["hire:Invoicing"],"actor":"agent:claude-code","created":"2026-10-20T02:56:23Z","status":"accepted","anchor_fingerprint":"sha256:a773a86cbf37d02e","last_seen":"2026-10-20T02:56:23Z"}
+{"marker_id":"m-b8551b5a52","path":"internal/invoice/run.go","relation":"implements","targets":[".InvoiceRun"],"actor":"agent:claude-code","created":"2026-10-20T02:56:23Z","status":"accepted","anchor_fingerprint":"sha256:a2af5419897810de","last_seen":"2026-10-20T02:56:23Z"}
+{"marker_id":"m-e83197997f","path":"internal/invoice/invoice.go","relation":"represents","targets":["hire:Invoice"],"actor":"agent:claude-code","created":"2026-10-20T02:56:23Z","status":"accepted","anchor_fingerprint":"sha256:ce6d63322f10e1a9","last_seen":"2026-10-20T02:56:23Z"}

@@ -1,0 +1,38 @@
+type Query {
+  me: Customer!
+  order(id: ID!): Order
+}
+
+type Mutation {
+  placeOrder(input: PlaceOrderInput!): Order!
+}
+
+type Customer {
+  id: ID!
+  name: String!
+  openBalanceCents: Int!
+  limitCents: Int!
+  availableCreditCents: Int!
+}
+
+type Order {
+  id: ID!
+  placedAt: String!
+  totalCents: Int!
+  lines: [OrderLine!]!
+}
+
+type OrderLine {
+  sku: String!
+  cases: Int!
+  unitCents: Int!
+}
+
+input PlaceOrderInput {
+  lines: [OrderLineInput!]!
+}
+
+input OrderLineInput {
+  sku: String!
+  cases: Int!
+}

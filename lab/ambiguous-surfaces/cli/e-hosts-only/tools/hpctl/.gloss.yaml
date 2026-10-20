@@ -1,0 +1,6 @@
+boundary: hpb:hpctl
+level: container
+label: hpctl, the finance operations CLI
+part-of: hpb:harbor
+hosts: [hp:PeriodClose]
+default-namespace: hpx

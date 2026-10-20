@@ -1,0 +1,4 @@
+{"type":"ledger","format":1,"generator":"gloss 0.1.0"}
+{"marker_id":"m-002def1271","path":"ingest/ingestor.go","relation":"implements","targets":["mc:ReadingIngestor"],"actor":"agent:claude-code","created":"2026-10-20T02:55:23Z","status":"accepted","anchor_fingerprint":"sha256:d4e2a8d8bb958e0b","last_seen":"2026-10-20T02:56:15Z"}
+{"marker_id":"m-90e82c0c1e","path":"ingest/feed.go","relation":"implements","targets":["mc:ReadingFeed"],"actor":"agent:claude-code","created":"2026-10-20T02:55:23Z","status":"accepted","anchor_fingerprint":"sha256:563621002180fb8a","last_seen":"2026-10-20T02:56:15Z"}
+{"marker_id":"m-d4504177b7","path":"ingest/ingestor_test.go","relation":"verifies","targets":["mc:ReadingIngestor"],"actor":"agent:claude-code","created":"2026-10-20T02:56:15Z","status":"accepted","anchor_fingerprint":"sha256:9c633df1502bd50e","last_seen":"2026-10-20T02:56:15Z"}

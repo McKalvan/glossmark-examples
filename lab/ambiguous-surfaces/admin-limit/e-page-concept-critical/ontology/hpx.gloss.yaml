@@ -1,0 +1,13 @@
+# ontology/hpx.gloss.yaml: the implementation tier.
+namespace: hpx
+version: 0.1.0
+concepts:
+  CreditCheck:
+    kind: constraint
+    realizes: hp:CreditLimit
+    doc: "CreditService.Check in the Go order service: refuses an order that would take the open balance over the stored limit."
+  CreditLimitEditor:
+    kind: process
+    presents: hp:CreditLimit
+    criticality: critical      # it changes the value the credit check enforces
+    doc: "The admin page where finance staff change a customer's credit limit."

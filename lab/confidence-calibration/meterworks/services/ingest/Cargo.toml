@@ -1,0 +1,18 @@
+[package]
+name = "meter-ingest"
+version = "0.7.2"
+edition = "2021"
+description = "Receives half-hourly smart meter frames, validates them and publishes readings"
+
+[dependencies]
+tokio = { version = "1.40", features = ["macros", "rt-multi-thread", "net"] }
+rdkafka = { version = "0.36", features = ["cmake-build"] }
+prost = "0.13"
+serde = { version = "1.0", features = ["derive"] }
+thiserror = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+[build-dependencies]
+prost-build = "0.13"

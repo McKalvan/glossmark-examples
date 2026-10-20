@@ -1,0 +1,12 @@
+# The implementation tier of the hirehq monolith.
+namespace: hq
+version: 1.0.0
+concepts:
+  BookingView:
+    kind: process
+    realizes: hire:Booking
+    doc: "POST /hires: validates availability and opens a hire."
+  InvoiceGenerator:
+    kind: process
+    realizes: hire:Invoicing
+    doc: "generate_invoice: prices a returned hire by the day and writes the invoice row."

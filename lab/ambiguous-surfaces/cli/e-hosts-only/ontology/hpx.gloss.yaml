@@ -1,0 +1,4 @@
+# ontology/hpx.gloss.yaml: the implementation tier.
+namespace: hpx
+version: 0.1.0
+concepts: {}

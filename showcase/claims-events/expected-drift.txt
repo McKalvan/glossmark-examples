@@ -1,0 +1,20 @@
+Ontology drift
+
+✗ Violations (boundary exceeds its declared capability)
+  claimb:assessment publishes claim:ClaimReferred but declares publishes {claim:ClaimDecided, claim:PayoutAuthorized}; rollup: publishes {claim:ClaimEvent} ⊄ declared  [services/assessment/assessment/referral.py:33]
+
+≠ Published values drifted (the bound code changed, the value did not)
+  published value drifted: tide:FraudReferralPolicy publishes "0.80", bound to services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.kt, which changed from "const val REFERRAL_SCORE_THRESHOLD = 0.80" to "const val REFERRAL_SCORE_THRESHOLD = 0.75"; update value: in the ontology, or confirm with gloss accept --value tide:FraudReferralPolicy  [services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.kt]
+
+○ Gaps (declared, not implemented)
+  claimb:payout-notifier declares subscribes claim:PayoutFailed but nothing under it subscribes to it: intended capability not implemented, or the declaration is wrong  [services/payout-notifier/.gloss.yaml:1]
+
+· Orphan concepts (no artifacts)
+  claim:AdjusterReview: orphan concept, no artifact links to it  [ontology/claim.gloss.yaml:117]
+  claim:LossEvidence: orphan concept, no artifact links to it  [ontology/claim.gloss.yaml:31]
+  claim:SpecialInvestigation: orphan concept, no artifact links to it  [ontology/claim.gloss.yaml:127]
+
+△ Implemented but untested
+  claim:ClaimWithdrawal is implemented but nothing tests or verifies it  [ontology/claim.gloss.yaml:102]
+
+Concepts covered 71% (10/14 with an artifact and a verifier)   Files 64% (58/90)   Orphans: 3   Rogue: 0   Violations: 1   Gaps: 1   Stale: 0   Untested: 1   Proposed links: 0   Proposed concepts: 0

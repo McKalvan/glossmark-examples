@@ -1,0 +1,625 @@
+[
+  {
+    "concept": "circ:BorrowingLimitCheck",
+    "tier": "implementation",
+    "kind": "constraint",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 0,
+    "doc": "CirculationService.assertUnderLimit against maxItems in patron-types.json."
+  },
+  {
+    "concept": "circ:CheckinHandler",
+    "tier": "implementation",
+    "kind": "process",
+    "status": "untested",
+    "artifacts": 2,
+    "verifiers": 0,
+    "findings": [
+      "untested"
+    ],
+    "doc": "CirculationService.checkin: closes the loan, assesses the fine, traps a hold."
+  },
+  {
+    "concept": "circ:CheckoutHandler",
+    "tier": "implementation",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 0,
+    "doc": "CirculationService.checkout: every refusal rule, then the loan row, in one transaction."
+  },
+  {
+    "concept": "circ:CircCluster",
+    "tier": "implementation",
+    "kind": "resource",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "The ECS Fargate cluster for the web app, the kiosk gateway and the nightly task."
+  },
+  {
+    "concept": "circ:CircDatabase",
+    "tier": "implementation",
+    "kind": "resource",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "The RDS PostgreSQL instance."
+  },
+  {
+    "concept": "circ:CircWebApp",
+    "tier": "implementation",
+    "kind": "system-type",
+    "status": "implemented",
+    "artifacts": 3,
+    "verifiers": 0,
+    "doc": "The Tomcat desk web app: servlets, services and DAOs in one WAR."
+  },
+  {
+    "concept": "circ:DeskFineCalculator",
+    "tier": "implementation",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 1,
+    "doc": "FineCalculator.overdueFine: the fine assessed at check-in."
+  },
+  {
+    "concept": "circ:FineCapRule",
+    "tier": "implementation",
+    "kind": "constraint",
+    "status": "implemented",
+    "artifacts": 3,
+    "verifiers": 1,
+    "doc": "The lower of replacement cost and the flat cap, in FineCalculator and in sp_assess_fines."
+  },
+  {
+    "concept": "circ:GracePeriodRule",
+    "tier": "implementation",
+    "kind": "constraint",
+    "status": "implemented",
+    "artifacts": 3,
+    "verifiers": 1,
+    "doc": "The grace days subtracted before a fine accrues, in FineCalculator and in sp_assess_fines."
+  },
+  {
+    "concept": "circ:HoldExpiryJob",
+    "tier": "implementation",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 0,
+    "doc": "expire_holds.sh calling sp_expire_holds, which re-traps the copy."
+  },
+  {
+    "concept": "circ:HoldQueue",
+    "tier": "implementation",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 1,
+    "doc": "HoldQueue.trapIfWanted: the oldest waiting hold traps the returned copy."
+  },
+  {
+    "concept": "circ:KioskGateway",
+    "tier": "implementation",
+    "kind": "system-type",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 0,
+    "doc": "The gRPC gateway the self-checkout kiosks call (2022)."
+  },
+  {
+    "concept": "circ:LoanPeriodRule",
+    "tier": "implementation",
+    "kind": "constraint",
+    "status": "implemented",
+    "artifacts": 3,
+    "verifiers": 0,
+    "doc": "LoanPeriodCalculator: loanDays per format from loan-rules.json, pushed off closed days."
+  },
+  {
+    "concept": "circ:NightlyBatch",
+    "tier": "implementation",
+    "kind": "system-type",
+    "status": "implemented",
+    "artifacts": 4,
+    "verifiers": 0,
+    "doc": "run_nightly.sh and the three jobs it runs, as the circ-nightly ECS scheduled task."
+  },
+  {
+    "concept": "circ:NightlyFineJob",
+    "tier": "implementation",
+    "kind": "process",
+    "status": "untested",
+    "artifacts": 2,
+    "verifiers": 0,
+    "findings": [
+      "untested"
+    ],
+    "doc": "assess_fines.rb calling sp_assess_fines for loans still out."
+  },
+  {
+    "concept": "circ:NoticeArchive",
+    "tier": "implementation",
+    "kind": "resource",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "The S3 bucket that keeps printed notices for seven years (records schedule LIB-12)."
+  },
+  {
+    "concept": "circ:OverdueNoticeJob",
+    "tier": "implementation",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "overdue_notices.pl: notices at 7, 14 and 28 days; lost at 60."
+  },
+  {
+    "concept": "circ:PatronBlockCheck",
+    "tier": "implementation",
+    "kind": "constraint",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 1,
+    "doc": "CirculationService.assertNotBlocked: expired card or balance at the block threshold."
+  },
+  {
+    "concept": "circ:RenewalHandler",
+    "tier": "implementation",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 4,
+    "verifiers": 1,
+    "doc": "RenewalService.renew and sp_renew_loan, which re-checks the racy rules."
+  },
+  {
+    "concept": "circ:SelfCheckApi",
+    "tier": "implementation",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 0,
+    "doc": "The SelfCheckService gRPC contract and the gateway that serves it."
+  },
+  {
+    "concept": "lib:Active",
+    "tier": "core",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "Checked out and not yet due."
+  },
+  {
+    "concept": "lib:Adult",
+    "tier": "core",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "Resident aged 18 or over."
+  },
+  {
+    "concept": "lib:Audiobook",
+    "tier": "core",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0
+  },
+  {
+    "concept": "lib:Book",
+    "tier": "core",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0
+  },
+  {
+    "concept": "lib:Borrower",
+    "tier": "core",
+    "kind": "entity",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 0,
+    "doc": "The pre-2016 name for a patron."
+  },
+  {
+    "concept": "lib:BorrowingLimit",
+    "tier": "core",
+    "kind": "constraint",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 1,
+    "doc": "The most items a patron may have out at once, set by patron type."
+  },
+  {
+    "concept": "lib:Branch",
+    "tier": "core",
+    "kind": "entity",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 0,
+    "doc": "A library building, or the bookmobile, where items are shelved and loans are made."
+  },
+  {
+    "concept": "lib:Checkin",
+    "tier": "core",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 5,
+    "verifiers": 0,
+    "doc": "Receiving a returned item, closing its loan and assessing any fine."
+  },
+  {
+    "concept": "lib:Checkout",
+    "tier": "core",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 5,
+    "verifiers": 1,
+    "doc": "Lending an item to a patron at the desk or a kiosk, and setting its due date."
+  },
+  {
+    "concept": "lib:ClaimsReturned",
+    "tier": "core",
+    "kind": "process",
+    "status": "proposed",
+    "artifacts": 0,
+    "verifiers": 0,
+    "findings": [
+      "orphan",
+      "proposed"
+    ],
+    "doc": "A patron says they returned an item the record shows as still out; staff search the shelves before billing."
+  },
+  {
+    "concept": "lib:Damage",
+    "tier": "core",
+    "status": "orphan",
+    "artifacts": 0,
+    "verifiers": 0,
+    "findings": [
+      "orphan"
+    ],
+    "doc": "Assessed by staff at check-in."
+  },
+  {
+    "concept": "lib:DigitalLending",
+    "tier": "core",
+    "kind": "process",
+    "status": "proposed",
+    "artifacts": 0,
+    "verifiers": 0,
+    "findings": [
+      "orphan",
+      "proposed"
+    ],
+    "doc": "Lending e-books and e-audiobooks through the library's vendor account."
+  },
+  {
+    "concept": "lib:Dvd",
+    "tier": "core",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0
+  },
+  {
+    "concept": "lib:Fine",
+    "tier": "core",
+    "kind": "entity",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 0,
+    "doc": "Money a patron owes the library for one loan."
+  },
+  {
+    "concept": "lib:FineAssessment",
+    "tier": "core",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 8,
+    "verifiers": 1,
+    "doc": "Working out what a patron owes for an overdue loan: daily rate by format after the grace period."
+  },
+  {
+    "concept": "lib:FineCap",
+    "tier": "core",
+    "kind": "constraint",
+    "status": "implemented",
+    "artifacts": 3,
+    "verifiers": 1,
+    "doc": "A fine for one item never exceeds the item's replacement cost or $20.00, whichever is lower."
+  },
+  {
+    "concept": "lib:FinePayment",
+    "tier": "core",
+    "kind": "process",
+    "status": "proposed",
+    "artifacts": 1,
+    "verifiers": 0,
+    "findings": [
+      "proposed",
+      "untested"
+    ],
+    "doc": "A patron paying some or all of what they owe, at the desk."
+  },
+  {
+    "concept": "lib:FineType",
+    "tier": "core",
+    "kind": "entity",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "One of: OVERDUE, LOST_ITEM, DAMAGE."
+  },
+  {
+    "concept": "lib:GracePeriod",
+    "tier": "core",
+    "kind": "constraint",
+    "status": "implemented",
+    "artifacts": 3,
+    "verifiers": 1,
+    "doc": "Days after the due date during which no fine accrues."
+  },
+  {
+    "concept": "lib:Hold",
+    "tier": "core",
+    "kind": "entity",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 0,
+    "doc": "A patron's request for the next available copy of a title."
+  },
+  {
+    "concept": "lib:HoldExpiry",
+    "tier": "core",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 6,
+    "verifiers": 1,
+    "doc": "A trapped hold not picked up within seven days lapses and the copy goes to the next patron."
+  },
+  {
+    "concept": "lib:HoldTrapping",
+    "tier": "core",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 5,
+    "verifiers": 2,
+    "doc": "Setting aside a returned copy for the oldest waiting hold on its title."
+  },
+  {
+    "concept": "lib:InterlibraryLoan",
+    "tier": "core",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "findings": [
+      "gap"
+    ],
+    "doc": "Borrowing a title Riverbend does not own from another library for one patron."
+  },
+  {
+    "concept": "lib:Item",
+    "tier": "core",
+    "kind": "entity",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 0,
+    "doc": "One physical copy of a title, identified by the barcode on its spine label."
+  },
+  {
+    "concept": "lib:ItemFormat",
+    "tier": "core",
+    "kind": "entity",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 0,
+    "doc": "The physical form of an item. Drives the loan period and the daily fine."
+  },
+  {
+    "concept": "lib:Juvenile",
+    "tier": "core",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "Resident under 18. No overdue fines."
+  },
+  {
+    "concept": "lib:LargePrint",
+    "tier": "core",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0
+  },
+  {
+    "concept": "lib:LibraryCard",
+    "tier": "core",
+    "kind": "entity",
+    "status": "orphan",
+    "artifacts": 0,
+    "verifiers": 0,
+    "findings": [
+      "orphan"
+    ],
+    "doc": "The barcoded card that identifies a patron at the desk and the kiosks."
+  },
+  {
+    "concept": "lib:Loan",
+    "tier": "core",
+    "kind": "entity",
+    "status": "implemented",
+    "artifacts": 3,
+    "verifiers": 0,
+    "doc": "One item lent to one patron, from checkout until check-in."
+  },
+  {
+    "concept": "lib:LoanPeriod",
+    "tier": "core",
+    "kind": "constraint",
+    "status": "implemented",
+    "artifacts": 3,
+    "verifiers": 1,
+    "doc": "How long an item may be kept, set by its format."
+  },
+  {
+    "concept": "lib:LoanStatus",
+    "tier": "core",
+    "kind": "entity",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 0,
+    "doc": "Where a loan is in its life."
+  },
+  {
+    "concept": "lib:LoanStatusOverdue",
+    "tier": "core",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "Past its due date and not returned."
+  },
+  {
+    "concept": "lib:Lost",
+    "tier": "core",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "Declared lost by the patron, or 60 days overdue."
+  },
+  {
+    "concept": "lib:LostItem",
+    "tier": "core",
+    "kind": "entity",
+    "status": "orphan",
+    "artifacts": 0,
+    "verifiers": 0,
+    "findings": [
+      "orphan"
+    ],
+    "doc": "An item the patron has declared lost, or that is 60 days overdue; the patron is billed its replacement cost."
+  },
+  {
+    "concept": "lib:Magazine",
+    "tier": "core",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0
+  },
+  {
+    "concept": "lib:Nonresident",
+    "tier": "core",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "Lives outside the city and pays an annual fee."
+  },
+  {
+    "concept": "lib:Overdue",
+    "tier": "core",
+    "status": "orphan",
+    "artifacts": 0,
+    "verifiers": 0,
+    "findings": [
+      "orphan"
+    ],
+    "doc": "Daily charge for an item kept past its due date and grace period."
+  },
+  {
+    "concept": "lib:OverdueNotification",
+    "tier": "core",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 5,
+    "verifiers": 1,
+    "doc": "Telling a patron, by email or a printed letter, that items are overdue."
+  },
+  {
+    "concept": "lib:Patron",
+    "tier": "core",
+    "kind": "entity",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 0,
+    "doc": "A person registered with the library who holds a library card."
+  },
+  {
+    "concept": "lib:PatronBlock",
+    "tier": "core",
+    "kind": "constraint",
+    "status": "implemented",
+    "artifacts": 2,
+    "verifiers": 2,
+    "doc": "A patron who owes $10.00 or more, or whose card has expired, cannot borrow."
+  },
+  {
+    "concept": "lib:PatronType",
+    "tier": "core",
+    "kind": "entity",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "One of: ADULT, JUVENILE, SENIOR, NONRESIDENT."
+  },
+  {
+    "concept": "lib:Renewal",
+    "tier": "core",
+    "kind": "process",
+    "status": "implemented",
+    "artifacts": 7,
+    "verifiers": 2,
+    "doc": "Extending a loan by one more loan period without bringing the item in."
+  },
+  {
+    "concept": "lib:Returned",
+    "tier": "core",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "Checked in."
+  },
+  {
+    "concept": "lib:SelfCheckout",
+    "tier": "core",
+    "kind": "process",
+    "status": "untested",
+    "artifacts": 4,
+    "verifiers": 0,
+    "findings": [
+      "untested"
+    ],
+    "doc": "A patron checks out or renews their own items at a kiosk."
+  },
+  {
+    "concept": "lib:Senior",
+    "tier": "core",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "Resident aged 65 or over. Overdue fines are halved."
+  },
+  {
+    "concept": "lib:Title",
+    "tier": "core",
+    "kind": "entity",
+    "status": "implemented",
+    "artifacts": 1,
+    "verifiers": 0,
+    "doc": "A bibliographic record: one work in one edition, as the catalogue describes it."
+  },
+  {
+    "concept": "lib:TurnoverRate",
+    "tier": "core",
+    "kind": "measure",
+    "status": "proposed",
+    "artifacts": 0,
+    "verifiers": 0,
+    "findings": [
+      "orphan",
+      "proposed"
+    ],
+    "doc": "Loans per item per year, by branch and format; the collection manager's measure of use."
+  }
+]

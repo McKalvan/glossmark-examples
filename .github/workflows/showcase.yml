@@ -1,0 +1,71 @@
+# Showcase CI: every showcase workspace must match its documented drift.
+# The workspace list lives in showcase/workspaces.tsv and showcase/landscapes.tsv,
+# which scripts/ci-local.sh reads too, so local and CI runs cannot disagree.
+name: showcase
+on: [push, pull_request]
+permissions: { contents: read, pull-requests: write }
+
+jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      workspaces: ${{ steps.read.outputs.workspaces }}
+      landscapes: ${{ steps.read.outputs.landscapes }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Feature matrix evidence exists
+        run: python3 scripts/feature-matrix.py --check
+      - id: read
+        run: |
+          ws=$(grep -v '^#' showcase/workspaces.tsv | jq -R -s -c 'split("\n") | map(select(length>0) | split("\t") | {root: .[0], "fail-on": .[1], action: .[2], coverage: .[3]})')
+          ls=$(grep -v '^#' showcase/landscapes.tsv | jq -R -s -c 'split("\n") | map(select(length>0) | split("\t") | {dir: .[0], "fail-on": .[1], repos: .[2]})')
+          echo "workspaces=$ws" >> "$GITHUB_OUTPUT"
+          echo "landscapes=$ls" >> "$GITHUB_OUTPUT"
+
+  workspace:
+    needs: matrix
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.matrix.outputs.workspaces) }}
+    name: ${{ matrix.root }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      # The Action's drift step hard-codes --fail-on violation,value-drift,dangling, so it runs
+      # only on workspaces with none of those findings by design (use-action = true).
+      # fail-on: none keeps the PR impact comment informational: every PR here edits
+      # ontologies and manifests, which is HARD by construction.
+      - name: GlossMark Action
+        if: matrix.action == 'true'
+        uses: mckalvan/glossmark@v0.1.0
+        with:
+          root: ${{ matrix.root }}
+          version: v0.1.0
+          fail-on: none
+          coverage-fail-under: ${{ matrix.coverage }}
+      - name: Install gloss v0.1.0
+        run: sh scripts/install-gloss.sh
+      - name: Documented drift (check, drift --fail-on, golden files, graph current)
+        run: scripts/check-workspace.sh "${{ matrix.root }}" "${{ matrix.fail-on }}"
+      - name: Coverage ratchet
+        if: matrix.action != 'true' && matrix.coverage != '0'
+        working-directory: ${{ matrix.root }}
+        run: ${{ github.workspace }}/.tools/bin/gloss coverage --fail-under ${{ matrix.coverage }}
+
+  landscape:
+    needs: matrix
+    if: needs.matrix.outputs.landscapes != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.matrix.outputs.landscapes) }}
+    name: landscape ${{ matrix.dir }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install gloss v0.1.0
+        run: sh scripts/install-gloss.sh
+      - name: gloss landscape against expected-landscape.txt
+        run: scripts/check-landscape.sh "${{ matrix.dir }}" "${{ matrix.fail-on }}" ${{ matrix.repos }}

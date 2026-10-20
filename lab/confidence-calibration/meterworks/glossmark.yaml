@@ -1,0 +1,8 @@
+# glossmark.yaml: the namespaces this repository owns (docs/FILE-FORMATS.md).
+grammar: 1
+repo-iri: https://onto.meterworks.example/                 # boundary prefixes such as meterb: expand under it
+owns:
+  meter: { iri: https://onto.meterworks.example/core/, tier: core,           version: 0.1.0 }   # what the business recognises
+  mw: { iri: https://onto.meterworks.example/impl/, tier: implementation, version: 0.1.0 }   # the mechanisms that realize it
+policy:
+  soft-conf-threshold: 0.7

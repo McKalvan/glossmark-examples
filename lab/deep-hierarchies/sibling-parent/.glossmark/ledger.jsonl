@@ -1,0 +1,4 @@
+{"type":"ledger","format":1,"generator":"gloss 0.1.0"}
+{"marker_id":"m-a3122d0756","path":"apps/checkout/flow.py","relation":"implements","targets":["spk:CheckoutFlow"],"actor":"agent:claude-code","created":"2026-10-20T03:00:48Z","status":"removed","anchor_fingerprint":"sha256:6b9899ca53dfc774","last_seen":"2026-10-20T03:00:48Z"}
+{"marker_id":"m-bf9f26a0d5","path":"checkout/flow.py","relation":"implements","targets":["spk:CheckoutFlow"],"actor":"agent:claude-code","created":"2026-10-20T03:01:11Z","status":"accepted","anchor_fingerprint":"sha256:6b9899ca53dfc774","last_seen":"2026-10-20T03:01:11Z"}
+{"marker_id":"m-fb8c9df859","path":"platform/gateway.py","relation":"implements","targets":["spk:PaymentGateway"],"actor":"agent:claude-code","created":"2026-10-20T03:00:48Z","status":"accepted","anchor_fingerprint":"sha256:13fc2eb8eee4eaa3","last_seen":"2026-10-20T03:01:11Z"}

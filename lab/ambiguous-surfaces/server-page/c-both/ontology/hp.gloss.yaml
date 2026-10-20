@@ -1,0 +1,8 @@
+# ontology/hp.gloss.yaml: the core tier, what a Harbor Provisions account manager recognises.
+namespace: hp
+version: 0.1.0
+concepts:
+  Pricing:
+    kind: process
+    criticality: high
+    doc: "Quoting a customer's price for a product: list or contract price per case, less the volume discount."

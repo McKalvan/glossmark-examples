@@ -1,0 +1,45 @@
+# Implementation tier. The four cross-cutting concerns are internal: engineering
+# mechanisms that realize no business concept.
+namespace: xapi
+version: 0.1.0
+concepts:
+  ExpensesApi:
+    kind: system-type
+    realizes: [exp:ClaimSubmission, exp:ClaimApproval, exp:ClaimHistory, exp:ClaimExport]
+    doc: "The Flask expense claims API."
+  SubmitClaimHandler:
+    kind: process
+    realizes: exp:ClaimSubmission
+    doc: "POST /claims."
+  ClaimQueries:
+    kind: capability
+    realizes: exp:ClaimHistory
+    doc: "GET /claims and GET /claims/{id}."
+  ClaimDecisionHandler:
+    kind: process
+    realizes: exp:ClaimApproval
+    doc: "POST /claims/{id}/approve and /reject."
+  ApprovedClaimsExport:
+    kind: capability
+    realizes: exp:ClaimExport
+    doc: "GET /exports/approved.csv."
+
+  # Cross-cutting concerns
+  Authentication:
+    kind: process
+    internal: true
+    criticality: high
+    doc: "Bearer-token verification on every request, and the role check decorator."
+  RateLimiting:
+    kind: process
+    internal: true
+    doc: "Per-principal token buckets named by policy."
+  FeatureFlags:
+    kind: capability
+    internal: true
+    doc: "Flags read from flags.yaml; a disabled flag hides its routes."
+  RequestLogging:
+    kind: process
+    internal: true
+    criticality: low
+    doc: "Structured JSON logs and one access-log line per request."

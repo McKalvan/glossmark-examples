@@ -1,0 +1,7 @@
+boundary: hpb:orders
+level: container
+label: Order service
+part-of: hpb:harbor
+realizes: [hpx:OrderIntake, hpx:CreditCheck]
+holds: [hp:Order]
+default-namespace: hpx

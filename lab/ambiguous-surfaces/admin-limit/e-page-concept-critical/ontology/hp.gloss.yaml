@@ -1,0 +1,8 @@
+# ontology/hp.gloss.yaml: the core tier, what a Harbor Provisions account manager recognises.
+namespace: hp
+version: 0.1.0
+concepts:
+  CreditLimit:
+    kind: constraint
+    criticality: critical
+    doc: "A customer's open balance plus a new order may not exceed the credit limit finance set for them."

@@ -1,0 +1,7 @@
+# billing pins grid: to patch releases only: it re-certifies invoices on every minor upstream change.
+grammar: 1
+repo-iri: https://onto.gridco.example/billing/
+owns:
+  bill: { iri: https://onto.gridco.example/bill/, file: ontology/bill.gloss.yaml, tier: implementation, version: 0.4.0, owner: billing-eng }
+imports:
+  grid: { iri: https://onto.gridco.example/grid/, version: "~1.0.0", source: ../meter-core/ontology/grid.gloss.yaml }

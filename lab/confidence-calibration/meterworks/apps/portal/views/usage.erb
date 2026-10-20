@@ -1,0 +1,8 @@
+<h1>Your electricity use</h1>
+<p>Total: <%= Portal::UsageReport.total_kwh(report) %> kWh</p>
+<table>
+  <tr><th>Day</th><th>kWh</th></tr>
+  <% report.each do |day| %>
+    <tr><td><%= day.date.strftime("%a %-d %b") %></td><td><%= format("%.2f", day.kwh) %></td></tr>
+  <% end %>
+</table>

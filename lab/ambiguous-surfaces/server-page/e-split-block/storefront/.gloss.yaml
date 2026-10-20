@@ -1,0 +1,7 @@
+boundary: hpb:storefront
+level: container
+label: Storefront (Django)
+part-of: hpb:harbor
+realizes: [hp:VolumeDiscount]
+presents: [hp:Pricing]
+default-namespace: hpx

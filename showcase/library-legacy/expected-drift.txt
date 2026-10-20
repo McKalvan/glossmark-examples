@@ -1,0 +1,33 @@
+Ontology drift
+
+○ Gaps (declared, not implemented)
+  libb:ill declares realizes lib:InterlibraryLoan but nothing under it implements it: intended capability not implemented, or the declaration is wrong  [ill/.gloss.yaml:1]  (waived: circulation-dept until 2027-06-30)
+
+? Proposed concepts (awaiting acceptance)
+  lib:ClaimsReturned is a proposed process by agent:claude-code; accept with gloss accept --concept lib:ClaimsReturned  [ontology/lib.gloss.yaml:122]
+  lib:DigitalLending is a proposed process by agent:claude-code; accept with gloss accept --concept lib:DigitalLending  [ontology/lib.gloss.yaml:116]
+  lib:FinePayment is a proposed process by agent:claude-code; accept with gloss accept --concept lib:FinePayment  [ontology/lib.gloss.yaml:185]
+  lib:TurnoverRate is a proposed measure by agent:claude-code; accept with gloss accept --concept lib:TurnoverRate  [ontology/lib.gloss.yaml:110]
+
+· Orphan concepts (no artifacts)
+  lib:ClaimsReturned: orphan concept, no artifact links to it  [ontology/lib.gloss.yaml:122]
+  lib:Damage: orphan concept, no artifact links to it  [ontology/lib.gloss.yaml:148]
+  lib:DigitalLending: orphan concept, no artifact links to it  [ontology/lib.gloss.yaml:116]
+  lib:LibraryCard: orphan concept, no artifact links to it  [ontology/lib.gloss.yaml:13]
+  lib:LostItem: orphan concept, no artifact links to it  [ontology/lib.gloss.yaml:98]
+  lib:Overdue: orphan concept, no artifact links to it  [ontology/lib.gloss.yaml:145]
+  lib:TurnoverRate: orphan concept, no artifact links to it  [ontology/lib.gloss.yaml:110]
+
+△ Implemented but untested
+  circ:CheckinHandler is implemented but nothing tests or verifies it (nor lib:Checkin, which it realizes)  [ontology/circ.gloss.yaml:27]
+  circ:NightlyFineJob is implemented but nothing tests or verifies it (nor lib:FineAssessment, which it realizes)  [ontology/circ.gloss.yaml:65]
+  lib:FinePayment is implemented but nothing tests or verifies it  [ontology/lib.gloss.yaml:185]
+  lib:SelfCheckout is implemented but nothing tests or verifies it  [ontology/lib.gloss.yaml:101]
+
+Decision requests
+  accept or reject proposed lib:ClaimsReturned (ontology/lib.gloss.yaml:122)
+  accept or reject proposed lib:DigitalLending (ontology/lib.gloss.yaml:116)
+  accept or reject proposed lib:FinePayment (ontology/lib.gloss.yaml:185)
+  accept or reject proposed lib:TurnoverRate (ontology/lib.gloss.yaml:110)
+
+Concepts covered 76% (13/17 with an artifact and a verifier)   Files 62% (59/95)   Orphans: 7   Rogue: 0   Violations: 0   Gaps: 1   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 4

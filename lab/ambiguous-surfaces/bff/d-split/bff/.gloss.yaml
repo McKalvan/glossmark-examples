@@ -1,0 +1,7 @@
+boundary: hpb:mobile-bff
+level: container
+label: Mobile backend-for-frontend
+part-of: hpb:harbor
+realizes: [hp:CreditLimit]
+presents: [hp:OrderPlacement]
+default-namespace: hpx

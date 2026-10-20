@@ -1,0 +1,16 @@
+# Variant "naive": the first core tier a new maintainer writes from the code alone.
+# Every name comes from a function, class, table or README word. No domain expert was asked.
+namespace: wh
+version: 0.1.0
+concepts:
+  DataProcessing: { kind: process, doc: "Processing of uploaded data files." }
+  RequestHandling: { kind: process, doc: "Handling of requests sent to the tool." }
+  BatchRun: { kind: process, doc: "The batch run started by the nightly job." }
+  Upload: { kind: process, doc: "A file uploaded through the web page." }
+  Report: { kind: entity, doc: "A report printed from the admin pages." }
+  Queue: { kind: entity, doc: "Work queued for later (tbl_queue)." }
+  Item: { kind: entity, doc: "A row of the item master (tbl_master)." }
+  Location: { kind: entity, doc: "A location code (tbl_loc)." }
+  Order: { kind: entity, doc: "An order line (tbl_ord)." }
+  Label: { kind: entity, doc: "A printed label." }
+  Rma: { kind: entity, doc: "An RMA record (tbl_rma)." }

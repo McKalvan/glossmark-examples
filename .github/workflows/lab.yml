@@ -1,0 +1,38 @@
+# Lab CI: experiments are allowed to break. This never gates a push or a PR;
+# it runs weekly and on demand so a regression in a pinned release is still noticed.
+name: lab
+on:
+  schedule: [{ cron: "17 6 * * 1" }]
+  workflow_dispatch:
+permissions: { contents: read }
+
+jobs:
+  experiments:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        experiment:
+          - cross-cutting-concerns
+          - deep-hierarchies
+          - monolith-decomposition
+          - ambiguous-surfaces
+          - concept-poor-legacy
+          - confidence-calibration
+          - version-evolution
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Install gloss v0.1.0
+        run: sh scripts/install-gloss.sh
+      - name: Run the experiment
+        continue-on-error: true
+        working-directory: lab/${{ matrix.experiment }}
+        env: { GLOSS: "${{ github.workspace }}/.tools/bin/gloss" }
+        run: |
+          if [ -x run.sh ]; then ./run.sh; else
+            for ws in $(find . -name glossmark.yaml -not -path '*/.glossmark/*' -exec dirname {} \; | sort); do
+              echo "== $ws"; (cd "$ws" && "$GLOSS" check && "$GLOSS" drift --fail-on none)
+            done
+          fi

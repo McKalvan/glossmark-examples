@@ -1,0 +1,8 @@
+# meter-core/.gloss.yaml
+boundary: mcb:meter-core
+level: container
+label: Meter data collection
+realizes: [grid:ReadingCollection, grid:MeterReading]
+publishes: [mc:ReadingFeed]
+default-namespace: mc
+owner: metering-eng

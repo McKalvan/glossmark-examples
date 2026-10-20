@@ -1,0 +1,87 @@
+# ontology/mw.gloss.yaml: the implementation tier.
+# Every concept carries realizes: <a meter: concept>, presents:/hosts: for a page or
+# a shell, or internal: true for an engineering-private mechanism.
+namespace: mw
+version: 0.1.0
+concepts:
+  # Deployable systems
+  IngestService:
+    kind: system-type
+    realizes: [meter:ReadingIngestion]
+    doc: "The Rust meter-ingest service behind the head-end TCP feed."
+  BillingService:
+    kind: system-type
+    realizes: [meter:Billing, meter:ReadingEstimation, meter:Dunning]
+    doc: "The Spring Boot billing service: invoice run, estimates, dunning and the invoice API."
+  CustomerPortal:
+    kind: system-type
+    hosts: [UsagePage, InvoicePages]
+    doc: "The Sinatra self-service site customers sign in to."
+
+  # Ingest mechanisms
+  FrameDecoder:
+    kind: process
+    realizes: meter:ReadingIngestion
+    doc: "decode_frame: one head-end frame into register readings."
+  SpikeFilter:
+    kind: constraint
+    realizes: meter:ReadingTolerance
+    doc: "Rejects a read that goes backwards or jumps more than MAX_HALF_HOUR_WH."
+  ReadingPublisher:
+    kind: process
+    realizes: meter:ReadingIngestion
+    doc: "Publishes ReadingReceived to Kafka, keyed by meter serial."
+
+  # Billing mechanisms
+  InvoiceRun:
+    kind: process
+    realizes: meter:Billing
+    doc: "The scheduled monthly run that issues one invoice per active service point."
+  TariffPricing:
+    kind: capability
+    realizes: meter:Billing
+    doc: "TariffCalculator.price: standing charge for every day plus the unit rate per kWh."
+  ConsumptionEstimator:
+    kind: process
+    realizes: meter:ReadingEstimation
+    doc: "ReadingEstimator: last year's average daily use, else the regional profile."
+  DunningRun:
+    kind: process
+    realizes: meter:Dunning
+    doc: "The daily job that marks invoices overdue and requests reminder letters."
+  InvoiceApi:
+    kind: process
+    internal: true
+    doc: "GET /v1/customers/{id}/invoices for the portal."
+  ReadingStore:
+    kind: process
+    internal: true
+    doc: "Appends readings from Kafka and sums consumption between two dates."
+  PaymentTermsSetting:
+    kind: constraint
+    realizes: meter:PaymentTerms
+    doc: "billing.payment-terms-days in the billing service's configuration."
+  EstimationSetting:
+    kind: constraint
+    realizes: meter:EstimationThreshold
+    doc: "billing.estimate-after-days in the billing service's configuration."
+
+  # Portal pages
+  UsagePage:
+    kind: process
+    presents: [meter:Consumption]
+    doc: "/usage: the customer's daily kWh for the last 30 days."
+  InvoicePages:
+    kind: process
+    presents: [meter:Invoice]
+    doc: "/invoices and /invoices/:id: the customer's bills."
+
+  # Infrastructure
+  ReadingsTopic:
+    kind: resource
+    internal: true
+    doc: "The Kafka topic meter.readings.v1 between ingest and billing."
+  BillingDatabase:
+    kind: resource
+    internal: true
+    doc: "The Postgres database billing and the portal read."

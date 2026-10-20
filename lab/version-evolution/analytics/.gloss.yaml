@@ -1,0 +1,8 @@
+# analytics/.gloss.yaml
+boundary: anab:analytics
+level: container
+label: Network analytics models
+holds: [grid:Tariff, grid:SmartMeter]
+# Outage is an event; represents on an event does not lift to holds, so it is admitted here instead.
+allowed: [derived, grid:Outage]
+owner: network-analytics

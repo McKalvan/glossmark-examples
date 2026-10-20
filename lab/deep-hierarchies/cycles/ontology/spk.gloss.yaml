@@ -1,0 +1,7 @@
+# ontology/spk.gloss.yaml: a part-of cycle in the implementation tier, and nobody realizes anything.
+namespace: spk
+version: 0.1.0
+concepts:
+  CassetteListing: { kind: capability, realizes: cyc:Cassette, doc: "Listing model for cassettes." }
+  WaveBuilder:     { kind: process, part-of: BinRouter, doc: "Groups orders into pick waves." }
+  BinRouter:       { kind: process, part-of: WaveBuilder, doc: "Orders the bins in a wave into a walk." }

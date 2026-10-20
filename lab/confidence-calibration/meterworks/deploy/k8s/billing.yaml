@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: billing
+data:
+  BILLING_PAYMENT_TERMS_DAYS: "14"
+  BILLING_ESTIMATE_AFTER_DAYS: "35"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: billing
+  labels: { app: billing }
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: billing }
+  template:
+    metadata:
+      labels: { app: billing }
+    spec:
+      containers:
+        - name: billing
+          image: registry.meterworks.example/billing:2.4.0
+          envFrom:
+            - configMapRef: { name: billing }
+            - secretRef: { name: billing-db }
+          ports:
+            - containerPort: 8080
