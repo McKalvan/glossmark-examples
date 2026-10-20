@@ -1,1 +1,2 @@
 # root	fail-on (kinds that must never appear)	use-action	coverage-fail-under
+showcase/clinic-booking	violation,gap,value-drift,dangling,rogue,stale,proposed	true	0

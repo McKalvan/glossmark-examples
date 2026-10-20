@@ -42,7 +42,14 @@ Each row of the README feature matrix is owned by at least one example. The owne
 
 ## Conventions settled by the first example
 
-Filled in after `clinic-booking` is green; see CONTRIBUTING.md for the contract.
+Settled on `clinic-booking`; CONTRIBUTING.md has the contract.
+
+1. **Golden files.** Each workspace root holds `expected-check.txt` and `expected-drift.txt` (multi-repo examples also `expected-landscape.txt`). `scripts/check-workspace.sh` runs check, `drift --fail-on <kinds>`, both golden diffs, and a rebuild that must not change `graph.jsonl` or `ledger.jsonl`. `UPDATE=1` rewrites the goldens. Drift output is relative-path and stable across runs; the trailer goes to stderr and is not part of the golden.
+2. **Registry.** `showcase/workspaces.tsv` and `showcase/landscapes.tsv` are the one list both CI and `scripts/ci-local.sh` read. The script rejects unknown `--fail-on` kinds because v0.1.0 ignores them (F-ADOPT-11).
+3. **Adoption order.** Code with no GlossMark files; `init --dry-run`; `init` with prefix overrides; delete `init`'s workspace-level workflow and hook files (except in kitchen-agents); move manifests onto deployables; tiers by hand; `suggest --write`; prune and retarget with a reviewed keep-list; hand-write what `suggest` cannot see; `criticality suggest`; `accept --policy`, then `accept --all`.
+4. **The scope=file accept bug.** Accepting a `scope=file` proposal makes it stale at once (F-ADOPT-8). Until it is fixed, file-scope markers in showcase examples are recorded as written-accepted: after `accept --all`, the stale ledger lines are dropped and `gloss build` re-records them.
+5. **Two-state demos** live in `demo/` and copy the workspace into a temporary git repository; `demo/tour.sh` is a read-only tour of the commands an example owns.
+6. **Prefixes.** Short and readable (`clinic:`/`lark:`), never `init`'s initials.
 
 ## Build order
 
@@ -54,4 +61,6 @@ Filled in after `clinic-booking` is green; see CONTRIBUTING.md for the contract.
 
 ## Progress log
 
+- 2026-10-19: skeleton committed.
+- 2026-10-19: `clinic-booking` done: 87 source files across Next.js, Go, Python, SQL, Terraform, Kubernetes and Actions; 53 links; 0 violations, 0 gaps; documented orphan, presented-only and five untested; AUTO/SOFT/HARD and value-drift shown by `demo/gates.sh`. Adoption hit 21 friction points (C1 to C21), three of them v0.1.0 bugs (doctor PATH check, suggest text truncation, scope=file stale on accept).
 - 2026-10-19: read GlossMark docs at v0.1.0 (identical to `main` at `5d20c47` for docs, action and skill). Installed v0.1.0. Probed: `check` and `drift` are read-only; drift's trailer goes to stderr; drift output is stable across runs; `build` rewrites only the generator line of a graph built by another version; `gloss init` in a subdirectory writes its own `.github/workflows/gloss.yml` and hook files; `coverage --fail-under current` needs `origin/main`.

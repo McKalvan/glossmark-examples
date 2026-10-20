@@ -10,6 +10,11 @@ set -uo pipefail
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
 GLOSS="${GLOSS:-$ROOT/.tools/bin/gloss}"
 ws="$1"; fail_on="$2"
+# gloss v0.1.0 accepts unknown kinds in --fail-on silently, so a typo would disable the gate.
+KINDS=" violation gap value-drift dangling rogue orphan untested presented-only stale proposed none "
+for k in ${fail_on//,/ }; do
+  case "$KINDS" in *" $k "*) ;; *) echo "::error::$ws: unknown finding kind '$k' in fail-on"; exit 2 ;; esac
+done
 cd "$ROOT/$ws" || { echo "no workspace $ws"; exit 2; }
 out="$ROOT/.ci-out/${ws//\//_}"; mkdir -p "$out"
 status=0
@@ -32,10 +37,12 @@ for f in check drift; do
 done
 
 if [ "${UPDATE:-}" != 1 ]; then
+  before=$(cat .glossmark/graph.jsonl .glossmark/ledger.jsonl 2>/dev/null | sha256sum)
   "$GLOSS" build -q >"$out/build.txt" 2>&1
-  if ! git diff --quiet -- .glossmark; then
-    echo "::error::$ws: .glossmark/ is not current; run gloss build and commit graph.jsonl and ledger.jsonl"
-    git --no-pager diff --stat -- .glossmark
+  after=$(cat .glossmark/graph.jsonl .glossmark/ledger.jsonl | sha256sum)
+  if [ "$before" != "$after" ]; then
+    echo "::error::$ws: .glossmark/ was not current; run gloss build and commit graph.jsonl and ledger.jsonl"
+    git --no-pager diff --stat -- .glossmark 2>/dev/null || true
     status=1
   fi
 fi
