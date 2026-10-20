@@ -1,0 +1,137 @@
+# section	row	example	path[:line] relative to showcase/<example>/
+Inline relations (@gloss markers)	implements	clinic-booking	services/booking-api/internal/booking/service.go@@@gloss implements .BookingHandler
+Inline relations (@gloss markers)	represents	clinic-booking	services/booking-api/internal/models/patient.go@@@gloss represents
+Inline relations (@gloss markers)	presents	clinic-booking	apps/web/components/AppointmentCard.tsx@@@gloss presents
+Inline relations (@gloss markers)	hosts	clinic-booking	apps/web/components/NavBar.tsx@@@gloss hosts
+Inline relations (@gloss markers)	verifies	clinic-booking	services/booking-api/internal/booking/cancellation_test.go@@@gloss verifies clinic:CancellationWindow
+Inline relations (@gloss markers)	documents	clinic-booking	docs/architecture.md@@@gloss documents clinic:Booking
+Inline relations (@gloss markers)	publishes-value	clinic-booking	services/reminders/reminders/settings.py@@@gloss publishes-value
+Inline relations (@gloss markers)	provisions	clinic-booking	infra/terraform/database.tf@@@gloss provisions
+Inline relations (@gloss markers)	configures	clinic-booking	deploy/k8s/booking-api/configmap.yaml@@@gloss configures
+Inline relations (@gloss markers)	deploys	clinic-booking	deploy/k8s/booking-api/deployment.yaml@@@gloss deploys
+Inline relations (@gloss markers)	consumes	clinic-booking	services/reminders/reminders/models.py@@@gloss consumes
+Ontology relations (*.gloss.yaml)	presents	clinic-booking	ontology/lark.gloss.yaml@@presents: [clinic:Booking
+Ontology relations (*.gloss.yaml)	hosts	clinic-booking	ontology/lark.gloss.yaml@@hosts: [BookingPage
+Ontology relations (*.gloss.yaml)	produces	clinic-booking	ontology/clinic.gloss.yaml@@produces: [Appointment]
+Ontology relations (*.gloss.yaml)	consumes	clinic-booking	ontology/clinic.gloss.yaml@@consumes: [Slot]
+Ontology relations (*.gloss.yaml)	realizes	clinic-booking	ontology/lark.gloss.yaml@@realizes: clinic:Booking
+Ontology relations (*.gloss.yaml)	part-of	clinic-booking	ontology/lark.gloss.yaml@@part-of: ReminderPlanner
+Ontology relations (*.gloss.yaml)	published-as	clinic-booking	ontology/lark.gloss.yaml@@published: { as: clinic:CancellationWindow }
+Ontology relations (*.gloss.yaml)	constrains	clinic-booking	ontology/clinic.gloss.yaml@@constrains: [Cancellation]
+Ontology relations (*.gloss.yaml)	reverses	clinic-booking	ontology/clinic.gloss.yaml@@reverses: Booking
+Manifest relations (.gloss.yaml)	presents	clinic-booking	apps/web/.gloss.yaml@@presents:
+Manifest relations (.gloss.yaml)	hosts	clinic-booking	apps/web/.gloss.yaml@@hosts:
+Manifest relations (.gloss.yaml)	realizes	clinic-booking	services/booking-api/.gloss.yaml@@realizes:
+Manifest relations (.gloss.yaml)	holds	clinic-booking	db/.gloss.yaml@@holds:
+Manifest relations (.gloss.yaml)	part-of	clinic-booking	services/booking-api/.gloss.yaml@@part-of:
+Scopes	(none)	clinic-booking	services/booking-api/internal/booking/service.go@@@gloss implements .BookingHandler
+Scopes	symbol	clinic-booking	services/booking-api/internal/outbox/relay.go@@scope=symbol
+Scopes	file	clinic-booking	deploy/k8s/booking-api/configmap.yaml@@@gloss configures
+Scopes	line	clinic-booking	services/reminders/reminders/settings.py@@@gloss publishes-value
+Marker keys	conf	clinic-booking	services/booking-api/internal/booking/availability.go@@conf=0.36
+Marker keys	scope	clinic-booking	services/booking-api/internal/outbox/relay.go@@scope=symbol
+Drift findings	orphan	clinic-booking	expected-drift.txt@@orphan concept
+Drift findings	untested	clinic-booking	expected-drift.txt@@is implemented but nothing tests
+Drift findings	presented-only	clinic-booking	expected-drift.txt@@is presented (
+Drift findings	value-drift	clinic-booking	demo/gates.sh@@const CancellationWindow = 12
+Gates	AUTO	clinic-booking	demo/gates.sh@@# AUTO:
+Gates	SOFT	clinic-booking	demo/gates.sh@@# SOFT:
+Gates	HARD	clinic-booking	demo/gates.sh@@# HARD:
+Concept kinds	entity	clinic-booking	ontology/clinic.gloss.yaml@@kind: entity
+Concept kinds	process	clinic-booking	ontology/clinic.gloss.yaml@@kind: process
+Concept kinds	capability	clinic-booking	ontology/clinic.gloss.yaml@@kind: capability
+Concept kinds	measure	clinic-booking	ontology/clinic.gloss.yaml@@kind: measure
+Concept kinds	constraint	clinic-booking	ontology/clinic.gloss.yaml@@kind: constraint
+Concept kinds	resource	clinic-booking	ontology/lark.gloss.yaml@@kind: resource
+Concept kinds	system-type	clinic-booking	ontology/lark.gloss.yaml@@kind: system-type
+Review states	accepted	clinic-booking	.glossmark/ledger.jsonl@@"status":"accepted"
+CLI commands	init	clinic-booking	README.md@@gloss init --dry-run
+CLI commands	suggest	clinic-booking	README.md@@gloss suggest --write
+CLI commands	criticality	clinic-booking	demo/tour.sh@@step criticality
+CLI commands	build	clinic-booking	demo/gates.sh@@build -q
+CLI commands	check	clinic-booking	expected-check.txt:1
+CLI commands	drift	clinic-booking	expected-drift.txt:1
+CLI commands	diff	clinic-booking	demo/gates.sh@@diff --base HEAD
+CLI commands	impact	clinic-booking	demo/tour.sh@@step impact
+CLI commands	coverage	clinic-booking	demo/tour.sh@@step coverage
+CLI commands	accept	clinic-booking	README.md@@gloss accept --policy
+CLI commands	view	clinic-booking	demo/tour.sh@@step view
+CLI commands	export	clinic-booking	demo/tour.sh@@step export --sqlite
+CLI commands	doctor	clinic-booking	demo/tour.sh@@step doctor
+CLI commands	version	clinic-booking	demo/tour.sh@@step version
+File-format features	grammar: 1	clinic-booking	glossmark.yaml@@grammar: 1
+File-format features	policy.soft-conf-threshold	clinic-booking	glossmark.yaml@@soft-conf-threshold
+File-format features	value-from	clinic-booking	ontology/lark.gloss.yaml@@value-from:
+File-format features	internal	clinic-booking	ontology/lark.gloss.yaml@@internal: true
+File-format features	aliases	clinic-booking	ontology/clinic.gloss.yaml@@aliases:
+File-format features	criticality on a concept	clinic-booking	ontology/clinic.gloss.yaml@@criticality: high          # PII
+File-format features	criticality on a boundary	clinic-booking	services/booking-api/.gloss.yaml@@criticality: high
+File-format features	criticality-floor	clinic-booking	db/.gloss.yaml@@criticality-floor: true
+File-format features	realizes: inherit	clinic-booking	.gloss.yaml@@realizes: inherit
+File-format features	allowed: [derived, ...]	clinic-booking	services/reminders/.gloss.yaml@@allowed: [derived
+File-format features	lift: range-lcs	clinic-booking	ontology/clinic.gloss.yaml@@lift: range-lcs
+File-format features	views.yaml curated view	clinic-booking	ontology/views.yaml@@patient-data:
+Inline relations (@gloss markers)	publishes	claims-events	services/claim-intake/src/main/kotlin/com/tidewater/claims/intake/events/ClaimEventPublisher.kt@@@gloss publishes claim:MotorClaimFiled
+Inline relations (@gloss markers)	subscribes	claims-events	services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/ScreeningTopology.kt@@@gloss subscribes
+Inline relations (@gloss markers)	produces	claims-events	services/claim-intake/src/main/kotlin/com/tidewater/claims/intake/api/ClaimRoutes.kt@@@gloss produces
+Inline relations (@gloss markers)	consumes	claims-events	services/claim-intake/src/main/kotlin/com/tidewater/claims/intake/policy/PolicyClient.kt@@@gloss consumes
+Inline relations (@gloss markers)	represents	claims-events	schemas/MotorClaimFiled.avsc.gloss@@@gloss represents
+Inline relations (@gloss markers)	provisions	claims-events	platform/kafka/cluster.yaml@@@gloss provisions
+Ontology relations (*.gloss.yaml)	publishes	claims-events	ontology/claim.gloss.yaml@@publishes: [ClaimFiled]
+Ontology relations (*.gloss.yaml)	subscribes	claims-events	ontology/claim.gloss.yaml@@subscribes: [ClaimFiled, ClaimWithdrawn
+Ontology relations (*.gloss.yaml)	produces	claims-events	ontology/claim.gloss.yaml@@produces: [Assessment, Payout]
+Ontology relations (*.gloss.yaml)	consumes	claims-events	ontology/claim.gloss.yaml@@consumes: [Policy]
+Ontology relations (*.gloss.yaml)	is-a	claims-events	ontology/claim.gloss.yaml@@is-a: PropertyClaimFiled
+Ontology relations (*.gloss.yaml)	constrains	claims-events	ontology/claim.gloss.yaml@@constrains: [ClaimFiling]
+Ontology relations (*.gloss.yaml)	reverses	claims-events	ontology/claim.gloss.yaml@@reverses: ClaimFiling
+Ontology relations (*.gloss.yaml)	attaches-to	claims-events	ontology/claim.gloss.yaml@@attaches-to: Claim
+Ontology relations (*.gloss.yaml)	custom relation	claims-events	ontology/claim.gloss.yaml@@escalates-to: AdjusterReview
+Manifest relations (.gloss.yaml)	publishes	claims-events	.gloss.yaml@@publishes: [claim:ClaimEvent]
+Manifest relations (.gloss.yaml)	subscribes	claims-events	services/payout-notifier/.gloss.yaml@@subscribes:
+Manifest relations (.gloss.yaml)	produces	claims-events	.gloss.yaml@@produces:
+Manifest relations (.gloss.yaml)	consumes	claims-events	.gloss.yaml@@consumes:
+Scopes	block	claims-events	contracts/asyncapi.yaml@@scope=block
+Scopes	range	claims-events	schemas/MotorClaimFiled.avsc.gloss@@scope=range
+Scopes	line	claims-events	services/claim-intake/src/main/kotlin/com/tidewater/claims/intake/domain/FilingWindow.kt@@scope=line
+Marker keys	note	claims-events	schemas/MotorClaimFiled.avsc.gloss@@note=
+Drift findings	violation	claims-events	expected-drift.txt@@publishes claim:ClaimReferred but declares
+Drift findings	gap	claims-events	expected-drift.txt@@declares subscribes claim:PayoutFailed
+Drift findings	value-drift	claims-events	expected-drift.txt@@published value drifted
+Drift findings	dangling	claims-events	demo/dangling.sh@@does not exist is a gloss check error
+Drift findings	orphan	claims-events	expected-drift.txt@@orphan concept
+Concept kinds	event	claims-events	ontology/claim.gloss.yaml@@kind: event
+Concept kinds	entity	claims-events	ontology/claim.gloss.yaml@@kind: entity
+File-format features	lift: range-lcs	claims-events	ontology/claim.gloss.yaml@@lift: range-lcs
+File-format features	value-from	claims-events	ontology/tide.gloss.yaml@@value-from:
+Inline relations (@gloss markers)	instructs	kitchen-agents	.claude/agents/menu-curator.md@@@gloss instructs
+Inline relations (@gloss markers)	may-modify	kitchen-agents	.claude/agents/menu-curator.md@@@gloss may-modify
+Inline relations (@gloss markers)	verifies	kitchen-agents	api/tests/test_allergen_guard.py@@@gloss? verifies dine:AllergenRule
+Scopes	block	kitchen-agents	kds/tests/ticketStore.test.ts@@scope=block
+Scopes	file	kitchen-agents	CLAUDE.md@@scope=file
+Marker keys	conf	kitchen-agents	api/ordering/routers/menu.py@@conf=0.85
+Marker keys	note	kitchen-agents	api/ordering/routers/menu.py@@note=
+Marker keys	id	kitchen-agents	api/ordering/routers/menu.py@@id=menu-get-route
+Drift findings	rogue	kitchen-agents	expected-drift.txt@@rogue concept
+Drift findings	proposed	kitchen-agents	expected-drift.txt@@is a proposed process
+Drift findings	stale	kitchen-agents	expected-drift.txt@@is stale
+Drift findings	untested	kitchen-agents	expected-drift.txt@@nothing tests
+Gates	AUTO	kitchen-agents	README.md@@[AUTO]
+Gates	SOFT	kitchen-agents	demo/remit.sh@@conf=0.88
+Gates	HARD	kitchen-agents	demo/remit.sh@@GLOSS_ACTOR=agent:menu-curator
+Review states	proposed	kitchen-agents	.glossmark/ledger.jsonl@@"status":"proposed"
+Review states	accepted	kitchen-agents	.glossmark/ledger.jsonl@@"status":"accepted"
+Review states	rejected	kitchen-agents	.glossmark/ledger.jsonl@@"status":"rejected"
+Review states	stale	kitchen-agents	.glossmark/ledger.jsonl@@"status":"stale"
+Review states	removed	kitchen-agents	demo/review.sh@@removed
+CLI commands	hook	kitchen-agents	.claude/settings.json@@gloss context
+CLI commands	agents	kitchen-agents	AGENTS.md@@gloss:begin
+CLI commands	mcp	kitchen-agents	demo/mcp.py@@search_concepts
+CLI commands	context	kitchen-agents	demo/remit.sh@@"$GLOSS" context --dir api --changed
+CLI commands	propose	kitchen-agents	demo/review.sh@@propose --from-new
+CLI commands	accept	kitchen-agents	demo/review.sh@@accept --concept pepper:MenuAvailability
+CLI commands	reject	kitchen-agents	demo/review.sh@@reject --concept
+CLI commands	status	kitchen-agents	demo/remit.sh@@"$GLOSS" status
+CLI commands	export	kitchen-agents	demo/review.sh@@export --prov
+File-format features	policy.soft-conf-threshold	kitchen-agents	glossmark.yaml@@soft-conf-threshold
+File-format features	allowed (written list)	kitchen-agents	kds/.gloss.yaml@@allowed:
+File-format features	criticality on a concept	kitchen-agents	ontology/dine.gloss.yaml@@criticality: critical

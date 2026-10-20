@@ -1,0 +1,126 @@
+# section	row	note (a note starting 'uncoverable' allows an empty row)
+Inline relations (@gloss markers)	implements	
+Inline relations (@gloss markers)	represents	
+Inline relations (@gloss markers)	presents	
+Inline relations (@gloss markers)	hosts	
+Inline relations (@gloss markers)	verifies	
+Inline relations (@gloss markers)	tests	alias of verifies; GM240
+Inline relations (@gloss markers)	documents	
+Inline relations (@gloss markers)	instructs	
+Inline relations (@gloss markers)	publishes-value	
+Inline relations (@gloss markers)	may-modify	
+Inline relations (@gloss markers)	provisions	
+Inline relations (@gloss markers)	configures	
+Inline relations (@gloss markers)	deploys	
+Inline relations (@gloss markers)	produces	
+Inline relations (@gloss markers)	consumes	
+Inline relations (@gloss markers)	publishes	
+Inline relations (@gloss markers)	subscribes	
+Ontology relations (*.gloss.yaml)	presents	
+Ontology relations (*.gloss.yaml)	hosts	
+Ontology relations (*.gloss.yaml)	produces	
+Ontology relations (*.gloss.yaml)	consumes	
+Ontology relations (*.gloss.yaml)	publishes	
+Ontology relations (*.gloss.yaml)	subscribes	
+Ontology relations (*.gloss.yaml)	realizes	
+Ontology relations (*.gloss.yaml)	is-a	
+Ontology relations (*.gloss.yaml)	part-of	
+Ontology relations (*.gloss.yaml)	has-part	
+Ontology relations (*.gloss.yaml)	published-as	published: { as: ... }
+Ontology relations (*.gloss.yaml)	constrains	
+Ontology relations (*.gloss.yaml)	reverses	
+Ontology relations (*.gloss.yaml)	attaches-to	
+Ontology relations (*.gloss.yaml)	custom relation	declared under relations:
+Manifest relations (.gloss.yaml)	presents	
+Manifest relations (.gloss.yaml)	hosts	
+Manifest relations (.gloss.yaml)	produces	
+Manifest relations (.gloss.yaml)	consumes	
+Manifest relations (.gloss.yaml)	publishes	
+Manifest relations (.gloss.yaml)	subscribes	
+Manifest relations (.gloss.yaml)	realizes	
+Manifest relations (.gloss.yaml)	holds	
+Manifest relations (.gloss.yaml)	part-of	
+Manifest relations (.gloss.yaml)	has-part	
+Derived and reserved relations	depends-on	derived; the landscape context map
+Derived and reserved relations	calls	uncoverable: reserved for the SCIP join, not in v0.1.0
+Derived and reserved relations	derived-from	uncoverable: reserved, not written by v0.1.0
+Derived and reserved relations	same-as	uncoverable: reserved for SSSOM mappings, not in v0.1.0
+Scopes	(none)	next declaration
+Scopes	symbol	
+Scopes	file	
+Scopes	block	
+Scopes	line	
+Scopes	range	JSON Pointer sidecar
+Marker keys	conf	
+Marker keys	note	
+Marker keys	id	
+Marker keys	scope	
+Drift findings	violation	
+Drift findings	gap	
+Drift findings	value-drift	
+Drift findings	dangling	
+Drift findings	rogue	
+Drift findings	orphan	
+Drift findings	untested	
+Drift findings	presented-only	
+Drift findings	stale	
+Drift findings	proposed	
+Gates	AUTO	
+Gates	SOFT	
+Gates	HARD	
+Concept kinds	entity	
+Concept kinds	process	
+Concept kinds	capability	
+Concept kinds	event	
+Concept kinds	measure	
+Concept kinds	constraint	
+Concept kinds	resource	
+Concept kinds	system-type	
+Review states	proposed	
+Review states	accepted	
+Review states	rejected	
+Review states	stale	
+Review states	removed	
+CLI commands	init	
+CLI commands	suggest	
+CLI commands	import	
+CLI commands	criticality	
+CLI commands	build	
+CLI commands	check	
+CLI commands	drift	
+CLI commands	diff	
+CLI commands	impact	
+CLI commands	coverage	
+CLI commands	accept	
+CLI commands	reject	
+CLI commands	status	
+CLI commands	propose	
+CLI commands	context	
+CLI commands	hook	
+CLI commands	doctor	
+CLI commands	lock	
+CLI commands	view	
+CLI commands	export	
+CLI commands	publish	
+CLI commands	landscape	
+CLI commands	agents	
+CLI commands	mcp	
+CLI commands	version	
+File-format features	grammar: 1	
+File-format features	imports with a version range	
+File-format features	glossmark.lock	
+File-format features	policy.soft-conf-threshold	
+File-format features	policy.waivers	with an expiry
+File-format features	policy.coverage-fail-under: current	ratchet
+File-format features	value-from	
+File-format features	deprecated + replaced-by	
+File-format features	internal	
+File-format features	aliases	
+File-format features	criticality on a concept	
+File-format features	criticality on a boundary	
+File-format features	criticality-floor	
+File-format features	realizes: inherit	
+File-format features	allowed: [derived, ...]	
+File-format features	allowed (written list)	
+File-format features	lift: range-lcs	
+File-format features	views.yaml curated view	
