@@ -1,0 +1,8 @@
+# Variant B: the platform modules are marked as in variant A, and every handler
+# also carries one marker per cross-cutting concern that applies to it.
+grammar: 1
+repo-iri: https://onto.tallyfern.example/
+owns:
+  exp:  { iri: https://onto.tallyfern.example/expenses/, tier: core,           version: 0.1.0 }
+  xapi: { iri: https://onto.tallyfern.example/xapi/,     tier: implementation, version: 0.1.0 }
+test-paths: ["service/tests/**"]

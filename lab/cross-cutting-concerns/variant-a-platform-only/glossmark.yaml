@@ -1,0 +1,8 @@
+# Variant A: each cross-cutting concern is one internal implementation concept,
+# marked once on the platform module that implements it and once on its config.
+grammar: 1
+repo-iri: https://onto.tallyfern.example/
+owns:
+  exp:  { iri: https://onto.tallyfern.example/expenses/, tier: core,           version: 0.1.0 }
+  xapi: { iri: https://onto.tallyfern.example/xapi/,     tier: implementation, version: 0.1.0 }
+test-paths: ["service/tests/**"]

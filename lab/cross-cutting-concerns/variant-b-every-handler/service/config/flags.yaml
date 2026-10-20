@@ -1,0 +1,7 @@
+# @gloss configures .FeatureFlags scope=file
+# Feature flags. A disabled flag makes its routes answer 404.
+flags:
+  bulk_export:
+    enabled: false
+    owner: finance-tools
+    description: CSV export of approved claims for the finance team
