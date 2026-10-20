@@ -13,6 +13,8 @@ jobs:
       landscapes: ${{ steps.read.outputs.landscapes }}
     steps:
       - uses: actions/checkout@v4
+      - name: Feature matrix evidence exists
+        run: python3 scripts/feature-matrix.py --check
       - id: read
         run: |
           ws=$(grep -v '^#' showcase/workspaces.tsv | jq -R -s -c 'split("\n") | map(select(length>0) | split("\t") | {root: .[0], "fail-on": .[1], action: .[2], coverage: .[3]})')

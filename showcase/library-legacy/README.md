@@ -318,8 +318,8 @@ files 0.0% (0 of 1 files changed since HEAD carry an accepted link)
 gloss coverage: file coverage 0.0% is below --fail-under-files 50.0%
 exit 1
 $ gloss coverage --fail-under-files 80
-files 61.5% (59 of 96 in-scope files carry an accepted link)
-gloss coverage: file coverage 61.5% is below --fail-under-files 80.0%
+files 62.1% (59 of 95 in-scope files carry an accepted link)
+gloss coverage: file coverage 62.1% is below --fail-under-files 80.0%
 exit 1
 ```
 
