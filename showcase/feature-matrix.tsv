@@ -135,3 +135,23 @@ CLI commands	export	kitchen-agents	demo/review.sh@@export --prov
 File-format features	policy.soft-conf-threshold	kitchen-agents	glossmark.yaml@@soft-conf-threshold
 File-format features	allowed (written list)	kitchen-agents	kds/.gloss.yaml@@allowed:
 File-format features	criticality on a concept	kitchen-agents	ontology/dine.gloss.yaml@@criticality: critical
+Inline relations (@gloss markers)	tests	library-legacy	src/test/java/gov/riverbend/circ/service/FineCalculatorTest.java@@@gloss tests
+Inline relations (@gloss markers)	represents	library-legacy	db/schema/004_loans.sql@@@gloss represents lib:Loan
+Ontology relations (*.gloss.yaml)	has-part	library-legacy	ontology/circ.gloss.yaml@@has-part:
+Scopes	line	library-legacy	src/main/java/gov/riverbend/circ/model/LoanStatus.java@@scope=line
+Scopes	block	library-legacy	config/circulation.yaml@@scope=block
+Scopes	symbol	library-legacy	src/main/java/gov/riverbend/circ/service/CirculationService.java@@scope=symbol
+Scopes	range	library-legacy	config/loan-rules.json.gloss@@scope=range
+Scopes	file	library-legacy	batch/overdue_notices.pl@@scope=file
+Marker keys	scope	library-legacy	config/loan-rules.json.gloss@@scope=range
+Drift findings	gap	library-legacy	expected-drift.txt@@(waived: circulation-dept
+Drift findings	orphan	library-legacy	expected-drift.txt@@orphan concept
+Drift findings	proposed	library-legacy	expected-drift.txt@@is a proposed process
+Drift findings	untested	library-legacy	expected-drift.txt@@nothing tests
+CLI commands	import	library-legacy	demo/reimport.sh@@import --from enums
+CLI commands	export	library-legacy	demo/tour.sh@@export --status
+CLI commands	doctor	library-legacy	demo/tour.sh@@step doctor
+CLI commands	coverage	library-legacy	demo/ratchet.sh@@--fail-under current
+File-format features	policy.waivers	library-legacy	glossmark.yaml@@waivers:
+File-format features	policy.coverage-fail-under: current	library-legacy	README.md@@cannot unmarshal
+File-format features	deprecated + replaced-by	library-legacy	ontology/lib.gloss.yaml@@replaced-by: Patron

@@ -40,7 +40,7 @@ Manifest relations (.gloss.yaml)	subscribes
 Manifest relations (.gloss.yaml)	realizes	
 Manifest relations (.gloss.yaml)	holds	
 Manifest relations (.gloss.yaml)	part-of	
-Manifest relations (.gloss.yaml)	has-part	
+Manifest relations (.gloss.yaml)	has-part	uncoverable: ADVANCED.md lists it, but v0.1.0 rejects it in a manifest (GM110, ADOPTION-LOG L18)
 Derived and reserved relations	depends-on	derived; the landscape context map
 Derived and reserved relations	calls	uncoverable: reserved for the SCIP join, not in v0.1.0
 Derived and reserved relations	derived-from	uncoverable: reserved, not written by v0.1.0
