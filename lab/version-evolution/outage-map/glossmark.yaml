@@ -1,0 +1,8 @@
+# outage-map follows grid: within major 1 and subscribes to meter-core's published reading feed.
+grammar: 1
+repo-iri: https://onto.gridco.example/outage-map/
+owns:
+  omap: { iri: https://onto.gridco.example/omap/, file: ontology/omap.gloss.yaml, tier: implementation, version: 0.2.0, owner: field-ops-eng }
+imports:
+  grid: { iri: https://onto.gridco.example/grid/, version: "^1.0", source: ../meter-core/ontology/grid.gloss.yaml }
+  mc:   { iri: https://onto.gridco.example/mc/,   version: "1.x",  source: ../meter-core/ontology/mc.gloss.yaml }

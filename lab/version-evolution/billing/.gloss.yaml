@@ -1,0 +1,8 @@
+# billing/.gloss.yaml
+boundary: billb:billing
+level: container
+label: Billing service
+realizes: [grid:Billing]
+holds: [grid:Customer]
+default-namespace: bill
+owner: billing-eng

@@ -1,0 +1,7 @@
+# outage-map/.gloss.yaml
+boundary: omapb:outage-map
+level: container
+label: Live outage map
+subscribes: [grid:Outage, mc:ReadingFeed]
+default-namespace: omap
+owner: field-ops-eng

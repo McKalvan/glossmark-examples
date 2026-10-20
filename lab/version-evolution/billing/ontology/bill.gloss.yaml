@@ -1,0 +1,6 @@
+# bill: how the billing service turns readings into invoices.
+namespace: bill
+iri: https://onto.gridco.example/bill/
+version: 0.4.0
+concepts:
+  BillRun: { kind: process, realizes: grid:Billing, doc: "The monthly job that prices each account's consumption." }

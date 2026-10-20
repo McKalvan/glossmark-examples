@@ -1,0 +1,8 @@
+# glossmark.lock: resolved import versions, written by gloss lock. Commit it.
+format: 1
+imports:
+    grid:
+        version: 1.0.0
+        range: ~1.0.0
+        source: ../meter-core/ontology/grid.gloss.yaml
+        hash: sha256:21767a245d8c8dbf77ad78b1a4ed3f4cadeb904b9d073357c53746120b8b5482

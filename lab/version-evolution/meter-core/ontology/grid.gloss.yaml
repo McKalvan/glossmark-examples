@@ -1,0 +1,13 @@
+# grid: the metering vocabulary every Gridco service shares. Importers pin it by range.
+namespace: grid
+iri: https://onto.gridco.example/grid/
+version: 1.0.0
+concepts:
+  Customer:          { kind: entity, doc: "A person or business that takes supply at one or more connection points." }
+  Meter:             { kind: entity, doc: "A device that measures energy delivered to a connection point." }
+  SmartMeter:        { kind: entity, is-a: Meter, doc: "A meter that reports its readings remotely." }
+  MeterReading:      { kind: event, doc: "A register value taken from a meter at a point in time." }
+  ReadingCollection: { kind: process, doc: "Collecting readings from meters and making them available downstream." }
+  Tariff:            { kind: entity, doc: "The price schedule a customer is billed under." }
+  Billing:           { kind: process, doc: "Turning a period of readings into an invoice under a tariff." }
+  Outage:            { kind: event, doc: "Loss of supply." }
