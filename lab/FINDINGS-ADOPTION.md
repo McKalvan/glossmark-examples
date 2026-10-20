@@ -121,3 +121,13 @@ $GLOSS accept <the id it prints>      # → is not proposed; nothing to accept
 **Proposed change.** Reject unknown kinds with exit 2 and the list of valid ones.
 
 **Done when.** The repro exits 2 and names the valid kinds.
+
+## F-ADOPT-12: the Action's PR comment is not keyed by root, so a matrix of workspaces overwrites one comment
+
+**Problem.** A repository with several GlossMark workspaces runs the Action once per workspace (`root:` differs per matrix job), as this repository's `showcase.yml` does. The comment step finds an existing comment by the fixed marker `<!-- glossmark-impact -->` and updates it. Every job therefore rewrites the same comment, and the pull request shows only the impact of whichever workspace finished last.
+
+**Repro.** `action.yml` at v0.1.0, lines 84 to 89: `const marker = '<!-- glossmark-impact -->'` and `comments.find(c => c.body && c.body.includes(marker))`, with no reference to `inputs.root`. Any pull request on this repository that touches two showcase examples shows one impact comment.
+
+**Proposed change.** Include the root in the marker (`<!-- glossmark-impact:showcase/clinic-booking -->`) and in the comment heading, or add a `comment-key` input.
+
+**Done when.** A pull request touching two showcase workspaces gets two impact comments, one per root, and a re-run updates each in place.

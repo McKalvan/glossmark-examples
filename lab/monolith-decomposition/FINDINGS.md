@@ -37,21 +37,22 @@ Two of the findings are v0.1.0 bugs that reach well beyond migrations:
 
 **Problem.** For every concept of an imported namespace, `gloss build` writes the absolute filesystem path of the source ontology into the node's `file` field and into `prov.path` of each declared edge. The committed graph therefore depends on where the repository was checked out. A rebuild in CI or in a colleague's checkout rewrites `graph.jsonl`. `gloss doctor` then reports `✗ graph: .glossmark/graph.jsonl is stale`, and any "the committed graph is current" CI check fails. It also leaks the author's home directory into a committed file. GlossMark's own example has the same problem: `examples/payments/settlement-worker/.glossmark/graph.jsonl` contains `"file":"/home/user/GlossMark/examples/payments/payments-api/ontology/pay.gloss.yaml"`.
 
-**Repro.** `lab/monolith-decomposition/during-split/invoicing-service` imports `hire:` from `../hirehq/ontology/hire.gloss.yaml`.
+**Repro.** `lab/monolith-decomposition/during-split/invoicing-service` imports `hire:` from `../hirehq/ontology/hire.gloss.yaml`. Rebuild it anywhere and inspect the imported concept:
 
 ```sh
-cd lab/monolith-decomposition/during-split/invoicing-service
-grep -o '"curie":"hire:Invoice","[^}]*' .glossmark/graph.jsonl | grep -o '"file":"[^"]*"'
-# "file":"/home/ckessler/dev/glossmark-examples/lab/monolith-decomposition/during-split/hirehq/ontology/hire.gloss.yaml"
-cp -r .. /tmp/elsewhere && cd /tmp/elsewhere/invoicing-service
+cp -r lab/monolith-decomposition/during-split /tmp/elsewhere && cd /tmp/elsewhere/invoicing-service
 $GLOSS doctor        # ✗ graph: .glossmark/graph.jsonl is stale: rebuilding from the tree gives a different graph
 $GLOSS build -q
+grep -o '"curie":"hire:Invoice","[^}]*' .glossmark/graph.jsonl | grep -o '"file":"[^"]*"'
+# "file":"/tmp/elsewhere/hirehq/ontology/hire.gloss.yaml"
 diff <committed graph.jsonl> .glossmark/graph.jsonl | grep -c '^>'     # 10 lines differ, only in the path prefix
 ```
 
+As built by the author, the committed graph held `"file":"/home/ckessler/dev/glossmark-examples/lab/monolith-decomposition/during-split/hirehq/ontology/hire.gloss.yaml"` (10 lines in `invoicing-service`, 2 in `hirehq`). If the committed files have since been normalized by hand, `run.sh` still shows the 10-line difference after any rebuild.
+
 **Proposed change.** Record an imported file's path relative to the workspace root, as written in `imports.<p>.source` (`../hirehq/ontology/hire.gloss.yaml`). Alternatively record the import prefix plus the path inside the source. Never write an absolute path into `graph.jsonl`, `ledger.jsonl` or `glossmark.lock`.
 
-**Done when.** `grep -c "$PWD" .glossmark/graph.jsonl` prints 0 in `during-split/invoicing-service`, and a rebuild in a copy at another path leaves `graph.jsonl` byte-identical.
+**Done when.** A rebuild of `during-split/invoicing-service` in a copy at any path leaves `graph.jsonl` byte-identical, and `grep -c '"/' .glossmark/graph.jsonl` prints 0.
 
 ## F-SPLIT-2: two live implementations of one capability are silent
 
@@ -108,7 +109,7 @@ gloss check: 0 errors, 1 warning
 
 ## F-SPLIT-4: rewriting a core concept's definition passes the HARD gate
 
-**Problem.** ADVANCED.md says HARD covers "any ontology or manifest edit". In v0.1.0 a change that only touches `doc:` or a label is SOFT, unless the concept is published. That holds for core concepts too. An agent can redefine a business process, here from "invoiced on return" to "invoiced weekly in advance", without bumping any version. The default PR gate (`--fail-on HARD`) passes, and "Views changed: none" is reported although the business view shows that definition. Inconsistently, a version-only change to an ontology file in the same tree is HARD (`! ontology/inv.gloss.yaml changed [HARD: edit to ontology/ or manifests]`, in the `during` to `after` diff). The migration relies on prose in `doc:`, such as "Being retired: ...", so this matters here. The version-evolution lab probes the published-concept side of the same rule.
+**Problem.** ADVANCED.md says HARD covers "any ontology or manifest edit". In v0.1.0 a change that only touches `doc:` or a label is SOFT, unless the concept is published. That holds for core concepts too. An agent can redefine a business process, here from "invoiced on return" to "invoiced weekly in advance", without bumping any version. The default PR gate (`--fail-on HARD`) passes, and "Views changed: none" is reported although the business view shows that definition. Inconsistently, a version-only change to an ontology file in the same tree is HARD (`! ontology/inv.gloss.yaml changed [HARD: edit to ontology/ or manifests]`, in the `during` to `after` diff). The migration relies on prose in `doc:`, such as "Being retired: ...", so this matters here. The version-evolution lab shows the downstream cost of the same missing bump: every importer fails with GM107 ([F-VER-1](../version-evolution/FINDINGS.md#f-ver-1-a-forgotten-bump-passes-the-owners-gate-and-breaks-every-importer)).
 
 **Repro.**
 
@@ -214,7 +215,7 @@ ontology/hq.gloss.yaml:9: error: hq:InvoiceGenerator: replaced-by inv:InvoiceRun
 
 ## F-SPLIT-9: deprecation is classified PATCH
 
-**Problem.** `gloss diff` classifies `deprecated: false → true` as requiring a PATCH bump. The semver specification's FAQ says a deprecation should ship in a MINOR release ("before you completely remove the functionality in a new major release there should be at least one minor release that contains the deprecation"). A downstream range like `~1.0.0` therefore picks up deprecations as fixes. VERSIONING.md's table does not mention deprecation. The version-evolution lab measures the same classification from the importer's side ([F-VER-9](../version-evolution/FINDINGS.md#f-ver-9-deprecation-alone-is-classified-patch)).
+**Problem.** `gloss diff` classifies `deprecated: false → true` as requiring a PATCH bump. The semver specification's FAQ says a deprecation should ship in a MINOR release ("before you completely remove the functionality in a new major release there should be at least one minor release that contains the deprecation"). A downstream range like `~1.0.0` therefore picks up deprecations as fixes. VERSIONING.md's table does not mention deprecation. The version-evolution lab measures the same classification from the importer's side ([F-VER-9](../version-evolution/FINDINGS.md#f-ver-9-deprecation-alone-is-classified-patch)); file one issue for both.
 
 **Repro.** Copy `before/` to a temp git repository, commit, add `deprecated: true` and `replaced-by: hq:BookingView` to `hq:InvoiceGenerator`, and rebuild:
 
