@@ -1,0 +1,62 @@
+# ontology/meter.gloss.yaml: the core tier of an electricity supplier's metering and billing.
+# Litmus test: a billing analyst or a metering engineer would nod at the term.
+namespace: meter
+version: 0.1.0
+concepts:
+  Customer:
+    kind: entity
+    criticality: high          # PII and payment details
+    doc: "An account holder who pays for the supply at one or more service points."
+  ServicePoint:
+    kind: entity
+    aliases: [MPAN, supply point]
+    doc: "A supply address identified by its MPAN; the place a meter is installed and the thing an invoice is for."
+  Meter:
+    kind: entity
+    doc: "A smart meter installed at a service point, identified by its serial; Economy 7 meters have a day and a night register."
+  MeterReading:
+    kind: entity
+    aliases: [read, register read]
+    doc: "A cumulative register value at the end of a half-hour interval."
+  Tariff:
+    kind: entity
+    doc: "A price plan: a daily standing charge and a unit rate per kWh, with a night rate for Economy 7."
+  Invoice:
+    kind: entity
+    aliases: [bill]
+    doc: "What a customer owes for one billing period at one service point."
+  ReadingReceived:
+    kind: event
+    doc: "A validated reading has been accepted from the head-end system."
+  ReadingIngestion:
+    kind: process
+    doc: "Receiving half-hourly frames from the head-end system, rejecting implausible values and publishing the rest."
+  ReadingEstimation:
+    kind: process
+    doc: "Estimating consumption for a period without an actual read, from last year's use or the regional profile."
+  Billing:
+    kind: process
+    doc: "Pricing each service point's monthly consumption under its tariff and issuing the invoice."
+  Dunning:
+    kind: process
+    doc: "Chasing invoices unpaid after the payment terms: marking them overdue and sending reminder letters."
+  Consumption:
+    kind: measure
+    aliases: [usage]
+    doc: "Energy used over a period in kWh: the difference between the register values at its ends."
+  ReadingTolerance:
+    kind: constraint
+    constrains: [ReadingIngestion]
+    doc: "The largest jump between consecutive half-hourly reads accepted as real (a 100 A domestic supply)."
+  PaymentTerms:
+    kind: constraint
+    constrains: [Dunning]
+    criticality: high          # regulated: changing it needs compliance sign-off
+    doc: "How many days a customer has to pay an invoice before dunning starts."
+  EstimationThreshold:
+    kind: constraint
+    constrains: [ReadingEstimation]
+    doc: "How many days without an actual read before a period is billed on an estimate."
+relations:
+  produces: { lift: range-lcs }
+  consumes: { lift: range-lcs }

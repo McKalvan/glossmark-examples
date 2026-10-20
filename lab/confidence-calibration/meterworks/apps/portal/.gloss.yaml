@@ -1,0 +1,9 @@
+boundary: meterb:portal
+level: container
+label: Customer portal
+part-of: meterb:meterworks
+realizes: [mw:CustomerPortal, mw:UsagePage, mw:InvoicePages]
+presents: [meter:Consumption, meter:Invoice]
+hosts: [mw:UsagePage, mw:InvoicePages]
+default-namespace: mw
+owner: digital-team

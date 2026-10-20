@@ -1,0 +1,462 @@
+[
+  {
+    "path": "apps/portal/app.rb",
+    "line": 7,
+    "symbol": "Portal",
+    "relation": "implements",
+    "target": ".CustomerPortal",
+    "conf": 0.64,
+    "matched": "name:portal",
+    "marker": "# @gloss? implements .CustomerPortal conf=0.64"
+  },
+  {
+    "path": "apps/portal/lib/portal/billing_client.rb",
+    "line": 4,
+    "symbol": "Portal",
+    "relation": "implements",
+    "target": ".CustomerPortal",
+    "conf": 0.64,
+    "matched": "name:portal",
+    "marker": "# @gloss? implements .CustomerPortal conf=0.64"
+  },
+  {
+    "path": "apps/portal/lib/portal/session.rb",
+    "line": 3,
+    "symbol": "Portal",
+    "relation": "implements",
+    "target": ".CustomerPortal",
+    "conf": 0.64,
+    "matched": "name:portal",
+    "marker": "# @gloss? implements .CustomerPortal conf=0.64"
+  },
+  {
+    "path": "apps/portal/lib/portal/usage_report.rb",
+    "line": 3,
+    "symbol": "Portal",
+    "relation": "implements",
+    "target": ".CustomerPortal",
+    "conf": 0.64,
+    "matched": "name:portal",
+    "marker": "# @gloss? implements .CustomerPortal conf=0.64"
+  },
+  {
+    "path": "db/migrations/V1__customers_and_service_points.sql",
+    "line": 2,
+    "symbol": "table.customers",
+    "relation": "represents",
+    "target": "meter:Customer",
+    "conf": 0.91,
+    "matched": "name:Customer",
+    "marker": "-- @gloss? represents meter:Customer conf=0.91"
+  },
+  {
+    "path": "db/migrations/V1__customers_and_service_points.sql",
+    "line": 10,
+    "symbol": "table.service_points",
+    "relation": "represents",
+    "target": "meter:ServicePoint",
+    "conf": 0.91,
+    "matched": "name:ServicePoint",
+    "marker": "-- @gloss? represents meter:ServicePoint conf=0.91"
+  },
+  {
+    "path": "db/migrations/V1__customers_and_service_points.sql",
+    "line": 19,
+    "symbol": "index.service_points_customer_idx",
+    "relation": "represents",
+    "target": "meter:ServicePoint",
+    "conf": 0.55,
+    "matched": "name:servic,point",
+    "marker": "-- @gloss? represents meter:ServicePoint conf=0.55"
+  },
+  {
+    "path": "db/migrations/V2__meters_and_readings.sql",
+    "line": 1,
+    "symbol": "table.meters",
+    "relation": "represents",
+    "target": "meter:Meter",
+    "conf": 0.91,
+    "matched": "name:Meter",
+    "marker": "-- @gloss? represents meter:Meter conf=0.91"
+  },
+  {
+    "path": "db/migrations/V2__meters_and_readings.sql",
+    "line": 10,
+    "symbol": "table.meter_readings",
+    "relation": "represents",
+    "target": "meter:MeterReading",
+    "conf": 0.45,
+    "matched": "name:met",
+    "marker": "-- @gloss? represents meter:MeterReading conf=0.45"
+  },
+  {
+    "path": "db/migrations/V3__tariffs_and_invoices.sql",
+    "line": 1,
+    "symbol": "table.tariffs",
+    "relation": "represents",
+    "target": "meter:Tariff",
+    "conf": 0.91,
+    "matched": "name:Tariff",
+    "marker": "-- @gloss? represents meter:Tariff conf=0.91"
+  },
+  {
+    "path": "db/migrations/V3__tariffs_and_invoices.sql",
+    "line": 10,
+    "symbol": "table.invoices",
+    "relation": "represents",
+    "target": "meter:Invoice",
+    "conf": 0.91,
+    "matched": "name:Invoice",
+    "marker": "-- @gloss? represents meter:Invoice conf=0.91"
+  },
+  {
+    "path": "db/migrations/V3__tariffs_and_invoices.sql",
+    "line": 25,
+    "symbol": "index.invoices_unpaid_idx",
+    "relation": "represents",
+    "target": "meter:Invoice",
+    "conf": 0.45,
+    "matched": "name:invoic",
+    "marker": "-- @gloss? represents meter:Invoice conf=0.45"
+  },
+  {
+    "path": "proto/readings.proto",
+    "line": 8,
+    "symbol": "Register",
+    "relation": "represents",
+    "target": "meter:MeterReading",
+    "conf": 0.41,
+    "matched": "alias:register read",
+    "marker": "// @gloss? represents meter:MeterReading conf=0.41"
+  },
+  {
+    "path": "proto/readings.proto",
+    "line": 16,
+    "symbol": "ReadingReceived",
+    "relation": "represents",
+    "target": "meter:ReadingReceived",
+    "conf": 0.95,
+    "matched": "name:ReadingReceived",
+    "marker": "// @gloss? represents meter:ReadingReceived conf=0.95"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/BillingApplication.java",
+    "line": 8,
+    "symbol": "BillingApplication",
+    "relation": "implements",
+    "target": "meter:Billing",
+    "conf": 0.45,
+    "matched": "name:bill",
+    "marker": "// @gloss? implements meter:Billing conf=0.45"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/config/BillingProperties.java",
+    "line": 11,
+    "symbol": "BillingProperties",
+    "relation": "implements",
+    "target": "meter:Billing",
+    "conf": 0.45,
+    "matched": "name:bill",
+    "marker": "// @gloss? implements meter:Billing conf=0.45"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/dunning/DunningScheduler.java",
+    "line": 19,
+    "symbol": "DunningScheduler",
+    "relation": "implements",
+    "target": "meter:Dunning",
+    "conf": 0.45,
+    "matched": "name:dunn",
+    "marker": "// @gloss? implements meter:Dunning conf=0.45"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/estimate/ReadingEstimator.java",
+    "line": 16,
+    "symbol": "ReadingEstimator",
+    "relation": "implements",
+    "target": "meter:ReadingEstimation",
+    "conf": 0.45,
+    "matched": "name:read",
+    "marker": "// @gloss? implements meter:ReadingEstimation conf=0.45"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/invoice/Invoice.java",
+    "line": 11,
+    "symbol": "Invoice",
+    "relation": "represents",
+    "target": "meter:Invoice",
+    "conf": 0.95,
+    "matched": "name:Invoice",
+    "marker": "// @gloss? represents meter:Invoice conf=0.95"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/invoice/InvoiceController.java",
+    "line": 12,
+    "symbol": "InvoiceController",
+    "relation": "represents",
+    "target": "meter:Invoice",
+    "conf": 0.45,
+    "matched": "name:invoic",
+    "marker": "// @gloss? represents meter:Invoice conf=0.45"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/invoice/InvoiceDto.java",
+    "line": 8,
+    "symbol": "InvoiceDto",
+    "relation": "implements",
+    "target": ".CustomerPortal",
+    "conf": 0.36,
+    "matched": "doc name:custom,portal",
+    "marker": "// @gloss? implements .CustomerPortal conf=0.36"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/invoice/InvoiceRepository.java",
+    "line": 10,
+    "symbol": "InvoiceRepository",
+    "relation": "represents",
+    "target": "meter:Invoice",
+    "conf": 0.45,
+    "matched": "name:invoic",
+    "marker": "// @gloss? represents meter:Invoice conf=0.45"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/invoice/InvoiceRun.java",
+    "line": 24,
+    "symbol": "InvoiceRun",
+    "relation": "implements",
+    "target": ".InvoiceRun",
+    "conf": 0.95,
+    "matched": "name:InvoiceRun",
+    "marker": "// @gloss? implements .InvoiceRun conf=0.95"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/readings/ReadingListener.java",
+    "line": 10,
+    "symbol": "ReadingListener",
+    "relation": "represents",
+    "target": "meter:MeterReading",
+    "conf": 0.36,
+    "matched": "doc name:met,read",
+    "marker": "// @gloss? represents meter:MeterReading conf=0.36"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/readings/ReadingStore.java",
+    "line": 11,
+    "symbol": "ReadingStore",
+    "relation": "implements",
+    "target": ".ReadingStore",
+    "conf": 0.95,
+    "matched": "name:ReadingStore",
+    "marker": "// @gloss? implements .ReadingStore conf=0.95"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/readings/ServicePointDirectory.java",
+    "line": 10,
+    "symbol": "ServicePointDirectory",
+    "relation": "represents",
+    "target": "meter:ServicePoint",
+    "conf": 0.55,
+    "matched": "name:servic,point",
+    "marker": "// @gloss? represents meter:ServicePoint conf=0.55"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/tariff/Tariff.java",
+    "line": 10,
+    "symbol": "Tariff",
+    "relation": "represents",
+    "target": "meter:Tariff",
+    "conf": 0.95,
+    "matched": "name:Tariff",
+    "marker": "// @gloss? represents meter:Tariff conf=0.95"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/tariff/TariffCalculator.java",
+    "line": 11,
+    "symbol": "TariffCalculator",
+    "relation": "implements",
+    "target": ".TariffPricing",
+    "conf": 0.36,
+    "matched": "doc name:pric,tariff",
+    "marker": "// @gloss? implements .TariffPricing conf=0.36"
+  },
+  {
+    "path": "services/billing/src/main/java/com/meterworks/billing/tariff/TariffCatalogue.java",
+    "line": 10,
+    "symbol": "TariffCatalogue",
+    "relation": "represents",
+    "target": "meter:Tariff",
+    "conf": 0.45,
+    "matched": "name:tariff",
+    "marker": "// @gloss? represents meter:Tariff conf=0.45"
+  },
+  {
+    "path": "services/billing/src/test/java/com/meterworks/billing/invoice/InMemoryInvoiceRepository.java",
+    "line": 13,
+    "symbol": "InMemoryInvoiceRepository",
+    "relation": "verifies",
+    "target": "meter:Invoice",
+    "conf": 0.45,
+    "matched": "name:invoic",
+    "marker": "// @gloss? verifies meter:Invoice conf=0.45"
+  },
+  {
+    "path": "services/billing/src/test/java/com/meterworks/billing/invoice/InvoiceRunTest.java",
+    "line": 28,
+    "symbol": "InvoiceRunTest",
+    "relation": "verifies",
+    "target": ".InvoiceRun",
+    "conf": 0.55,
+    "matched": "name:invoic,run",
+    "marker": "// @gloss? verifies .InvoiceRun conf=0.55"
+  },
+  {
+    "path": "services/billing/src/test/java/com/meterworks/billing/tariff/TariffCalculatorTest.java",
+    "line": 15,
+    "symbol": "TariffCalculatorTest",
+    "relation": "verifies",
+    "target": "meter:Tariff",
+    "conf": 0.45,
+    "matched": "name:tariff",
+    "marker": "// @gloss? verifies meter:Tariff conf=0.45"
+  },
+  {
+    "path": "services/ingest/src/decoder.rs",
+    "line": 9,
+    "symbol": "DecodeError",
+    "relation": "implements",
+    "target": ".FrameDecoder",
+    "conf": 0.45,
+    "matched": "name:decod",
+    "marker": "// @gloss? implements .FrameDecoder conf=0.45"
+  },
+  {
+    "path": "services/ingest/src/decoder.rs",
+    "line": 20,
+    "symbol": "decode_frame",
+    "relation": "implements",
+    "target": ".FrameDecoder",
+    "conf": 0.82,
+    "matched": "name:decod,fram",
+    "marker": "// @gloss? implements .FrameDecoder conf=0.82"
+  },
+  {
+    "path": "services/ingest/src/decoder.rs",
+    "line": 46,
+    "symbol": "register_for",
+    "relation": "represents",
+    "target": "meter:MeterReading",
+    "conf": 0.41,
+    "matched": "alias:register read",
+    "marker": "// @gloss? represents meter:MeterReading conf=0.41"
+  },
+  {
+    "path": "services/ingest/src/filter.rs",
+    "line": 20,
+    "symbol": "SpikeFilter",
+    "relation": "implements",
+    "target": ".SpikeFilter",
+    "conf": 0.95,
+    "matched": "name:SpikeFilter",
+    "marker": "// @gloss? implements .SpikeFilter conf=0.95"
+  },
+  {
+    "path": "services/ingest/src/filter.rs",
+    "line": 25,
+    "symbol": "SpikeFilter",
+    "relation": "implements",
+    "target": ".SpikeFilter",
+    "conf": 0.95,
+    "matched": "name:SpikeFilter",
+    "marker": "// @gloss? implements .SpikeFilter conf=0.95"
+  },
+  {
+    "path": "services/ingest/src/model.rs",
+    "line": 5,
+    "symbol": "MeterSerial",
+    "relation": "represents",
+    "target": "meter:MeterReading",
+    "conf": 0.45,
+    "matched": "name:met",
+    "marker": "// @gloss? represents meter:MeterReading conf=0.45"
+  },
+  {
+    "path": "services/ingest/src/model.rs",
+    "line": 15,
+    "symbol": "Register",
+    "relation": "represents",
+    "target": "meter:MeterReading",
+    "conf": 0.36,
+    "matched": "doc name:read,met",
+    "marker": "// @gloss? represents meter:MeterReading conf=0.36"
+  },
+  {
+    "path": "services/ingest/src/model.rs",
+    "line": 23,
+    "symbol": "MeterReading",
+    "relation": "represents",
+    "target": "meter:MeterReading",
+    "conf": 0.95,
+    "matched": "name:MeterReading",
+    "marker": "// @gloss? represents meter:MeterReading conf=0.95"
+  },
+  {
+    "path": "services/ingest/src/publisher.rs",
+    "line": 16,
+    "symbol": "ReadingPublisher",
+    "relation": "implements",
+    "target": ".ReadingPublisher",
+    "conf": 0.95,
+    "matched": "name:ReadingPublisher",
+    "marker": "// @gloss? implements .ReadingPublisher conf=0.95"
+  },
+  {
+    "path": "services/ingest/src/publisher.rs",
+    "line": 21,
+    "symbol": "ReadingPublisher",
+    "relation": "implements",
+    "target": ".ReadingPublisher",
+    "conf": 0.95,
+    "matched": "name:ReadingPublisher",
+    "marker": "// @gloss? implements .ReadingPublisher conf=0.95"
+  },
+  {
+    "path": "services/ingest/tests/decoder_test.rs",
+    "line": 4,
+    "symbol": "frame",
+    "relation": "verifies",
+    "target": ".FrameDecoder",
+    "conf": 0.64,
+    "matched": "name:fram",
+    "marker": "// @gloss? verifies .FrameDecoder conf=0.64"
+  },
+  {
+    "path": "services/ingest/tests/decoder_test.rs",
+    "line": 15,
+    "symbol": "decodes_economy7_frame_into_two_readings",
+    "relation": "verifies",
+    "target": ".FrameDecoder",
+    "conf": 0.55,
+    "matched": "name:decod,fram",
+    "marker": "// @gloss? verifies .FrameDecoder conf=0.55"
+  },
+  {
+    "path": "services/ingest/tests/decoder_test.rs",
+    "line": 22,
+    "symbol": "rejects_frame_without_start_byte",
+    "relation": "verifies",
+    "target": ".FrameDecoder",
+    "conf": 0.45,
+    "matched": "name:fram",
+    "marker": "// @gloss? verifies .FrameDecoder conf=0.45"
+  },
+  {
+    "path": "services/ingest/tests/decoder_test.rs",
+    "line": 27,
+    "symbol": "spike_filter_quarantines_implausible_jump",
+    "relation": "verifies",
+    "target": ".SpikeFilter",
+    "conf": 0.55,
+    "matched": "name:spik,filt",
+    "marker": "// @gloss? verifies .SpikeFilter conf=0.55"
+  }
+]

@@ -1,0 +1,10 @@
+boundary: meterb:billing
+level: container
+label: Billing service
+part-of: meterb:meterworks
+realizes: [meter:Billing, meter:ReadingEstimation, meter:Dunning, mw:PaymentTermsSetting, mw:EstimationSetting]
+subscribes: [meter:ReadingReceived]
+holds: [meter:Invoice, meter:Tariff, meter:MeterReading]
+default-namespace: mw
+owner: billing-team
+criticality: high

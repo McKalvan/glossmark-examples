@@ -1,0 +1,9 @@
+<h1>Your bills</h1>
+<ul>
+  <% invoices.each do |invoice| %>
+    <li>
+      <a href="/invoices/<%= invoice.id %>"><%= invoice.period_start %> to <%= invoice.period_end %></a>:
+      £<%= invoice.amount %><%= " (estimated)" if invoice.estimated %>, <%= invoice.status %>
+    </li>
+  <% end %>
+</ul>

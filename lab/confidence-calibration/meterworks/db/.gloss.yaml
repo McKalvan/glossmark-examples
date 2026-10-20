@@ -1,0 +1,7 @@
+boundary: meterb:db
+level: container
+label: Billing database schema
+part-of: meterb:meterworks
+holds: [meter:Customer, meter:ServicePoint, meter:Meter, meter:MeterReading, meter:Tariff, meter:Invoice]
+default-namespace: mw
+owner: billing-team

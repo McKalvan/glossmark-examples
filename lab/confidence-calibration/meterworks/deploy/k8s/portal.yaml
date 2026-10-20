@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portal
+  labels: { app: portal }
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: portal }
+  template:
+    metadata:
+      labels: { app: portal }
+    spec:
+      containers:
+        - name: portal
+          image: registry.meterworks.example/portal:1.12.0
+          env:
+            - name: BILLING_URL
+              value: http://billing:8080
+          envFrom:
+            - secretRef: { name: portal }
+          ports:
+            - containerPort: 9292

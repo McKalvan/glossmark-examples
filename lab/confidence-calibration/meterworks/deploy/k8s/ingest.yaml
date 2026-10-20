@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meter-ingest
+  labels: { app: meter-ingest }
+spec:
+  replicas: 3
+  selector:
+    matchLabels: { app: meter-ingest }
+  template:
+    metadata:
+      labels: { app: meter-ingest }
+    spec:
+      containers:
+        - name: meter-ingest
+          image: registry.meterworks.example/meter-ingest:0.7.2
+          ports:
+            - containerPort: 4059
+          env:
+            - name: KAFKA_BROKERS
+              value: kafka-0.kafka:9092,kafka-1.kafka:9092
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: meter-ingest
+spec:
+  type: LoadBalancer
+  selector: { app: meter-ingest }
+  ports:
+    - port: 4059
+      targetPort: 4059

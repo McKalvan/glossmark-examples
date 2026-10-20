@@ -1,0 +1,7 @@
+boundary: meterb:deploy
+level: container
+label: Kubernetes deployment
+part-of: meterb:meterworks
+realizes: [mw:IngestService, mw:BillingService, mw:CustomerPortal]
+default-namespace: mw
+owner: metering-platform

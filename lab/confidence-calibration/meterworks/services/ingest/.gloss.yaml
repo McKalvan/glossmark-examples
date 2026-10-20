@@ -1,0 +1,10 @@
+boundary: meterb:ingest
+level: container
+label: Meter ingest
+part-of: meterb:meterworks
+realizes: [meter:ReadingIngestion, mw:SpikeFilter]
+publishes: [meter:ReadingReceived]
+default-namespace: mw
+# Narrowed on purpose: ingest must not grow billing logic.
+allowed: [derived, meter:MeterReading, meter:Meter]
+owner: metering-platform

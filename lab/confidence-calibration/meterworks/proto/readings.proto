@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package meterworks.readings.v1;
+
+option java_multiple_files = true;
+option java_package = "com.meterworks.readings.v1";
+
+enum Register {
+  REGISTER_UNSPECIFIED = 0;
+  SINGLE = 1;
+  DAY = 2;
+  NIGHT = 3;
+}
+
+// One validated register value, published by meter-ingest on meter.readings.v1.
+message ReadingReceived {
+  string meter_serial = 1;
+  Register register = 2;
+  int64 read_at_unix = 3;
+  uint64 cumulative_wh = 4;
+}

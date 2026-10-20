@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: billing
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/billing
+    username: ${DB_USER:billing}
+    password: ${DB_PASSWORD}
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKERS:localhost:9092}
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+  flyway:
+    locations: filesystem:/migrations
+
+billing:
+  payment-terms-days: 14
+  estimate-after-days: 35
