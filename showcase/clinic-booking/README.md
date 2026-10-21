@@ -38,7 +38,7 @@ Change either constant without changing `value:` and `gloss drift` reports **val
 | [.gloss.yaml](.gloss.yaml) | `clinicb:clinic-booking` (system) | `realizes: inherit`: the union of what its containers declare |
 | [apps/web/.gloss.yaml](apps/web/.gloss.yaml) | `clinicb:web` | `presents` seven core concepts, `hosts` the five pages, `realizes` the page concepts and the shell |
 | [services/booking-api/.gloss.yaml](services/booking-api/.gloss.yaml) | `clinicb:booking-api` | `realizes` Booking, Cancellation, Availability and the cancellation policy; `holds` four entities; `criticality: high` |
-| [services/reminders/.gloss.yaml](services/reminders/.gloss.yaml) | `clinicb:reminders` | `realizes` reminding and the no-show rate; `allowed: [derived, clinic:Appointment]` because the worker consumes appointments it does not realize |
+| [services/reminders/.gloss.yaml](services/reminders/.gloss.yaml) | `clinicb:reminders` | `realizes` reminding, the no-show rate and `clinic:ReminderLeadTime`; `allowed: [derived, clinic:Appointment]` because the worker consumes appointments it does not realize. `ReminderLeadTime` is declared because `publishes-value` lifts as `implements` (GlossMark ADR 0017); in v0.1.0 it did not, and declaring it gave a gap (C12) |
 | [db/.gloss.yaml](db/.gloss.yaml) | `clinicb:db` | `holds` five entities; `criticality: high` with `criticality-floor: true` |
 | [infra/.gloss.yaml](infra/.gloss.yaml) | `clinicb:infra` | `realizes` the three resources, derived from `provisions` |
 | [deploy/.gloss.yaml](deploy/.gloss.yaml) | `clinicb:deploy` | `realizes` the three system-types, derived from `deploys` |
@@ -55,24 +55,33 @@ Every finding below is intentional. CI compares the full output with [expected-d
 | the root realizes everything its containers realize | `realizes: inherit` | Consistent, with no list repeated at the root |
 | `WaitlistPage` presents `clinic:Waitlist`; nothing implements it | `clinic:Waitlist` in core | **presented-only** and **orphan**: the page ships before the backend; a surface with no mechanism behind it |
 | `NoShowDashboard`, `PractitionerDirectory`, `WaitlistPage`, `PatientSite` implemented | no test verifies them | **untested**: pages and the shell have no component tests yet |
-| `SlotSearch` implements `clinic:Availability` | no test verifies either | **untested**: the availability search has no unit test; the real gap in this codebase |
+| `SlotSearch` implements `clinic:Availability` | no test verifies `SlotSearch`; `clinic:Availability` is verified only through `lark:BookingApiService` (`appointments_test.go`) | **untested**: the availability search has no unit test; the real gap in this codebase. The finding adds that `clinic:Availability` counts as tested only because `lark:BookingApiService` is tested: a test of the service does not cover the search |
 | web pages `presents` Booking and Appointment, which are `high` | `presents` carries no criticality | The pages stay unclassified; only the mechanisms are `high` |
 | unmarked `0006_roles.sql` grants access to patient tables | `db` has `criticality-floor: true` | `gloss impact` reports it `high` through the floor; the SQLite export omits it, because an unmarked file is not an artifact (see `lab/ADOPTION-LOG.md`, C16) |
 
 ```
 $ gloss drift
+Ontology drift
+
 · Orphan concepts (no artifacts)
-  clinic:Waitlist: orphan concept, no artifact links to it
+  clinic:Waitlist: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/clinic.gloss.yaml:45]
+
 ◇ Presented but not implemented (a surface with no mechanism)
-  clinic:Waitlist is presented (lark:WaitlistPage) but nothing implements it
+  clinic:Waitlist is presented (lark:WaitlistPage) but nothing implements it: a surface with no mechanism behind it  [ontology/clinic.gloss.yaml:45]
+
 △ Implemented but untested
-  lark:NoShowDashboard, lark:PatientSite, lark:PractitionerDirectory, lark:SlotSearch, lark:WaitlistPage
-Concepts covered 69% (11/16 with an artifact and a verifier)   Files 54% (47/87)   Violations: 0   Gaps: 0   Stale: 0
+  lark:NoShowDashboard is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:93]
+  lark:PatientSite is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:16]
+  lark:PractitionerDirectory is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:89]
+  lark:SlotSearch is implemented but nothing tests or verifies it; clinic:Availability, which it realizes, counts as tested only because lark:BookingApiService is tested  [ontology/lark.gloss.yaml:30]
+  lark:WaitlistPage is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:97]
+
+Concepts covered 69% (11/16 with an artifact and a verifier)   Orphans: 1   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 5   Proposed links: 0   Proposed concepts: 0
 ```
 
 ## Criticality
 
-Declared where the business sees it: `Patient` (PII), `Appointment` and `Booking` are `high`. `gloss criticality suggest` proposed `high` for both constraints and for the two implementation concepts that publish them. The review kept `CancellationWindow` at `high`, lowered `ReminderLeadTime` to `medium` with a comment saying why, and dropped the implementation lines because they inherit from what they realize. `gloss criticality suggest` still proposes `lark:LeadTimeSetting → high` on every run, because it inherits `medium` and the tool only skips concepts at `high` or above; that is logged in the lab.
+Declared where the business sees it: `Patient` (PII), `Appointment` and `Booking` are `high`. `gloss criticality suggest` proposed `high` for both constraints and for the two implementation concepts that publish them. The review kept `CancellationWindow` at `high`, lowered `ReminderLeadTime` to `medium` with a comment saying why, and dropped the implementation lines because they inherit from what they realize. With v0.1.0, `gloss criticality suggest` kept proposing `lark:LeadTimeSetting → high` on every run, because it inherits `medium` and the tool only skipped concepts at `high` or above (logged in the lab). The pinned GlossMark treats a declared level as the review and suggests nothing here (`0 suggestions; every business constraint, published concept and security-verified concept is classified or inherits a declared level`).
 
 The `db` boundary sets `criticality-floor: true`, so every migration is at least `high` in `gloss impact`, marked or not, and every marked one is `high` in the SQLite export.
 
@@ -86,10 +95,13 @@ The `db` boundary sets `criticality-floor: true`, so every migration is at least
 
 ```
 Ontology impact — ws (clinicb:booking-api)   base HEAD   gate HARD   criticality high
-≠ published value of lark:CancellationPolicy drifted: ... changed from "const CancellationWindow = 24 * time.Hour" to "... 12 * time.Hour" while value: stays 24h   [HIGH, HARD: published value drifted]
-? implements lark:PractitionerDirectory   services/booking-api/internal/httpapi/slots.go:handlers.listPractitioners   [agent, conf 0.50, HARD: conf 0.50 below threshold 0.70]
-? implements lark:SlotSearch              services/booking-api/internal/httpapi/slots.go:handlers.listSlots           [agent, conf 0.88, SOFT: auto-accept eligible]
-~ implements lark:SlotSearch anchor signature changed   services/booking-api/internal/booking/availability.go:Service.FindOpenSlots   [AUTO]
+≠ published value of lark:CancellationPolicy drifted: services/booking-api/internal/booking/cancellation.go:16 changed from "const CancellationWindow = 24 * time.Hour" to "const CancellationWindow = 12 * time.Hour" while value: stays 24h   services/booking-api/internal/booking/cancellation.go          [HIGH, HARD: published value drifted: the bound code changed and value: did not]
+? implements lark:PractitionerDirectory                        services/booking-api/internal/httpapi/slots.go:handlers.listPractitioners   [agent, conf 0.50, HARD: conf 0.50 below threshold 0.70]
+? implements lark:SlotSearch                                   services/booking-api/internal/httpapi/slots.go:handlers.listSlots   [agent, conf 0.88, SOFT: auto-accept eligible]
+~ implements lark:CancellationPolicy anchor signature changed   services/booking-api/internal/booking/cancellation.go:CancellationWindow   [HIGH, AUTO]
+~ stale implements .SlotSearch                                 services/booking-api/internal/booking/availability.go          [AUTO]
+~ implements lark:SlotSearch anchor signature changed          services/booking-api/internal/booking/availability.go:Service.FindOpenSlots   [AUTO]
+~ stale implements .CancellationPolicy                         services/booking-api/internal/booking/cancellation.go          [AUTO]
 ```
 
 ## Run it

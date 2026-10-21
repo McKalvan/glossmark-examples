@@ -19,8 +19,8 @@ Ontology drift
   lib:TurnoverRate: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:110]
 
 △ Implemented but untested
-  circ:CheckinHandler is implemented but nothing tests or verifies it; the tests of lib:Checkin, which it realizes, sit in boundaries that hold none of its code  [ontology/circ.gloss.yaml:27]
-  circ:NightlyFineJob is implemented but nothing tests or verifies it; the tests of lib:FineAssessment, which it realizes, sit in boundaries that hold none of its code  [ontology/circ.gloss.yaml:65]
+  circ:CheckinHandler is implemented but nothing tests or verifies it; lib:Checkin, which it realizes, counts as tested only because circ:CircWebApp is tested  [ontology/circ.gloss.yaml:27]
+  circ:NightlyFineJob is implemented but nothing tests or verifies it; lib:FineAssessment, which it realizes, counts as tested only because circ:DeskFineCalculator, circ:NightlyBatch are tested  [ontology/circ.gloss.yaml:65]
   lib:FinePayment is implemented but nothing tests or verifies it  [ontology/lib.gloss.yaml:185]
   lib:SelfCheckout is implemented but nothing tests or verifies it  [ontology/lib.gloss.yaml:101]
 

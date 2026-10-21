@@ -12,7 +12,7 @@ GLOSS="${GLOSS:-$ROOT/.tools/bin/gloss}"
 ws="$1"; fail_on="$2"
 # gloss v0.1.0 accepted unknown kinds in --fail-on silently, so a typo would disable the gate.
 # Later versions reject them; the guard stays so the error names the workspace.
-KINDS=" violation gap value-drift dangling rogue orphan untested presented-only stale proposed overdue none "
+KINDS=" violation gap value-drift dangling rogue orphan untested presented-only stale proposed overdue deprecated-use out-of-range overlap none "
 for k in ${fail_on//,/ }; do
   case "$KINDS" in *" $k "*) ;; *) echo "::error::$ws: unknown finding kind '$k' in fail-on"; exit 2 ;; esac
 done

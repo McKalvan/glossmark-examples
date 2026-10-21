@@ -45,10 +45,10 @@ jobs:
       # The Action and its version follow GLOSS_REF; `uses:` takes no expression, so bump both together.
       - name: GlossMark Action
         if: matrix.action == 'true'
-        uses: mckalvan/glossmark@84e97d4d6fb976ed90b573d052b1e65d3d49ce7d
+        uses: mckalvan/glossmark@edccf22ad60345244a2d26be261dc0f4721be9de
         with:
           root: ${{ matrix.root }}
-          version: 84e97d4d6fb976ed90b573d052b1e65d3d49ce7d
+          version: edccf22ad60345244a2d26be261dc0f4721be9de
           fail-on: none
           coverage-fail-under: ${{ matrix.coverage }}
       - uses: actions/setup-go@v5

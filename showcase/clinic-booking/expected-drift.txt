@@ -10,7 +10,7 @@ Ontology drift
   lark:NoShowDashboard is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:93]
   lark:PatientSite is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:16]
   lark:PractitionerDirectory is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:89]
-  lark:SlotSearch is implemented but nothing tests or verifies it; the tests of clinic:Availability, which it realizes, sit in boundaries that hold none of its code  [ontology/lark.gloss.yaml:30]
+  lark:SlotSearch is implemented but nothing tests or verifies it; clinic:Availability, which it realizes, counts as tested only because lark:BookingApiService is tested  [ontology/lark.gloss.yaml:30]
   lark:WaitlistPage is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:97]
 
 Concepts covered 69% (11/16 with an artifact and a verifier)   Orphans: 1   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 5   Proposed links: 0   Proposed concepts: 0

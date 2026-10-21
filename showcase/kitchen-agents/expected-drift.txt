@@ -10,7 +10,7 @@ Ontology drift
   api/ordering/services/ticket_router.py: implements .TicketRouter is stale, the anchored signature changed since it was accepted; re-confirm with gloss accept m-5f5d5197a5  [api/ordering/services/ticket_router.py]
 
 △ Implemented but untested
-  pepper:KitchenDisplay is implemented but nothing tests or verifies it; the tests of dine:KitchenFulfilment, which it realizes, sit in boundaries that hold none of its code  [ontology/pepper.gloss.yaml:12]
+  pepper:KitchenDisplay is implemented but nothing tests or verifies it; dine:KitchenFulfilment, which it realizes, counts as tested only because pepper:TicketRouter, pepper:TicketStore are tested  [ontology/pepper.gloss.yaml:12]
   pepper:TicketBoard is implemented but nothing tests or verifies it  [ontology/pepper.gloss.yaml:45]
 
 Decision requests
