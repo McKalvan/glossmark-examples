@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# What a scope=range marker in a JSON sidecar anchors to in v0.1.0.
+# What a scope=range marker in a JSON sidecar anchors to. Since GlossMark #116 each
+# marker resolves its JSON Pointer against the annotated file and fingerprints that value.
 # config/loan-rules.json.gloss holds six markers, each with a JSON Pointer in note=.
 # The workspace is copied to a temporary directory. Nothing here is modified.
 #   1. the graph: how many artifacts the six markers produce, and their line range
@@ -16,7 +17,7 @@ cd "$TMP/ws"
 export GLOSS_ACTOR=agent:claude-code
 echo "== 1. artifacts for config/loan-rules.json in the graph"
 grep '"node":"artifact"' .glossmark/graph.jsonl | grep '"path":"config/loan-rules.json"' \
-  | sed -E 's/.*"id":"([^"]*)".*"anchor":\{"scope":"([a-z]*)","start":([0-9]*),"end":([0-9]*).*"file":"([^"]*)".*/\1  scope=\2 lines \3-\4 (from \5)/'
+  | sed -E 's/.*"id":"([^"]*)".*"anchor":\{"scope":"([a-z]*)".*"start":([0-9]*),"end":([0-9]*).*"file":"([^"]*)".*/\1  scope=\2 lines \3-\4 (from \5)/'
 printf 'config/loan-rules.json has %s lines; the sidecar has %s\n' "$(wc -l < config/loan-rules.json)" "$(wc -l < config/loan-rules.json.gloss)"
 
 echo; echo "== 2. DVD loan period 7 -> 14 days in config/loan-rules.json"

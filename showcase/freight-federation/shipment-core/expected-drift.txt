@@ -1,21 +1,19 @@
 Ontology drift
 
 ○ Gaps (declared, not implemented)
-  fleet:freight-platform declares publishes frt:ShipmentDelivered but nothing under it publishes it: intended capability not implemented, or the declaration is wrong  [.gloss.yaml:1]
-  fleet:freight-platform declares publishes frt:ShipmentPickedUp but nothing under it publishes it: intended capability not implemented, or the declaration is wrong  [.gloss.yaml:1]
+  fleet:freight-platform declares publishes frt:ShipmentDelivered but nothing under it publishes it; its code subscribes to it instead: declare subscribes, or change the marker  [.gloss.yaml:1]
+  fleet:freight-platform declares publishes frt:ShipmentPickedUp but nothing under it publishes it; its code subscribes to it instead: declare subscribes, or change the marker  [.gloss.yaml:1]
 
 · Orphan concepts (no artifacts)
-  frt:Delivery: orphan concept, no artifact links to it  [ontology/frt.gloss.yaml:45]
-  frt:Dispatching: orphan concept, no artifact links to it  [ontology/frt.gloss.yaml:32]
-  frt:Driver: orphan concept, no artifact links to it  [ontology/frt.gloss.yaml:21]
-  frt:Pickup: orphan concept, no artifact links to it  [ontology/frt.gloss.yaml:37]
-  frt:Route: orphan concept, no artifact links to it  [ontology/frt.gloss.yaml:20]
-  frt:ShipmentDelivered: orphan concept, no artifact links to it  [ontology/frt.gloss.yaml:55]
-  frt:ShipmentPickedUp: orphan concept, no artifact links to it  [ontology/frt.gloss.yaml:54]
-  frt:Tracking: orphan concept, no artifact links to it  [ontology/frt.gloss.yaml:41]
+  frt:Delivery: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/frt.gloss.yaml:45]
+  frt:Dispatching: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/frt.gloss.yaml:32]
+  frt:Driver: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/frt.gloss.yaml:21]
+  frt:Pickup: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/frt.gloss.yaml:37]
+  frt:Route: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/frt.gloss.yaml:20]
+  frt:Tracking: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/frt.gloss.yaml:41]
 
 △ Implemented but untested
   frt:ShipmentVisibility is implemented but nothing tests or verifies it  [ontology/frt.gloss.yaml:50]
   shc:ShipmentBookedEmitter is implemented but nothing tests or verifies it (nor frt:ShipmentBooked, which it realizes)  [ontology/shc.gloss.yaml:19]
 
-Concepts covered 75% (6/8 with an artifact and a verifier)   Files 61% (31/51)   Orphans: 8   Rogue: 0   Violations: 0   Gaps: 2   Stale: 0   Untested: 2   Proposed links: 0   Proposed concepts: 0
+Concepts covered 75% (6/8 with an artifact and a verifier)   Orphans: 6   Rogue: 0   Violations: 0   Gaps: 2   Stale: 0   Untested: 2   Proposed links: 0   Proposed concepts: 0

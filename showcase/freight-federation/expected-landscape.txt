@@ -1,17 +1,30 @@
 Landscape: shipment-core, dispatch, tracking
 
-Context map (publishes → subscribes, produces → consumes across boundaries)
+Context map (consumer → producer: depends on what it subscribes to or consumes)
   dispatch:planner → shipcore:shipment-service via frt:Shipment, frt:ShipmentBooked
   shipcore:shipment-service → dispatch:planner via frt:ShipmentPickedUp
   shipcore:shipment-service → tracking:tracker via frt:ShipmentDelivered
   tracking:tracker → dispatch:planner via frt:Route, frt:ShipmentPickedUp
 
+Imports
+  importer namespace range  locked resolved status
+  dispatch frt       ^1.4   1.4.0  1.4.0    ok
+  dispatch shc       ~1.1.0 1.1.0  1.1.0    ok
+  tracking frt       ^1.3   1.4.0  1.4.0    ok
+  tracking shc       ^1.1   1.1.0  1.1.0    ok
+
 Ontology drift
 
-△ Implemented but untested
-  frt:ShipmentVisibility is implemented but nothing tests or verifies it  [ontology/frt.gloss.yaml:50]
-  trk:PickedUpIntake is implemented but nothing tests or verifies it (nor frt:Tracking, which it realizes)  [ontology/trk.gloss.yaml:6]
-  trk:PingIngestor is implemented but nothing tests or verifies it (nor frt:Tracking, which it realizes)  [ontology/trk.gloss.yaml:12]
-  trk:PlannedStopSync is implemented but nothing tests or verifies it (nor frt:Tracking, which it realizes)  [ontology/trk.gloss.yaml:7]
+✗ Violations (boundary exceeds its declared capability)
+  dispatch:planner holds frt:ShipmentBooked but declares holds {frt:Driver, frt:Route}  [dispatch/src/consumer/schemas.ts:35]
+  dispatch:planner holds frt:ShipmentPickedUp, which its declared holds does not cover (sets on dispatch:planner frt:ShipmentBooked)  [dispatch/src/events/types.ts:57]
+  tracking:tracker holds frt:ShipmentDelivered but declares holds {frt:Route, frt:Shipment}  [tracking/src/events/types.rs:62]
+  tracking:tracker holds frt:ShipmentPickedUp, which its declared holds does not cover (sets on tracking:tracker frt:ShipmentDelivered)  [tracking/src/events/types.rs:29]
 
-Concepts covered 77% (17/22 with an artifact and a verifier)   Files 57% (69/121)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 0
+△ Implemented but untested
+  frt:ShipmentVisibility is implemented but nothing tests or verifies it  [shipment-core/ontology/frt.gloss.yaml:50]
+  trk:PickedUpIntake is implemented but nothing tests or verifies it; frt:Tracking, which it realizes, counts as tested only because trk:ScanIngestor is tested  [tracking/ontology/trk.gloss.yaml:6]
+  trk:PingIngestor is implemented but nothing tests or verifies it; frt:Tracking, which it realizes, counts as tested only because trk:ScanIngestor is tested  [tracking/ontology/trk.gloss.yaml:12]
+  trk:PlannedStopSync is implemented but nothing tests or verifies it; frt:Tracking, which it realizes, counts as tested only because trk:ScanIngestor is tested  [tracking/ontology/trk.gloss.yaml:7]
+
+Concepts covered 77% (17/22 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 4   Gaps: 0   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 0

@@ -203,6 +203,7 @@ function toSchedule(
 }
 
 /** Orders the stops (nearest-neighbour, then 2-opt) and schedules arrivals. */
+// @gloss produces frt:Route conf=0.85
 // @gloss implements .RouteOptimizer conf=0.82
 export function optimizeRoute(stops: readonly OptimizerStop[], opts: OptimizerOptions): RouteSchedule {
   if (stops.length === 0) return { stops: [], distanceKm: 0, lateStopIds: [] };

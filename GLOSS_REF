@@ -1,0 +1,3 @@
+# The GlossMark this repository is adopted with: a release tag (vX.Y.Z) or a commit on main.
+# scripts/install-gloss.sh and both workflows read it. Bump it in the same PR that regenerates the golden files.
+edccf22ad60345244a2d26be261dc0f4721be9de

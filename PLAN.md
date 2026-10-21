@@ -71,6 +71,7 @@ Settled on `clinic-booking`; CONTRIBUTING.md has the contract.
 - 2026-10-19: `scripts/check-workspace.sh` normalises the checkout prefix before comparing graphs, because importer graphs record absolute paths (F-SPLIT-1). Verified by running `scripts/ci-local.sh` from a copy at another path.
 - 2026-10-19: `freight-federation` done: shipment-core (Java), dispatch (TypeScript), tracking (Rust) as sibling workspaces with semver-ranged local imports and `glossmark.lock`; landscape golden; HARD gates on a published value and a MAJOR bump; `gloss publish`. Adoption rows FF1 to FF22.
 - 2026-10-19: README index and feature matrix rendered; `showcase.yml` runs `scripts/feature-matrix.py --check`.
+- 2026-10-21: moved from v0.1.0 to GlossMark main, pinned by commit in `GLOSS_REF` (head of GlossMark PR #169); golden files regenerated in 4778b39. Docs updated to match: every quoted drift, check and landscape block copied from the golden files, drift tables updated (freight `holds` violations on event payloads, GlossMark #172; shipment-core 6 orphans, #173; library-legacy Deprecated in use), and each v0.1.0 claim that no longer holds rewritten after re-running the demos with the pinned binary. Not regenerated, left for a follow-up: `library-legacy/docs/vocabulary-status.json` (tour reports it differs), the importers' locks without `.glossmark/imports/`, and the lab.
 
 ## Final report
 

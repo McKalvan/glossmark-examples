@@ -48,6 +48,7 @@ pub async fn handle(pool: &PgPool, payload: Option<&[u8]>) -> AppResult<()> {
     store_planned_stops(pool, &envelope.data).await
 }
 
+// @gloss consumes frt:Route conf=0.8
 // @gloss implements .PlannedStopSync conf=0.55
 pub async fn store_planned_stops(pool: &PgPool, route: &RoutePlanned) -> AppResult<()> {
     let mut tx = pool.begin().await?;

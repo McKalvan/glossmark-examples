@@ -16,6 +16,7 @@ class WithdrawalService(
     enum class Outcome { WITHDRAWN, NOT_FOUND, ALREADY_DECIDED }
 
     fun withdraw(id: UUID, reason: String): Outcome {
+    // @gloss consumes claim:Claim conf=0.85
         val status = claims.status(id) ?: return Outcome.NOT_FOUND
         if (status != ClaimStatus.FILED || !claims.markWithdrawn(id)) return Outcome.ALREADY_DECIDED
         publisher.publishWithdrawn(claims.header(id), reason, clock.instant())

@@ -51,6 +51,7 @@ public class BookingService {
         this.clock = clock;
     }
 
+    // @gloss produces frt:Shipment conf=0.9
     @Transactional
     public ShipmentView book(BookShipmentRequest request) {
         Instant now = clock.instant();

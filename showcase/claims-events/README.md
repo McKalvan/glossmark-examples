@@ -81,6 +81,7 @@ Every finding below is intentional. CI compares the full output with [expected-d
 | --- | --- | --- |
 | containers publish 11 event types (`MotorClaimFiled` … `FraudSuspected`) and subscribe to 7 | the system declares `publishes` and `subscribes` `claim:ClaimEvent` | **Consistent**: every derived event is an `is-a` descendant of `ClaimEvent`. The `event-flow` view folds the eleven edges into one lifted edge. Cut one `is-a` link and the system and two containers fail ([demo/taxonomy.sh](demo/taxonomy.sh)) |
 | intake `produces` MotorClaim, FloodClaim, FireClaim; `represents` all five claim classes | system `produces` Claim; intake `produces`/`holds` Claim | Consistent through the claim taxonomy |
+| `WithdrawalService` and the assessment consumer `consumes claim:Claim` | intake and the system `consumes` Claim | Consistent. The two markers were added when the pin moved past v0.1.0: a flow that only a concept intends (`ClaimWithdrawal consumes [Claim]`) no longer closes a gap, so the code that reads the claim is marked (GlossMark ADR 0026) |
 | `ReferralPublisher.refer` `publishes claim:ClaimReferred` on `claims.referrals.v1` | assessment declares `publishes [ClaimDecided, PayoutAuthorized]`; the AsyncAPI contract has no referrals channel | **Violation**: the referral feed was added in a hotfix and neither the manifest nor the contract followed. `gloss check` also warns GM503 on the marker (the one warning in `expected-check.txt`). The system is still consistent: `ClaimReferred` is a `ClaimEvent` |
 | `consumer.go` handles `PayoutAuthorized`; `PayoutFailed` is a `TODO(PAY-412)` | payout-notifier declares `subscribes [PayoutAuthorized, PayoutFailed]` | **Gap**: the intent is declared, the code does not subscribe yet |
 | `REFERRAL_SCORE_THRESHOLD = 0.75` in `Thresholds.kt` | `tide:FraudReferralPolicy` publishes `value: "0.80"` | **value-drift**: the threshold was tuned in code; the business still reads 0.80 ([demo/value-drift.sh](demo/value-drift.sh) resolves it two ways) |
@@ -90,20 +91,27 @@ Every finding below is intentional. CI compares the full output with [expected-d
 
 ```
 $ gloss drift
+Ontology drift
+
 ✗ Violations (boundary exceeds its declared capability)
-  claimb:assessment publishes claim:ClaimReferred but declares publishes {claim:ClaimDecided, claim:PayoutAuthorized}; rollup: publishes {claim:ClaimEvent} ⊄ declared  [services/assessment/assessment/referral.py:33]
+  claimb:assessment publishes claim:ClaimReferred but declares publishes {claim:ClaimDecided, claim:PayoutAuthorized}; rollup: publishes {claim:ClaimEvent} (from claim:ClaimApproved, claim:ClaimDenied, claim:ClaimReferred, claim:PayoutAuthorized) ⊄ declared  [services/assessment/assessment/referral.py:33]
+
 ≠ Published values drifted (the bound code changed, the value did not)
-  published value drifted: tide:FraudReferralPolicy publishes "0.80", bound to services/fraud-screening/.../Thresholds.kt, which changed from "const val REFERRAL_SCORE_THRESHOLD = 0.80" to "const val REFERRAL_SCORE_THRESHOLD = 0.75"; update value: in the ontology, or confirm with gloss accept --value tide:FraudReferralPolicy  [...]
+  published value drifted: tide:FraudReferralPolicy publishes "0.80", bound to services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.kt:9, which changed from "const val REFERRAL_SCORE_THRESHOLD = 0.80" to "const val REFERRAL_SCORE_THRESHOLD = 0.75"; update value: in the ontology, or confirm with gloss accept --value tide:FraudReferralPolicy  [services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.kt]
+
 ○ Gaps (declared, not implemented)
   claimb:payout-notifier declares subscribes claim:PayoutFailed but nothing under it subscribes to it: intended capability not implemented, or the declaration is wrong  [services/payout-notifier/.gloss.yaml:1]
+
 · Orphan concepts (no artifacts)
-  claim:AdjusterReview: orphan concept, no artifact links to it  [ontology/claim.gloss.yaml:117]
-  claim:LossEvidence: orphan concept, no artifact links to it  [ontology/claim.gloss.yaml:31]
-  claim:SpecialInvestigation: orphan concept, no artifact links to it  [ontology/claim.gloss.yaml:127]
+  claim:AdjusterReview: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/claim.gloss.yaml:117]
+  claim:LossEvidence: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/claim.gloss.yaml:31]
+  claim:SpecialInvestigation: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/claim.gloss.yaml:127]
+
 △ Implemented but untested
   claim:ClaimWithdrawal is implemented but nothing tests or verifies it  [ontology/claim.gloss.yaml:102]
-Concepts covered 71% (10/14 with an artifact and a verifier)   ...   Violations: 1   Gaps: 1   Stale: 0   Untested: 1
-gloss drift: 3 failing findings (violation,value-drift,gap,dangling)
+
+Concepts covered 71% (10/14 with an artifact and a verifier)   Orphans: 3   Rogue: 0   Violations: 1   Gaps: 1   Stale: 0   Untested: 1   Proposed links: 0   Proposed concepts: 0
+gloss drift: 3 failing findings (violation,value-drift,gap,dangling,overdue)
 ```
 
 ## The system-level rollup and the taxonomic lift
@@ -148,12 +156,12 @@ The consistency depends on the taxonomy, not on the manifests. [demo/taxonomy.sh
   claimb:claims-events subscribes claim:FloodClaimFiled but declares subscribes {claim:ClaimEvent}; rollup: subscribes {...} ⊄ declared  [services/assessment/assessment/consumer.py:58]
 ```
 
-**What the ontology's `lift:` entries do in v0.1.0: nothing observable.** The core file declares `relations: { publishes: { lift: range-lcs } }` and the same for the other three flow relations, as GRAPH.md describes. Step 2 of the demo deletes those four lines and the drift output is byte-identical (`drift output identical`); the graph's publish edges are identical too. Subsumption is always on in the manifest comparison, every violation message prints its `rollup:` least common subsumer, and a view lifts when the *view* says `lift: range-lcs`. The entries stay in the file because they state the intent, and they are logged as an adoption finding.
+**What the ontology's `lift:` entries do.** The core file declares `relations: { publishes: { lift: range-lcs } }` and the same for the other three flow relations. Step 2 of the demo deletes those four lines and the drift output is byte-identical (`drift output identical`), because `range-lcs` is already the builtin for the four flow relations. Since GlossMark ADR 0011 a relation's `lift` sets only how drift prints a boundary's derived set; it never changes the comparison, which always subsumes. Writing `lift: none` instead does change the output: the violation above loses its `rollup:` clause. In v0.1.0 the entries changed nothing at all, which was logged as an adoption finding (E15). The lift is also partial now (ADR 0026): each subset of members that shares a subsumer is lifted on its own, and the `rollup:` clause names what each lifted concept summarizes (`(from claim:ClaimApproved, ...)`). A view lifts when the *view* says `lift: range-lcs`. The entries stay in the file because they state the intent.
 
 Two other consequences of the rollup rules shaped the manifests:
 
-- A process's intended flows are derived for every boundary that implements it (GRAPH.md rule 2). `ClaimFiling publishes [ClaimFiled]`, so intake must declare `ClaimFiled`, not only the three concrete subtypes.
-- The same rule hides gaps. Adding `PayoutFailed` to `PayoutNotification.subscribes` in the core file makes the documented gap disappear, although no code subscribes to it. That is why the ontology states only what is built and the manifest states the plan.
+- A process's flows reach every boundary that implements it as intent (GRAPH.md rule 2), compared with the manifest apart from what the code does (GlossMark ADR 0026). `ClaimFiling publishes [ClaimFiled]`, and intake declares `ClaimFiled`. Declaring only the three concrete subtypes would also be consistent now, since a declared subtype refines the intent; in v0.1.0 it was a violation.
+- Intent never closes a gap. Adding `PayoutFailed` to `PayoutNotification.subscribes` in the core file keeps the documented gap and rewords it (`declares subscribes claim:PayoutFailed and claim:PayoutNotification intends it, but no code under it subscribes to it`). In v0.1.0 the same edit made the gap disappear, which is why the ontology here states only what is built and the manifest states the plan. The other side of the change: flows that only a concept reached became gaps, so the code that does them is marked (the `consumes claim:Claim` row above).
 
 ## Avro schemas and the AsyncAPI contract
 
@@ -165,7 +173,7 @@ Avro schemas are JSON, which has no comments, so each event schema has a sidecar
 @gloss represents claim:FloodClaimFiled scope=range note="/fields" conf=0.9
 ```
 
-The sidecar mechanism works for any extension: the artifact is `schemas/FloodClaimFiled.avsc`, and `gloss impact schemas/FloodClaimFiled.avsc` lists the intake publisher and the assessment consumer of the same event. **The JSON Pointer is not resolved in v0.1.0.** It is stored as the marker's note, the anchor is lines 1 to 2 (the sidecar's own line count), a pointer to nothing is accepted, and the fingerprint is a hash of the sidecar. Editing the schema never makes the link stale. The showcase therefore keeps one marker per sidecar; a second marker in the same sidecar would share the same artifact.
+The sidecar mechanism works for any extension: the artifact is `schemas/FloodClaimFiled.avsc#/fields`, and `gloss impact schemas/FloodClaimFiled.avsc` lists the intake publisher and the assessment consumer of the same event. Since GlossMark #116 the JSON Pointer in `note=` is resolved against the annotated file: the anchor is the pointed-at value (lines 6 to 17 of `FloodClaimFiled.avsc`) and its fingerprint is that value. Editing a field makes the link stale (`gloss accept <id>` re-confirms it); editing the record's `doc` does not. A pointer to nothing is a `gloss check` warning (`JSON Pointer /nothing/here does not resolve in schemas/FireClaimFiled.avsc; anchored to the sidecar [GM123]`). Each pointer is its own artifact, so a sidecar could hold one marker per field; the showcase keeps one per schema. In v0.1.0 the pointer was only a note, the anchor was the sidecar's own lines, and editing the schema never made a link stale.
 
 The AsyncAPI contract marks each channel with `documents` and `scope=block`, which anchors to the indented channel block:
 
@@ -197,18 +205,20 @@ services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.k
 Ontology impact — ws   base HEAD   gate HARD   criticality high
 ! published tide:FraudReferralPolicy value 0.80 → 0.75         ontology/tide.gloss.yaml:67   [HIGH, HARD: edit to ontology; business view affected: published concept]
 
-== B. gloss accept --value tide:FraudReferralPolicy
+== B. gloss accept --value tide:FraudReferralPolicy (refused), then with --force
+gloss: tide:FraudReferralPolicy: the bound code services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.kt:9 (const val REFERRAL_SCORE_THRESHOLD = 0.75) does not hold the published value "0.80"; update value: in the ontology to match the code, or change the code; --force confirms the line as is
+gloss accept: tide:FraudReferralPolicy: the bound code services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.kt:9 (const val REFERRAL_SCORE_THRESHOLD = 0.75) does not hold the published value "0.80"; update value: in the ontology to match the code, or change the code; confirming anyway (--force)
 confirm value of tide:FraudReferralPolicy: const val REFERRAL_SCORE_THRESHOLD = 0.75 is now the baseline for 0.80
 gloss accept: 1 published value confirmed by agent:claude-code
 0
     value: "0.80"
 ```
 
-Option B clears the finding while the ontology still says 0.80 and the code says 0.75; `accept --value` does not compare them. Option A is the right fix.
+`accept --value` now compares the bound line with the published value and refuses when the line does not hold it (GlossMark #174). `--force` still confirms the line as is, which clears the finding while the ontology says 0.80 and the code says 0.75. In v0.1.0 `accept --value` did this without `--force`. Option A is the right fix.
 
 ## Why there is no dangling finding
 
-A marker whose target does not exist is a `gloss check` error in v0.1.0, and the showcase contract requires `gloss check` to pass. [demo/dangling.sh](demo/dangling.sh) shows it in a copy, and shows the alternative, a proposed new concept:
+A marker whose target does not exist is a `gloss check` error (GM215), as it was in v0.1.0, and the showcase contract requires `gloss check` to pass. [demo/dangling.sh](demo/dangling.sh) shows it in a copy, and shows the alternative, a proposed new concept:
 
 ```
 == 1. // @gloss subscribes claim:ClaimReopened
@@ -224,7 +234,7 @@ gloss check: 0 errors, 1 warning; 1 proposal, 1 rogue (run gloss status)
   services/payout-notifier/internal/consumer/consumer.go:56 subscribes claim:NEW:ClaimReopened: rogue concept; becomes a decision request  [...]
 ```
 
-The same GM215 error comes from a dangling target in a `@gloss?` proposal, a sidecar, a manifest and an ontology relation.
+The same GM215 error comes from a dangling target in a `@gloss?` proposal, a sidecar, a manifest and an ontology relation. The one exception with the pinned GlossMark is a manifest's `allowed:` entry: `allowed: [derived, claim:ClaimReopened]` is only a check warning (`allowed lists claim:ClaimReopened, which does not exist [GM501]`), and drift reports it under `! Dangling references`. The showcase does not use it, because `expected-check.txt` would then carry the warning.
 
 ## Run it
 
@@ -244,7 +254,7 @@ The code was written first with no GlossMark files. Then, in order:
 2. The core and implementation tiers were written by hand. `services/.gloss.yaml` was replaced by one manifest per service, and `platform/` and `deploy/` got their own.
 3. `gloss suggest --write` proposed 80 markers, all `implements`, `verifies` or `represents`, all in Kotlin, Python and Go. After review, 8 were kept as written, 22 retargeted and 50 deleted. It proposed no `publishes`, `subscribes`, `produces` or `consumes`, and nothing for Avro, AsyncAPI, Strimzi, Kubernetes, HOCON or `.properties` files. Those 53 markers were written by hand.
 4. `gloss criticality suggest` proposed `high` for the three rules, their implementations, and three concepts "verified only by security tests". The review set the three core rules and `FraudScreening` to `high` and kept the implementation tier inheriting. It set `PayoutNotification` to `medium`: the "security test" was the Go test `TestPayoutAuthorizedNotifiesThePolicyholder`, flagged for the word "Authorized".
-5. `gloss accept --policy`, then `gloss accept --all`. Accepting made 18 links stale at once: 7 `scope=file` links (F-ADOPT-8) and all 11 sidecar `scope=range` links, for the same reason. The stale ledger lines were dropped and `gloss build` re-recorded the markers as accepted. That workaround also deletes a value-drift baseline, which is stored as a stale ledger entry, so the threshold was changed only after it.
+5. `gloss accept --policy`, then `gloss accept --all`. With v0.1.0, accepting made 18 links stale at once: 7 `scope=file` links (F-ADOPT-8) and all 11 sidecar `scope=range` links, for the same reason. The stale ledger lines were dropped and `gloss build` re-recorded the markers as accepted. That workaround also deletes a value-drift baseline, which is stored as a stale ledger entry, so the threshold was changed only after it.
 6. The value-drift was made last: `gloss build`, then the threshold changed in code, then `gloss build` again.
 
 Every friction point is in [lab/ADOPTION-LOG.md](../../lab/ADOPTION-LOG.md). The links were written and accepted by an agent (`agent:claude-code`); no human has reviewed them yet.

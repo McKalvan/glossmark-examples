@@ -1,6 +1,6 @@
 # GlossMark examples
 
-Realistic, multi-language codebases adopted with [GlossMark](https://github.com/McKalvan/GlossMark) **v0.1.0**, plus a lab that probes its modelling and turns every rough edge into an issue-ready finding.
+Realistic, multi-language codebases adopted with [GlossMark](https://github.com/McKalvan/GlossMark) **v0.1.0**, plus a lab that probes its modelling and turns every rough edge into an issue-ready finding. The repository now tracks GlossMark main: every script and workflow runs the commit pinned in [GLOSS_REF](GLOSS_REF), currently the head of GlossMark PR #169 (see [Tracking GlossMark](#tracking-glossmark)).
 
 The small examples and the conformance corpus stay in the main repository, where they gate its CI. Everything here is new material. The code is realistic but inert: syntactically valid, never built, no dependencies installed.
 
@@ -8,7 +8,7 @@ The small examples and the conformance corpus stay in the main repository, where
 | --- | --- |
 | [`showcase/`](showcase) | Five stable examples, each a different shape. Gated by [showcase.yml](.github/workflows/showcase.yml) on every push and pull request |
 | [`lab/`](lab) | Seven experiments that may break, run weekly by [lab.yml](.github/workflows/lab.yml). Each ends in a `FINDINGS.md` written as GlossMark issues |
-| [`scripts/`](scripts) | Install the pinned binary, run the showcase checks locally, verify the feature matrix |
+| [`scripts/`](scripts) | Install the GlossMark pinned in `GLOSS_REF`, run the showcase checks locally, verify the feature matrix |
 | [PLAN.md](PLAN.md) | The plan, the progress log and the final report |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | What is stable (showcase) and what is not (lab) |
 
@@ -30,9 +30,9 @@ Each example's README tells the system's story, lists its two ontology tiers and
 4. A rebuild changes neither `graph.jsonl` nor `ledger.jsonl`.
 5. Multi-repo examples also match `expected-landscape.txt` ([showcase/landscapes.tsv](showcase/landscapes.tsv)).
 
-Workspaces with no intentional violation, value-drift or dangling finding also run the GitHub Action (`mckalvan/glossmark@v0.1.0`); the others run the pinned binary directly, because the Action hard-codes those kinds as failures. Behaviour that needs two states (a gate on a change, a stale link, a removed proposal) is shown by scripts in each example's `demo/` directory, which work on a temporary git copy.
+Workspaces with no intentional violation, value-drift, dangling or overdue finding also run the GitHub Action, pinned to the same commit as `GLOSS_REF` (`mckalvan/glossmark@<commit>`); the others run the pinned binary directly, because the Action hard-codes those kinds as failures. `freight-federation/dispatch` and `tracking` left the Action when their event payload types started to derive documented `holds` violations (GlossMark #172). Behaviour that needs two states (a gate on a change, a stale link, a removed proposal) is shown by scripts in each example's `demo/` directory, which work on a temporary git copy.
 
-**Multi-repo note.** `freight-federation` keeps its three repositories as sibling directories wired with relative import paths and pinned with `gloss lock`. v0.1.0 accepts local import paths only; once GlossMark's remote import fetcher ships, the siblings become separate repositories.
+**Multi-repo note.** `freight-federation` keeps its three repositories as sibling directories wired with relative import paths and pinned with `gloss lock`. The pinned GlossMark, like v0.1.0, accepts local import paths only; once GlossMark's remote import fetcher ships, the siblings become separate repositories. `gloss lock` now also vendors each locked import under `.glossmark/imports/`; the committed locks predate that and hold no vendored copies.
 
 ## Lab
 
@@ -46,11 +46,11 @@ Workspaces with no intentional violation, value-drift or dangling finding also r
 | [confidence-calibration](lab/confidence-calibration) | Does `suggest`'s `conf=` predict which proposals a reviewer keeps |
 | [version-evolution](lab/version-evolution) | What happens to importers when a shared core changes version |
 
-Friction met while adopting the showcase examples is in [lab/ADOPTION-LOG.md](lab/ADOPTION-LOG.md), distilled into issues in [lab/FINDINGS-ADOPTION.md](lab/FINDINGS-ADOPTION.md).
+Friction met while adopting the showcase examples is in [lab/ADOPTION-LOG.md](lab/ADOPTION-LOG.md), distilled into issues in [lab/FINDINGS-ADOPTION.md](lab/FINDINGS-ADOPTION.md). The lab was written against v0.1.0 and is left as it was. confidence-calibration's labelled dataset was produced with v0.1.0 `gloss suggest` and needs re-labelling against the new suggester: its `run.sh` now reports `DIFFERS` for the committed suggest output.
 
 ## Feature matrix
 
-Every relation, scope, marker key, drift finding, gate, concept kind, review state and CLI command of GlossMark v0.1.0 (from its `docs/ADVANCED.md`, `docs/FILE-FORMATS.md` and `README.md`), and the file in each example that shows it. `python3 scripts/feature-matrix.py --check` verifies that every cited file and line exists; `--write` regenerates this table from [showcase/feature-matrix.tsv](showcase/feature-matrix.tsv). Rows marked uncoverable cannot be written in v0.1.0.
+Every relation, scope, marker key, drift finding, gate, concept kind, review state and CLI command of GlossMark v0.1.0 (from its `docs/ADVANCED.md`, `docs/FILE-FORMATS.md` and `README.md`), and the file in each example that shows it. The rows are v0.1.0's; finding kinds added since (`overdue`, `out-of-range`, `deprecated-use`, `overlap`) have no row yet, although library-legacy's drift now shows `deprecated-use`. `python3 scripts/feature-matrix.py --check` verifies that every cited file and line exists; `--write` regenerates this table from [showcase/feature-matrix.tsv](showcase/feature-matrix.tsv). Rows marked uncoverable cannot be written in v0.1.0, and still cannot with the pinned GlossMark (`has-part` in a manifest is still GM110).
 
 <!-- feature-matrix:begin -->
 **Inline relations (@gloss markers)**
@@ -158,9 +158,9 @@ Every relation, scope, marker key, drift finding, gate, concept kind, review sta
 
 | Row | clinic-booking | freight-federation | claims-events | kitchen-agents | library-legacy |
 | --- | :-: | :-: | :-: | :-: | :-: |
-| AUTO | [✓](showcase/clinic-booking/demo/gates.sh#L22) |  |  | [✓](showcase/kitchen-agents/README.md#L164) |  |
+| AUTO | [✓](showcase/clinic-booking/demo/gates.sh#L22) |  |  | [✓](showcase/kitchen-agents/README.md#L171) |  |
 | SOFT | [✓](showcase/clinic-booking/demo/gates.sh#L28) |  |  | [✓](showcase/kitchen-agents/demo/remit.sh#L32) |  |
-| HARD | [✓](showcase/clinic-booking/demo/gates.sh#L32) | [✓](showcase/freight-federation/README.md#L157) |  | [✓](showcase/kitchen-agents/demo/remit.sh#L3) |  |
+| HARD | [✓](showcase/clinic-booking/demo/gates.sh#L32) | [✓](showcase/freight-federation/README.md#L182) |  | [✓](showcase/kitchen-agents/demo/remit.sh#L3) |  |
 
 **Concept kinds**
 
@@ -189,8 +189,8 @@ Every relation, scope, marker key, drift finding, gate, concept kind, review sta
 
 | Row | clinic-booking | freight-federation | claims-events | kitchen-agents | library-legacy |
 | --- | :-: | :-: | :-: | :-: | :-: |
-| init | [✓](showcase/clinic-booking/README.md#L106) |  |  |  |  |
-| suggest | [✓](showcase/clinic-booking/README.md#L106) |  |  |  |  |
+| init | [✓](showcase/clinic-booking/README.md#L118) |  |  |  |  |
+| suggest | [✓](showcase/clinic-booking/README.md#L118) |  |  |  |  |
 | import |  |  |  |  | [✓](showcase/library-legacy/demo/reimport.sh#L22) |
 | criticality | [✓](showcase/clinic-booking/demo/tour.sh#L14) |  |  |  |  |
 | build | [✓](showcase/clinic-booking/demo/gates.sh#L38) |  |  |  |  |
@@ -199,7 +199,7 @@ Every relation, scope, marker key, drift finding, gate, concept kind, review sta
 | diff | [✓](showcase/clinic-booking/demo/gates.sh#L4) | [✓](showcase/freight-federation/demo/published-change.sh) |  |  |  |
 | impact | [✓](showcase/clinic-booking/demo/tour.sh#L15) |  |  |  |  |
 | coverage | [✓](showcase/clinic-booking/demo/tour.sh#L13) |  |  |  | [✓](showcase/library-legacy/demo/ratchet.sh#L2) |
-| accept | [✓](showcase/clinic-booking/README.md#L106) |  |  | [✓](showcase/kitchen-agents/demo/review.sh#L31) |  |
+| accept | [✓](showcase/clinic-booking/README.md#L118) |  |  | [✓](showcase/kitchen-agents/demo/review.sh#L31) |  |
 | reject |  |  |  | [✓](showcase/kitchen-agents/demo/review.sh#L5) |  |
 | status |  |  |  | [✓](showcase/kitchen-agents/demo/remit.sh#L47) |  |
 | propose |  |  |  | [✓](showcase/kitchen-agents/demo/review.sh#L5) |  |
@@ -224,7 +224,7 @@ Every relation, scope, marker key, drift finding, gate, concept kind, review sta
 | glossmark.lock |  | [✓](showcase/freight-federation/tracking/glossmark.lock) |  |  |  |
 | policy.soft-conf-threshold | [✓](showcase/clinic-booking/glossmark.yaml#L8) |  |  | [✓](showcase/kitchen-agents/glossmark.yaml#L13) |  |
 | policy.waivers (with an expiry) |  |  |  |  | [✓](showcase/library-legacy/glossmark.yaml#L9) |
-| policy.coverage-fail-under: current (ratchet) |  |  |  |  | [✓](showcase/library-legacy/README.md#L265) |
+| policy.coverage-fail-under: current (ratchet) |  |  |  |  | [✓](showcase/library-legacy/README.md#L325) |
 | value-from | [✓](showcase/clinic-booking/ontology/lark.gloss.yaml#L39) |  | [✓](showcase/claims-events/ontology/tide.gloss.yaml#L55) |  |  |
 | deprecated + replaced-by |  |  |  |  | [✓](showcase/library-legacy/ontology/lib.gloss.yaml#L132) |
 | internal | [✓](showcase/clinic-booking/ontology/lark.gloss.yaml#L3) |  |  |  |  |
@@ -239,10 +239,23 @@ Every relation, scope, marker key, drift finding, gate, concept kind, review sta
 | views.yaml curated view | [✓](showcase/clinic-booking/ontology/views.yaml#L16) |  |  |  |  |
 <!-- feature-matrix:end -->
 
+## Tracking GlossMark
+
+[GLOSS_REF](GLOSS_REF) names the GlossMark this repository runs: a release tag (`vX.Y.Z`) or a full commit SHA on GlossMark main. It is currently `edccf22ad60345244a2d26be261dc0f4721be9de`, the head of GlossMark PR #169, which restores the concept coverage v0.1.0 reported; re-pin to main once it merges. `scripts/install-gloss.sh` reads it: a tag downloads the release binary, a commit is built with `go install` (Go 1.24). The binary of a commit reports `gloss 0.0.0-dev`; `.tools/bin/gloss.ref` records which ref it was built from.
+
+To bump it:
+
+1. Edit `GLOSS_REF` and the `uses: mckalvan/glossmark@<sha>` line (and its `version:`) in [.github/workflows/showcase.yml](.github/workflows/showcase.yml) together. `uses:` takes no expression, and the matrix job fails when the two differ.
+2. Run `UPDATE=1 scripts/ci-local.sh`. It installs the new binary and rewrites every `expected-*.txt`, but skips the graph check, so also run `gloss build` in each workspace and commit what changes under `.glossmark/`.
+3. Review the golden diffs. Each changed line is a change in what GlossMark reports about the same code; decide whether it is the documented drift or something to fix in the example or report upstream.
+4. Update each example README's drift table and quoted output from the new golden files, then run `scripts/ci-local.sh` and `python3 scripts/feature-matrix.py --check`.
+
+Bump it in the same commit that regenerates the golden files.
+
 ## Run it
 
 ```sh
-sh scripts/install-gloss.sh          # gloss v0.1.0 into .tools/bin, sha256-verified
+sh scripts/install-gloss.sh          # the GlossMark in GLOSS_REF into .tools/bin (a release sha256-verified, a commit built with go install)
 export GLOSS=$PWD/.tools/bin/gloss
 $GLOSS version
 scripts/ci-local.sh                  # every showcase check, exactly as CI runs them

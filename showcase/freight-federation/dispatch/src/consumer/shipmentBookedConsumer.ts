@@ -65,6 +65,7 @@ export class ShipmentBookedConsumer {
     this.consumer = kafka.consumer({ groupId, sessionTimeout: 30_000 });
   }
 
+  // @gloss consumes frt:Shipment conf=0.85
   // @gloss subscribes frt:ShipmentBooked conf=0.9
   async start(): Promise<void> {
     await this.consumer.connect();

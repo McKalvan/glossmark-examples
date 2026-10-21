@@ -1,5 +1,5 @@
 # Lab CI: experiments are allowed to break. This never gates a push or a PR;
-# it runs weekly and on demand so a regression in a pinned release is still noticed.
+# it runs weekly and on demand so a regression in the pinned GlossMark is still noticed.
 name: lab
 on:
   schedule: [{ cron: "17 6 * * 1" }]
@@ -24,7 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - name: Install gloss v0.1.0
+      - uses: actions/setup-go@v5
+        with: { go-version: "1.24", cache: false }
+      - name: Install gloss (GLOSS_REF)
         run: sh scripts/install-gloss.sh
       - name: Run the experiment
         continue-on-error: true

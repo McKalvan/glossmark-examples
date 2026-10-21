@@ -12,7 +12,7 @@ This repository has two halves with opposite contracts. Know which one you are t
 
 ## The pinned tool
 
-Everything runs GlossMark **v0.1.0**. Install it with `scripts/install-gloss.sh`, which puts the release binary in `.tools/bin/gloss` (gitignored) and fetches the installer from the release tag. Never build GlossMark from source for this repo, and never use a `gloss` from your `PATH`: the scripts take `$GLOSS` and default to the pinned binary.
+Everything runs the GlossMark pinned in `GLOSS_REF`: a release tag, or a commit on GlossMark main (currently a commit, the head of GlossMark PR #169). Install it with `scripts/install-gloss.sh`, which puts the binary in `.tools/bin/gloss` (gitignored): a tag downloads the release binary through the installer fetched from that tag, a commit is built with `go install` (Go 1.24). Do not build GlossMark another way for this repo, and never use a `gloss` from your `PATH`: the scripts take `$GLOSS` and default to the pinned binary. The README's [Tracking GlossMark](README.md#tracking-glossmark) section says how to bump the pin.
 
 ```sh
 sh scripts/install-gloss.sh
@@ -39,11 +39,11 @@ When you change a showcase example on purpose, change the code, rebuild, regener
 | Column | Meaning |
 | --- | --- |
 | root | path from the repo root |
-| fail-on | comma-separated finding kinds that must never appear, or `none` |
-| use-action | `true` when the workspace has no intentional violation, value-drift or dangling finding, so the GlossMark Action can run it |
+| fail-on | comma-separated finding kinds that must never appear, or `none`. GlossMark rejects an unknown kind (exit 2); `scripts/check-workspace.sh` checks the list first so the error names the workspace |
+| use-action | `true` when the workspace has no intentional violation, value-drift, dangling or overdue finding, so the GlossMark Action can run it |
 | coverage-fail-under | passed to `gloss coverage --fail-under`; `current` is the ratchet, `0` disables |
 
-The Action hard-codes `gloss drift --fail-on violation,value-drift,dangling`, so a workspace that documents one of those findings sets `use-action` to `false` and runs on the pinned binary only. The Action gates `gloss diff` at HARD by default; here it runs with `fail-on: none`, because every PR in this repository edits ontologies and manifests, which is HARD by construction. The impact comment is informational.
+The Action hard-codes `gloss drift --fail-on violation,value-drift,dangling,overdue`, so a workspace that documents one of those findings sets `use-action` to `false` and runs on the pinned binary only. The Action gates `gloss diff` at HARD by default; here it runs with `fail-on: none`, because every PR in this repository edits ontologies and manifests, which is HARD by construction. The impact comment is informational.
 
 ### Behaviours that need two git states
 
@@ -70,4 +70,4 @@ A lab experiment may contain violations, broken links and lint errors. That is t
 
 ## Commits
 
-One commit per unit: the skeleton, each showcase example, each lab experiment. Commit `.glossmark/graph.jsonl`, `.glossmark/ledger.jsonl`, `.glossmark/context.jsonld` and `glossmark.lock` with the change that produced them.
+One commit per unit: the skeleton, each showcase example, each lab experiment. Commit `.glossmark/graph.jsonl`, `.glossmark/ledger.jsonl`, `.glossmark/context.jsonld`, `glossmark.lock` and, once `gloss lock` has written them, the vendored imports under `.glossmark/imports/`, with the change that produced them. A change of `GLOSS_REF` goes in the commit that regenerates the golden files.

@@ -42,6 +42,7 @@ public class ShipmentStatusListener {
         this.objectMapper = objectMapper;
     }
 
+    // @gloss subscribes frt:ShipmentPickedUp, frt:ShipmentDelivered conf=0.9
     @KafkaListener(topics = {PICKED_UP_TOPIC, DELIVERED_TOPIC}, groupId = "shipment-core")
     @Transactional
     public void onStatusEvent(@Payload String message, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic)

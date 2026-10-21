@@ -1,7 +1,7 @@
 Ontology drift
 
 ○ Gaps (declared, not implemented)
-  libb:ill declares realizes lib:InterlibraryLoan but nothing under it implements it: intended capability not implemented, or the declaration is wrong  [ill/.gloss.yaml:1]  (waived: circulation-dept until 2027-06-30)
+  libb:ill declares realizes lib:InterlibraryLoan but nothing under it implements it; its code configures it instead: declare configures, or change the marker  [ill/.gloss.yaml:1]  (waived: circulation-dept until 2027-06-30)
 
 ? Proposed concepts (awaiting acceptance)
   lib:ClaimsReturned is a proposed process by agent:claude-code; accept with gloss accept --concept lib:ClaimsReturned  [ontology/lib.gloss.yaml:122]
@@ -10,19 +10,25 @@ Ontology drift
   lib:TurnoverRate is a proposed measure by agent:claude-code; accept with gloss accept --concept lib:TurnoverRate  [ontology/lib.gloss.yaml:110]
 
 · Orphan concepts (no artifacts)
-  lib:ClaimsReturned: orphan concept, no artifact links to it  [ontology/lib.gloss.yaml:122]
-  lib:Damage: orphan concept, no artifact links to it  [ontology/lib.gloss.yaml:148]
-  lib:DigitalLending: orphan concept, no artifact links to it  [ontology/lib.gloss.yaml:116]
-  lib:LibraryCard: orphan concept, no artifact links to it  [ontology/lib.gloss.yaml:13]
-  lib:LostItem: orphan concept, no artifact links to it  [ontology/lib.gloss.yaml:98]
-  lib:Overdue: orphan concept, no artifact links to it  [ontology/lib.gloss.yaml:145]
-  lib:TurnoverRate: orphan concept, no artifact links to it  [ontology/lib.gloss.yaml:110]
+  lib:ClaimsReturned: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:122]
+  lib:Damage: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:148]
+  lib:DigitalLending: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:116]
+  lib:LibraryCard: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:13]
+  lib:LostItem: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:98]
+  lib:Overdue: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:145]
+  lib:TurnoverRate: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:110]
 
 △ Implemented but untested
-  circ:CheckinHandler is implemented but nothing tests or verifies it (nor lib:Checkin, which it realizes)  [ontology/circ.gloss.yaml:27]
-  circ:NightlyFineJob is implemented but nothing tests or verifies it (nor lib:FineAssessment, which it realizes)  [ontology/circ.gloss.yaml:65]
+  circ:CheckinHandler is implemented but nothing tests or verifies it; lib:Checkin, which it realizes, counts as tested only because circ:CircWebApp is tested  [ontology/circ.gloss.yaml:27]
+  circ:NightlyFineJob is implemented but nothing tests or verifies it; lib:FineAssessment, which it realizes, counts as tested only because circ:DeskFineCalculator, circ:NightlyBatch are tested  [ontology/circ.gloss.yaml:65]
   lib:FinePayment is implemented but nothing tests or verifies it  [ontology/lib.gloss.yaml:185]
   lib:SelfCheckout is implemented but nothing tests or verifies it  [ontology/lib.gloss.yaml:101]
+
+~ Deprecated in use
+  libb:db holds lib:Borrower: deprecated; replaced-by lib:Patron  [db/.gloss.yaml:1]
+  db/schema/007_legacy_borrowers_view.sql:5 represents lib:Borrower: deprecated; replaced-by lib:Patron  [db/schema/007_legacy_borrowers_view.sql:5]
+  libb:web holds lib:Borrower: deprecated; replaced-by lib:Patron  [src/.gloss.yaml:1]
+  src/main/java/gov/riverbend/circ/model/Borrower.java:12 represents lib:Borrower: deprecated; replaced-by lib:Patron  [src/main/java/gov/riverbend/circ/model/Borrower.java:12]
 
 Decision requests
   accept or reject proposed lib:ClaimsReturned (ontology/lib.gloss.yaml:122)
@@ -30,4 +36,4 @@ Decision requests
   accept or reject proposed lib:FinePayment (ontology/lib.gloss.yaml:185)
   accept or reject proposed lib:TurnoverRate (ontology/lib.gloss.yaml:110)
 
-Concepts covered 76% (13/17 with an artifact and a verifier)   Files 62% (59/95)   Orphans: 7   Rogue: 0   Violations: 0   Gaps: 1   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 4
+Concepts covered 76% (13/17 with an artifact and a verifier)   Orphans: 7   Rogue: 0   Violations: 0   Gaps: 1   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 4
