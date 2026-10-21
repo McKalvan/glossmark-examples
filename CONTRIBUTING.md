@@ -12,7 +12,7 @@ This repository has two halves with opposite contracts. Know which one you are t
 
 ## The pinned tool
 
-Everything runs the GlossMark pinned in `GLOSS_REF`: a release tag, or a commit on GlossMark main (currently a commit, the head of GlossMark PR #169). Install it with `scripts/install-gloss.sh`, which puts the binary in `.tools/bin/gloss` (gitignored): a tag downloads the release binary through the installer fetched from that tag, a commit is built with `go install` (Go 1.24). Do not build GlossMark another way for this repo, and never use a `gloss` from your `PATH`: the scripts take `$GLOSS` and default to the pinned binary. The README's [Tracking GlossMark](README.md#tracking-glossmark) section says how to bump the pin.
+Everything runs the GlossMark pinned in `GLOSS_REF`: a release tag, or a commit on GlossMark main (currently a commit on main). Install it with `scripts/install-gloss.sh`, which puts the binary in `.tools/bin/gloss` (gitignored): a tag downloads the release binary through the installer fetched from that tag, a commit is built with `go install` (Go 1.24). Do not build GlossMark another way for this repo, and never use a `gloss` from your `PATH`: the scripts take `$GLOSS` and default to the pinned binary. The README's [Tracking GlossMark](README.md#tracking-glossmark) section says how to bump the pin.
 
 ```sh
 sh scripts/install-gloss.sh
