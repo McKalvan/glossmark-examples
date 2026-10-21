@@ -1,6 +1,6 @@
 # GlossMark examples
 
-Realistic, multi-language codebases adopted with [GlossMark](https://github.com/McKalvan/GlossMark) **v0.1.0**, plus a lab that probes its modelling and turns every rough edge into an issue-ready finding. The repository now tracks GlossMark main: every script and workflow runs the commit pinned in [GLOSS_REF](GLOSS_REF), currently the head of GlossMark PR #169 (see [Tracking GlossMark](#tracking-glossmark)).
+Realistic, multi-language codebases adopted with [GlossMark](https://github.com/McKalvan/GlossMark) **v0.1.0**, plus a lab that probes its modelling and turns every rough edge into an issue-ready finding. The repository now tracks GlossMark main: every script and workflow runs the commit pinned in [GLOSS_REF](GLOSS_REF), currently GlossMark main at the merge of PR #169 (see [Tracking GlossMark](#tracking-glossmark)).
 
 The small examples and the conformance corpus stay in the main repository, where they gate its CI. Everything here is new material. The code is realistic but inert: syntactically valid, never built, no dependencies installed.
 
@@ -241,7 +241,7 @@ Every relation, scope, marker key, drift finding, gate, concept kind, review sta
 
 ## Tracking GlossMark
 
-[GLOSS_REF](GLOSS_REF) names the GlossMark this repository runs: a release tag (`vX.Y.Z`) or a full commit SHA on GlossMark main. It is currently `edccf22ad60345244a2d26be261dc0f4721be9de`, the head of GlossMark PR #169, which restores the concept coverage v0.1.0 reported; re-pin to main once it merges. `scripts/install-gloss.sh` reads it: a tag downloads the release binary, a commit is built with `go install` (Go 1.24). The binary of a commit reports `gloss 0.0.0-dev`; `.tools/bin/gloss.ref` records which ref it was built from.
+[GLOSS_REF](GLOSS_REF) names the GlossMark this repository runs: a release tag (`vX.Y.Z`) or a full commit SHA on GlossMark main. It is currently `e24677c4c9c0f2588058a3c6af1cf5c3076ecde8`, GlossMark main at the merge of PR #169, which restored the concept coverage v0.1.0 reported. `scripts/install-gloss.sh` reads it: a tag downloads the release binary, a commit is built with `go install` (Go 1.24). The binary of a commit reports `gloss 0.0.0-dev`; `.tools/bin/gloss.ref` records which ref it was built from.
 
 To bump it:
 
