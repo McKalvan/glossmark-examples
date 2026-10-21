@@ -24,6 +24,7 @@ public class LabelRenderer {
         this.operatingZone = operatingZone;
     }
 
+    // @gloss produces frt:ShippingLabel conf=0.9
     public String render(Shipment shipment) {
         Shipment.Address to = shipment.getDeliveryAddress();
         Shipment.Address from = shipment.getPickupAddress();

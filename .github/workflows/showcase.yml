@@ -15,6 +15,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Feature matrix evidence exists
         run: python3 scripts/feature-matrix.py --check
+      - name: The Action pin follows GLOSS_REF
+        run: |
+          ref=$(sed -n '/^[^#]/{p;q;}' GLOSS_REF)
+          grep -q "uses: mckalvan/glossmark@$ref" .github/workflows/showcase.yml \
+            || { echo "::error::showcase.yml pins a different GlossMark than GLOSS_REF ($ref): use the full commit SHA in both"; exit 1; }
       - id: read
         run: |
           ws=$(grep -v '^#' showcase/workspaces.tsv | jq -R -s -c 'split("\n") | map(select(length>0) | split("\t") | {root: .[0], "fail-on": .[1], action: .[2], coverage: .[3]})')
@@ -33,19 +38,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      # The Action's drift step hard-codes --fail-on violation,value-drift,dangling, so it runs
+      # The Action's drift step hard-codes --fail-on violation,value-drift,dangling,overdue, so it runs
       # only on workspaces with none of those findings by design (use-action = true).
       # fail-on: none keeps the PR impact comment informational: every PR here edits
       # ontologies and manifests, which is HARD by construction.
+      # The Action and its version follow GLOSS_REF; `uses:` takes no expression, so bump both together.
       - name: GlossMark Action
         if: matrix.action == 'true'
-        uses: mckalvan/glossmark@v0.1.0
+        uses: mckalvan/glossmark@84e97d4d6fb976ed90b573d052b1e65d3d49ce7d
         with:
           root: ${{ matrix.root }}
-          version: v0.1.0
+          version: 84e97d4d6fb976ed90b573d052b1e65d3d49ce7d
           fail-on: none
           coverage-fail-under: ${{ matrix.coverage }}
-      - name: Install gloss v0.1.0
+      - uses: actions/setup-go@v5
+        with: { go-version: "1.24", cache: false }
+      - name: Install gloss (GLOSS_REF)
         run: sh scripts/install-gloss.sh
       - name: Documented drift (check, drift --fail-on, golden files, graph current)
         run: scripts/check-workspace.sh "${{ matrix.root }}" "${{ matrix.fail-on }}"
@@ -65,7 +73,9 @@ jobs:
     name: landscape ${{ matrix.dir }}
     steps:
       - uses: actions/checkout@v4
-      - name: Install gloss v0.1.0
+      - uses: actions/setup-go@v5
+        with: { go-version: "1.24", cache: false }
+      - name: Install gloss (GLOSS_REF)
         run: sh scripts/install-gloss.sh
       - name: gloss landscape against expected-landscape.txt
         run: scripts/check-landscape.sh "${{ matrix.dir }}" "${{ matrix.fail-on }}" ${{ matrix.repos }}

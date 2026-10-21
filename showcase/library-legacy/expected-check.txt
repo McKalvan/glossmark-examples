@@ -3,6 +3,4 @@ db/schema/007_legacy_borrowers_view.sql:5: warning: lib:Borrower is deprecated; 
 src/.gloss.yaml:1: warning: lib:Borrower is deprecated; use lib:Patron [GM222]
 src/main/java/gov/riverbend/circ/model/Borrower.java:12: warning: lib:Borrower is deprecated; use lib:Patron [GM222]
 src/test/java/gov/riverbend/circ/service/FineCalculatorTest.java:21: warning: prefer verifies: it is the one test relation; tests is an accepted alias that means the same [GM240]
-src/test/java/gov/riverbend/circ/service/FineCalculatorTest.java:21: warning: prefer verifies: it is the one test relation; tests is an accepted alias that means the same [GM240]
-src/test/java/gov/riverbend/circ/service/FineCalculatorTest.java:21: warning: prefer verifies: it is the one test relation; tests is an accepted alias that means the same [GM240]
-gloss check: 0 errors, 7 warnings; 4 proposals, 0 rogues (run gloss status)
+gloss check: 0 errors, 5 warnings; 4 proposals, 0 rogues (run gloss status)

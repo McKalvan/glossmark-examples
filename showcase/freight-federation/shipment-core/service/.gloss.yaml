@@ -6,7 +6,9 @@ part-of: fleet:freight-platform
 default-namespace: shc
 owner: shipment-eng
 realizes: [shc:BookingHandler, shc:CarrierSelector, shc:LabelRenderer, shc:LabelSpec, shc:DeliveryWindowPolicy, shc:ShipmentBookedEmitter, shc:StatusProjector, shc:OnTimeRateCalculator]
-holds: [frt:Shipment, frt:Parcel, frt:Consignment, frt:Carrier, frt:ShippingLabel]
+# The transactional outbox (V6) holds ShipmentBooked until the relay sends it; V7 stores
+# delivery outcomes, the values OnTimeDeliveryRate is computed from (ADR 0013).
+holds: [frt:Shipment, frt:Parcel, frt:Consignment, frt:Carrier, frt:ShippingLabel, frt:ShipmentBooked, frt:OnTimeDeliveryRate]
 produces: [frt:Shipment, frt:ShippingLabel]
 publishes: [frt:ShipmentBooked]
 subscribes: [frt:ShipmentPickedUp, frt:ShipmentDelivered]

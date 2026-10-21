@@ -46,6 +46,7 @@ public class OutboxRelay {
         this.batchSize = batchSize;
     }
 
+    // @gloss publishes frt:ShipmentBooked conf=0.9
     @Scheduled(fixedDelayString = "${kestrel.outbox.poll-interval:PT1S}")
     @Transactional
     public void relay() {

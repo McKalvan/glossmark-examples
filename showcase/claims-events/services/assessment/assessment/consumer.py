@@ -55,6 +55,7 @@ class AssessmentConsumer:
         finally:
             self._consumer.close()
 
+    # @gloss consumes claim:Claim conf=0.85
     # @gloss subscribes claim:MotorClaimFiled, claim:FloodClaimFiled, claim:FireClaimFiled, claim:ClaimWithdrawn, claim:FraudSuspected conf=0.9
     def handle(self, topic: str, record_name: str, value: dict) -> None:
         claim_id = value["claim"]["claimId"]

@@ -5,8 +5,10 @@
 #   As committed: Thresholds.kt says 0.75, the ontology still publishes "0.80".
 #   A. The business agrees to 0.75: change value: in the ontology. Drift clears;
 #      gloss diff makes the change HARD (an edit to a published concept).
-#   B. Confirm the code as is with gloss accept --value: drift clears, the
+#   B. Confirm the code as is with gloss accept --value --force: drift clears, the
 #      ontology still says 0.80 (the baseline moved, the published value did not).
+#      Without --force, accept refuses a line that does not hold the published
+#      value, although drift's hint names the command without it (GlossMark #174).
 set -euo pipefail
 HERE=$(cd "$(dirname "$0")/.." && pwd)
 ROOT=$(cd "$HERE/../.." && pwd)
@@ -32,8 +34,9 @@ sed -i 's/^    value: "0.80"$/    value: "0.75"/' ontology/tide.gloss.yaml
 
 git checkout -q -- ontology/tide.gloss.yaml .glossmark
 echo
-echo "== B. gloss accept --value tide:FraudReferralPolicy"
-"$GLOSS" accept --value tide:FraudReferralPolicy
+echo "== B. gloss accept --value tide:FraudReferralPolicy (refused), then with --force"
+"$GLOSS" accept --value tide:FraudReferralPolicy || true
+"$GLOSS" accept --value --force tide:FraudReferralPolicy
 "$GLOSS" build -q
 "$GLOSS" drift --fail-on none | grep -c 'Published values drifted' || true
 grep -A1 '^  FraudReferralPolicy:' ontology/tide.gloss.yaml >/dev/null && grep '^    value: "0.80"' ontology/tide.gloss.yaml

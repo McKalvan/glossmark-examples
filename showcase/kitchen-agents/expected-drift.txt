@@ -10,11 +10,11 @@ Ontology drift
   api/ordering/services/ticket_router.py: implements .TicketRouter is stale, the anchored signature changed since it was accepted; re-confirm with gloss accept m-5f5d5197a5  [api/ordering/services/ticket_router.py]
 
 △ Implemented but untested
-  pepper:KitchenDisplay is implemented but nothing tests or verifies it (nor dine:KitchenFulfilment, which it realizes)  [ontology/pepper.gloss.yaml:12]
+  pepper:KitchenDisplay is implemented but nothing tests or verifies it; the tests of dine:KitchenFulfilment, which it realizes, sit in boundaries that hold none of its code  [ontology/pepper.gloss.yaml:12]
   pepper:TicketBoard is implemented but nothing tests or verifies it  [ontology/pepper.gloss.yaml:45]
 
 Decision requests
   propose pepper:SplitBill (implements at api/ordering/services/payment_handoff.py:65)  — guests ask to split the bill; Checkout assumes one payment per order
   accept or reject proposed pepper:MenuAvailability (ontology/pepper.gloss.yaml:53)
 
-Concepts covered 80% (8/10 with an artifact and a verifier)   Files 54% (38/71)   Orphans: 0   Rogue: 1   Violations: 0   Gaps: 0   Stale: 1   Untested: 2   Proposed links: 8   Proposed concepts: 1
+Concepts covered 80% (8/10 with an artifact and a verifier)   Orphans: 0   Rogue: 1   Violations: 0   Gaps: 0   Stale: 1   Untested: 2   Proposed links: 8   Proposed concepts: 1

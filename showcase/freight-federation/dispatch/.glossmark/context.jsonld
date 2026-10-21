@@ -1,5 +1,9 @@
 {
   "@context": {
+    "applies-to": {
+      "@id": "gm:applies-to",
+      "@type": "@id"
+    },
     "attaches-to": {
       "@id": "gm:attaches-to",
       "@type": "@id"
@@ -44,6 +48,10 @@
     "fleet": "https://arch.kestrel-freight.example/boundaries/",
     "frt": "https://onto.kestrel-freight.example/frt/",
     "gm": "https://glossmark.dev/vocab#",
+    "guards": {
+      "@id": "gm:guards",
+      "@type": "@id"
+    },
     "has-part": {
       "@id": "gm:has-part",
       "@type": "@id"
