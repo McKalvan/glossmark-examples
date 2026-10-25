@@ -98,7 +98,7 @@ Decision requests
   accept or reject proposed lib:FinePayment (ontology/lib.gloss.yaml:185)
   accept or reject proposed lib:TurnoverRate (ontology/lib.gloss.yaml:110)
 
-Concepts covered 76% (13/17 with an artifact and a verifier)   Orphans: 7   Rogue: 0   Violations: 0   Gaps: 1   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 4
+Concepts covered 76% (13/17 with an artifact and a verifier)   Orphans: 7   Rogue: 0   Violations: 0   Gaps: 1   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 4   Plan items: 0
 ```
 
 `expected-check.txt` holds five warnings, all intentional: four GM222 (the deprecated `Borrower`, used by two code files and declared by two manifests) and one GM240 (one `tests` marker). With v0.1.0 there were seven: GM240 came once per target.
@@ -232,7 +232,7 @@ $ gloss impact src/main/java/gov/riverbend/circ/model/Borrower.java
 src/main/java/gov/riverbend/circ/model/Borrower.java  [HARD, libb:web]
   @gloss represents lib:Borrower  (line 12 Borrower)
   lib:Borrower (entity, core)
-      boundaries: libb:circ holds; libb:circ represents; libb:db holds; libb:db represents; libb:web holds; libb:web represents
+      boundaries: libb:circ represents; libb:db holds; libb:db represents; libb:web holds; libb:web represents
       also linked from: db/schema/007_legacy_borrowers_view.sql
       ! deprecated; use lib:Patron
 ```
@@ -392,13 +392,13 @@ Run on a committed copy of this repository (the workspace at `showcase/library-l
 
 ```
 $ GLOSS_ACTOR=agent:claude-code gloss doctor
-✗ gloss on PATH: not found; the SessionStart hook and the MCP server run `gloss` by name and fail silently without it → curl -fsSL https://raw.githubusercontent.com/mckalvan/glossmark/main/install.sh | sh, or go install github.com/mckalvan/glossmark/cmd/gloss@v0.1.0, then add the directory to PATH
+✗ gloss on PATH: not found; the SessionStart hook and the MCP server run `gloss` by name and fail silently without it → curl -fsSL https://raw.githubusercontent.com/mckalvan/glossmark/main/install.sh | sh, or go install github.com/mckalvan/glossmark/cmd/gloss@v0.3.0, then add the directory to PATH
 ✓ GLOSS_ACTOR: agent:claude-code
 ! agent hook: no SessionStart hook in .claude/settings.json and no MCP server in .mcp.json → gloss hook install
 ✓ graph: .glossmark/graph.jsonl matches the tree
 ✓ ledger: .glossmark/ledger.jsonl is tracked in git
 ✓ lockfile: no imports, nothing to lock
-! CI pins: no GitHub workflow at the git root (/home/user/glossmark-examples) or in this workspace references GlossMark for this workspace → add the Action pinned to a release to a workflow at the git root, with root: set to this workspace: uses: mckalvan/glossmark@v0.1.0
+✓ CI pins: release pinned in ../../.github/workflows/showcase.yml (root: from a computed matrix, not checked against this workspace)
 ✓ ontology docs: no truncated docs or null keys; gloss check reports no errors
 ✓ waivers: 1 waiver(s), none expiring within 30 days
 ✓ auto-accept: conf >= 0.70 (policy.soft-conf-threshold); on the shipped calibration: precision 84.0%, 46.2% of proposals (150 of 325)
@@ -412,7 +412,7 @@ $ GLOSS_ACTOR=agent:claude-code gloss doctor
 | graph | The committed graph matches the tree. Before the first commit this line is `✗ ... current but not in git`, and doctor exits 1. |
 | ledger | The review record is in git. Same `✗` before the first commit. |
 | lockfile | No imports, so nothing to pin. |
-| CI pins | Still a false warning. Doctor now reads the workflows at the git root, but the root workflow runs the Action with `root: ${{ matrix.root }}` from the registry, which doctor does not match to this workspace. It also suggests `@v0.1.0`, not the pinned commit. Logged as C5 ([F-ADOPT-2](../../lab/FINDINGS-ADOPTION.md#f-adopt-2-init-and-doctor-assume-the-workspace-is-the-git-root)). |
+| CI pins | Correct now that the pin is a release: doctor reads the workflows at the git root and finds `mckalvan/glossmark@v0.3.0`. It says it did not match the `root: ${{ matrix.root }}` the registry computes to this workspace. While the pin was a commit on main it warned that no workflow referenced GlossMark for this workspace and suggested `@v0.1.0`, logged as C5 ([F-ADOPT-2](../../lab/FINDINGS-ADOPTION.md#f-adopt-2-init-and-doctor-assume-the-workspace-is-the-git-root)). |
 | ontology docs | No doc was cut at a comma; every imported doc is quoted. |
 | waivers | New: lists waivers that expired or expire within 30 days. It still reports `none expiring` for a waiver whose `expires:` is malformed, which `gloss check` fails (GM610). |
 | auto-accept | New: what `soft-conf-threshold` means on GlossMark's shipped calibration set. |

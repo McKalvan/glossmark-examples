@@ -1,10 +1,6 @@
 Ontology drift
 
-✗ Violations (boundary exceeds its declared capability)
-  dispatch:planner holds frt:ShipmentBooked but declares holds {frt:Driver, frt:Route}  [src/consumer/schemas.ts:35]
-  dispatch:planner holds frt:ShipmentPickedUp, which its declared holds does not cover (sets on dispatch:planner frt:ShipmentBooked)  [src/events/types.ts:57]
-
 Decision requests
   dsp:ExpressPickup extends imported frt:Pickup; if the core should have it, propose frt:ExpressPickup upstream and deprecate dsp:ExpressPickup with replaced-by (ontology/dsp.gloss.yaml:22)
 
-Concepts covered 100% (6/6 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 2   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
+Concepts covered 100% (6/6 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0   Plan items: 0

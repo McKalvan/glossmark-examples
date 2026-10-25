@@ -1,2 +1,2 @@
 # example dir	fail-on	repos (relative to the example dir)
-showcase/freight-federation	gap,value-drift,dangling,rogue,orphan,stale,proposed	shipment-core dispatch tracking
+showcase/freight-federation	violation,gap,value-drift,dangling,rogue,orphan,stale,proposed	shipment-core dispatch tracking

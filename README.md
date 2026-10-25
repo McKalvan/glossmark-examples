@@ -1,6 +1,6 @@
 # GlossMark examples
 
-Realistic, multi-language codebases adopted with [GlossMark](https://github.com/McKalvan/GlossMark) **v0.1.0**, plus a lab that probes its modelling and turns every rough edge into an issue-ready finding. The repository now tracks GlossMark main: every script and workflow runs the commit pinned in [GLOSS_REF](GLOSS_REF), currently GlossMark main at the merge of PR #169 (see [Tracking GlossMark](#tracking-glossmark)).
+Realistic, multi-language codebases adopted with [GlossMark](https://github.com/McKalvan/GlossMark) **v0.1.0**, plus a lab that probes its modelling and turns every rough edge into an issue-ready finding. Every script and workflow runs the GlossMark pinned in [GLOSS_REF](GLOSS_REF), currently the **v0.3.0** release (see [Tracking GlossMark](#tracking-glossmark)).
 
 The small examples and the conformance corpus stay in the main repository, where they gate its CI. Everything here is new material. The code is realistic but inert: syntactically valid, never built, no dependencies installed.
 
@@ -30,7 +30,7 @@ Each example's README tells the system's story, lists its two ontology tiers and
 4. A rebuild changes neither `graph.jsonl` nor `ledger.jsonl`.
 5. Multi-repo examples also match `expected-landscape.txt` ([showcase/landscapes.tsv](showcase/landscapes.tsv)).
 
-Workspaces with no intentional violation, value-drift, dangling or overdue finding also run the GitHub Action, pinned to the same commit as `GLOSS_REF` (`mckalvan/glossmark@<commit>`); the others run the pinned binary directly, because the Action hard-codes those kinds as failures. `freight-federation/dispatch` and `tracking` left the Action when their event payload types started to derive documented `holds` violations (GlossMark #172). Behaviour that needs two states (a gate on a change, a stale link, a removed proposal) is shown by scripts in each example's `demo/` directory, which work on a temporary git copy.
+Workspaces with no intentional violation, value-drift, dangling or overdue finding also run the GitHub Action, pinned to the same ref as `GLOSS_REF` (`mckalvan/glossmark@v0.3.0`); the others run the pinned binary directly, because the Action hard-codes those kinds as failures. `freight-federation/dispatch` and `tracking` left the Action while their event payload types derived `holds` violations, and rejoined it at v0.3.0, where `holds` is declared only (GlossMark ADR 0037). Behaviour that needs two states (a gate on a change, a stale link, a removed proposal) is shown by scripts in each example's `demo/` directory, which work on a temporary git copy.
 
 **Multi-repo note.** `freight-federation` keeps its three repositories as sibling directories wired with relative import paths and pinned with `gloss lock`. The pinned GlossMark, like v0.1.0, accepts local import paths only; once GlossMark's remote import fetcher ships, the siblings become separate repositories. `gloss lock` now also vendors each locked import under `.glossmark/imports/`; the committed locks predate that and hold no vendored copies.
 
@@ -241,11 +241,11 @@ Every relation, scope, marker key, drift finding, gate, concept kind, review sta
 
 ## Tracking GlossMark
 
-[GLOSS_REF](GLOSS_REF) names the GlossMark this repository runs: a release tag (`vX.Y.Z`) or a full commit SHA on GlossMark main. It is currently `e24677c4c9c0f2588058a3c6af1cf5c3076ecde8`, GlossMark main at the merge of PR #169, which restored the concept coverage v0.1.0 reported. `scripts/install-gloss.sh` reads it: a tag downloads the release binary, a commit is built with `go install` (Go 1.24). The binary of a commit reports `gloss 0.0.0-dev`; `.tools/bin/gloss.ref` records which ref it was built from.
+[GLOSS_REF](GLOSS_REF) names the GlossMark this repository runs: a release tag (`vX.Y.Z`) or a full commit SHA on GlossMark main. It is currently `v0.3.0`. `scripts/install-gloss.sh` reads it: a tag downloads the release binary, a commit is built with `go install` (Go 1.24). The binary of a commit reports `gloss 0.0.0-dev`; `.tools/bin/gloss.ref` records which ref it was built from.
 
 To bump it:
 
-1. Edit `GLOSS_REF` and the `uses: mckalvan/glossmark@<sha>` line (and its `version:`) in [.github/workflows/showcase.yml](.github/workflows/showcase.yml) together. `uses:` takes no expression, and the matrix job fails when the two differ.
+1. Edit `GLOSS_REF` and the `uses: mckalvan/glossmark@<ref>` line (and its `version:`) in [.github/workflows/showcase.yml](.github/workflows/showcase.yml) together. `uses:` takes no expression, and the matrix job fails when the two differ.
 2. Run `UPDATE=1 scripts/ci-local.sh`. It installs the new binary and rewrites every `expected-*.txt`, but skips the graph check, so also run `gloss build` in each workspace and commit what changes under `.glossmark/`.
 3. Review the golden diffs. Each changed line is a change in what GlossMark reports about the same code; decide whether it is the documented drift or something to fix in the example or report upstream.
 4. Update each example README's drift table and quoted output from the new golden files, then run `scripts/ci-local.sh` and `python3 scripts/feature-matrix.py --check`.

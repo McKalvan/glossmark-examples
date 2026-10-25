@@ -89,7 +89,7 @@ Decision requests
   propose pepper:SplitBill (implements at api/ordering/services/payment_handoff.py:65)  — guests ask to split the bill; Checkout assumes one payment per order
   accept or reject proposed pepper:MenuAvailability (ontology/pepper.gloss.yaml:53)
 
-Concepts covered 80% (8/10 with an artifact and a verifier)   Orphans: 0   Rogue: 1   Violations: 0   Gaps: 0   Stale: 1   Untested: 2   Proposed links: 8   Proposed concepts: 1
+Concepts covered 80% (8/10 with an artifact and a verifier)   Orphans: 0   Rogue: 1   Violations: 0   Gaps: 0   Stale: 1   Untested: 2   Proposed links: 8   Proposed concepts: 1   Plan items: 0
 ```
 
 `gloss accept m-5f5d5197a5` re-confirms the link (`re-confirm api/ordering/services/ticket_router.py:10 implements .TicketRouter (stale)`), and after a rebuild drift reports `Stale: 0`. The committed link stays stale because it is this example's stale state. In v0.1.0 `gloss accept` refused a stale link (F-ADOPT-8, C14).
@@ -169,7 +169,7 @@ Ontology impact — ws (dineb:api)   base HEAD   gate HARD   criticality critica
 ? implements pepper:OrderFlow      api/ordering/services/order_flow.py:unavailable_lines          [agent, conf 0.90, HARD: outside menu-curator may-modify remit]
 ? implements pepper:MenuCatalog    api/ordering/services/menu_catalog.py:group_into_sections      [agent, conf 0.88, SOFT: auto-accept eligible]
 ~ stale implements .TicketRouter   api/ordering/services/ticket_router.py                         [AUTO]
-Views changed: none      Rollup: dineb:api holds {dine:Allergen, dine:KitchenTicket, dine:Menu, dine:MenuItem, dine:Order, dine:Payment, dine:Station} ⊑ declared  ✓; dineb:api realizes {dine:AllergenRule, dine:Checkout, dine:KitchenFulfilment, dine:MenuPublishing, dine:Ordering, pepper:AllergenGuard, pepper:MenuAvailability, pepper:MenuCatalog, pepper:OrderFlow, pepper:OrderingApi, pepper:PaymentHandoff, pepper:TicketRouter} ⊑ declared  ✓
+Views changed: none      Rollup: dineb:api holds {dine:Allergen, dine:KitchenTicket, dine:MenuItem, dine:Order, dine:Payment, dine:Station} ⊑ declared  ✓; dineb:api realizes {dine:AllergenRule, dine:Checkout, dine:KitchenFulfilment, dine:MenuPublishing, dine:Ordering, pepper:AllergenGuard, pepper:MenuAvailability, pepper:MenuCatalog, pepper:OrderFlow, pepper:OrderingApi, pepper:PaymentHandoff, pepper:TicketRouter} ⊑ declared  ✓
 Concepts covered 80% → 80%   Files 55% → 54%   Orphans: 0   Rogue: 1   Proposed links: 11   Proposed concepts: 1   Stale: 1
 Criticality touched: dine:AllergenRule critical (declared)
 ```
@@ -282,9 +282,9 @@ It labels `order_flow.py` HARD, as `gloss diff` does for the out-of-remit link i
 ```
 ### gloss mcp with GLOSS_ACTOR=agent:menu-curator
 → initialize
-← serverInfo {"name": "glossmark", "version": "0.0.0-dev"} | instructions: GlossMark serves the repository's code ontology. Call concepts_for_path before writing code in a directory, search_concepts to find the right concept, propose_l...
+← serverInfo {"name": "glossmark", "version": "0.3.0"} | instructions: GlossMark serves the repository's code ontology. Call concepts_for_path before writing code in a directory, search_concepts to find the right concept, propose_l...
 → tools/list
-← lookup_concept, search_concepts, concepts_for_path, propose_link, impact_of, propose_concept, context, slice_of, drift
+← lookup_concept, search_concepts, concepts_for_path, propose_link, impact_of, propose_concept, context, slice_of, drift, review_queue, review_item, review_decide, review_undo, write_link, edit_concept_doc, browse_node, history_of
 
 → tools/call search_concepts {"query": "chit"}
 ← [{"curie": "dine:KitchenTicket", "kind": "entity", "aliases": ["chit", "docket", "ticket"], "artifacts": 4, "score": 95, "matched": "alias:chit"}]
