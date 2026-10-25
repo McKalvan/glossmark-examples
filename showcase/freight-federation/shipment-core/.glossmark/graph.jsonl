@@ -1,4 +1,4 @@
-{"type":"context","format":1,"generator":"gloss 0.0.0-dev","prefixes":{"fleet":"https://arch.kestrel-freight.example/boundaries/","frt":"https://onto.kestrel-freight.example/frt/","shc":"https://onto.kestrel-freight.example/shc/","shipcore":"https://arch.kestrel-freight.example/shipment-core/boundaries/shipcore/"},"@context":"./context.jsonld"}
+{"type":"context","format":1,"generator":"gloss 0.3.0","prefixes":{"fleet":"https://arch.kestrel-freight.example/boundaries/","frt":"https://onto.kestrel-freight.example/frt/","shc":"https://onto.kestrel-freight.example/shc/","shipcore":"https://arch.kestrel-freight.example/shipment-core/boundaries/shipcore/"},"@context":"./context.jsonld"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:agent:claude-code","curie":"agent:claude-code","kind":"agent","label":"agent:claude-code"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:team:freight-architecture","curie":"team:freight-architecture","label":"freight-architecture"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:team:shipment-eng","curie":"team:shipment-eng","label":"shipment-eng"}

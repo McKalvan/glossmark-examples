@@ -1,4 +1,4 @@
-{"type":"context","format":1,"generator":"gloss 0.0.0-dev","prefixes":{"circ":"https://onto.riverbend.example/library/impl/","lib":"https://onto.riverbend.example/library/core/","libb":"https://onto.riverbend.example/library/boundaries/libb/"},"@context":"./context.jsonld"}
+{"type":"context","format":1,"generator":"gloss 0.3.0","prefixes":{"circ":"https://onto.riverbend.example/library/impl/","lib":"https://onto.riverbend.example/library/core/","libb":"https://onto.riverbend.example/library/boundaries/libb/"},"@context":"./context.jsonld"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:agent:claude-code","curie":"agent:claude-code","kind":"agent","label":"agent:claude-code"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:team:circulation-dept","curie":"team:circulation-dept","label":"circulation-dept"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:team:city-cloud-team","curie":"team:city-cloud-team","label":"city-cloud-team"}

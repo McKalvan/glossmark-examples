@@ -1,4 +1,4 @@
-{"type":"context","format":1,"generator":"gloss 0.0.0-dev","prefixes":{"clinic":"https://onto.larkspur.example/core/","clinicb":"https://onto.larkspur.example/boundaries/clinicb/","lark":"https://onto.larkspur.example/impl/"},"@context":"./context.jsonld"}
+{"type":"context","format":1,"generator":"gloss 0.3.0","prefixes":{"clinic":"https://onto.larkspur.example/core/","clinicb":"https://onto.larkspur.example/boundaries/clinicb/","lark":"https://onto.larkspur.example/impl/"},"@context":"./context.jsonld"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:agent:claude-code","curie":"agent:claude-code","kind":"agent","label":"agent:claude-code"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:team:booking-platform","curie":"team:booking-platform","label":"booking-platform"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:team:patient-comms","curie":"team:patient-comms","label":"patient-comms"}

@@ -1,4 +1,4 @@
-{"type":"context","format":1,"generator":"gloss 0.0.0-dev","prefixes":{"dine":"https://onto.pepperrow.example/core/","dineb":"https://onto.pepperrow.example/boundaries/dineb/","pepper":"https://onto.pepperrow.example/impl/"},"@context":"./context.jsonld"}
+{"type":"context","format":1,"generator":"gloss 0.3.0","prefixes":{"dine":"https://onto.pepperrow.example/core/","dineb":"https://onto.pepperrow.example/boundaries/dineb/","pepper":"https://onto.pepperrow.example/impl/"},"@context":"./context.jsonld"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:agent:allergen-auditor","curie":"agent:allergen-auditor","kind":"agent","label":"agent:allergen-auditor"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:agent:claude-code","curie":"agent:claude-code","kind":"agent","label":"agent:claude-code"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:agent:menu-curator","curie":"agent:menu-curator","kind":"agent","label":"agent:menu-curator"}

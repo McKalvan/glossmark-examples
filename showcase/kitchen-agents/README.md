@@ -282,7 +282,7 @@ It labels `order_flow.py` HARD, as `gloss diff` does for the out-of-remit link i
 ```
 ### gloss mcp with GLOSS_ACTOR=agent:menu-curator
 → initialize
-← serverInfo {"name": "glossmark", "version": "v0.3.0"} | instructions: GlossMark serves the repository's code ontology. Call concepts_for_path before writing code in a directory, search_concepts to find the right concept, propose_l...
+← serverInfo {"name": "glossmark", "version": "0.3.0"} | instructions: GlossMark serves the repository's code ontology. Call concepts_for_path before writing code in a directory, search_concepts to find the right concept, propose_l...
 → tools/list
 ← lookup_concept, search_concepts, concepts_for_path, propose_link, impact_of, propose_concept, context, slice_of, drift, review_queue, review_item, review_decide, review_undo, write_link, edit_concept_doc, browse_node, history_of
 

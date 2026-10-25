@@ -1,4 +1,4 @@
-{"type":"context","format":1,"generator":"gloss 0.0.0-dev","prefixes":{"claim":"https://onto.tidewater.example/core/","claimb":"https://onto.tidewater.example/boundaries/claimb/","tide":"https://onto.tidewater.example/impl/"},"@context":"./context.jsonld"}
+{"type":"context","format":1,"generator":"gloss 0.3.0","prefixes":{"claim":"https://onto.tidewater.example/core/","claimb":"https://onto.tidewater.example/boundaries/claimb/","tide":"https://onto.tidewater.example/impl/"},"@context":"./context.jsonld"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:agent:claude-code","curie":"agent:claude-code","kind":"agent","label":"agent:claude-code"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:team:claims-architecture","curie":"team:claims-architecture","label":"claims-architecture"}
 {"type":"node","node":"actor","id":"urn:gloss:actor:team:claims-decisioning","curie":"team:claims-decisioning","label":"claims-decisioning"}
