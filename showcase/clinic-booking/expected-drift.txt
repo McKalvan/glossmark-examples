@@ -13,4 +13,4 @@ Ontology drift
   lark:SlotSearch is implemented but nothing tests or verifies it; clinic:Availability, which it realizes, counts as tested only because lark:BookingApiService is tested  [ontology/lark.gloss.yaml:30]
   lark:WaitlistPage is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:97]
 
-Concepts covered 69% (11/16 with an artifact and a verifier)   Orphans: 1   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 5   Proposed links: 0   Proposed concepts: 0
+Concepts covered 69% (11/16 with an artifact and a verifier)   Orphans: 1   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 5   Proposed links: 0   Proposed concepts: 0   Plan items: 0

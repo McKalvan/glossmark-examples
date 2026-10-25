@@ -45,17 +45,16 @@ Imports
 
 Ontology drift
 
-✗ Violations (boundary exceeds its declared capability)
-  anab:analytics holds grid:Outage but declares holds {grid:SmartMeter, grid:Tariff}  [analytics/models/outage_minutes.sql:1]
-
 ○ Gaps (declared, not implemented)
   mcb:meter-core declares publishes mc:ReadingFeed and mc:ReadingIngestor intends it, but no code under it publishes it: mark the code that does, or the declaration is wrong  [meter-core/.gloss.yaml:1]
   omapb:outage-map declares subscribes grid:Outage and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [outage-map/.gloss.yaml:1]
   omapb:outage-map declares subscribes mc:ReadingFeed and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [outage-map/.gloss.yaml:1]
 
-Concepts covered 67% (2/3 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 1   Gaps: 3   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
-gloss landscape: 1 failing finding (violation,dangling,overdue)
-[exit 1]
+△ Implemented but untested
+  mc:ReadingFeed has code but nothing tests or verifies it (nor grid:MeterReading, which it realizes)  [meter-core/ontology/mc.gloss.yaml:7]
+
+Concepts covered 67% (2/3 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 3   Stale: 0   Untested: 1   Proposed links: 0   Proposed concepts: 0   Plan items: 0
+[exit 0]
 ```
 
 ## Step 1: PATCH, grid 1.0.1 (doc change on MeterReading)
@@ -106,7 +105,7 @@ gloss check: 0 errors, 0 warnings
 $ (cd billing && gloss drift --fail-on dangling,violation,gap)
 Ontology drift
 
-Concepts covered 100% (1/1 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
+Concepts covered 100% (1/1 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0   Plan items: 0
 [exit 0]
 ```
 
@@ -150,7 +149,7 @@ Ontology drift
   omapb:outage-map declares subscribes grid:Outage and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [.gloss.yaml:1]
   omapb:outage-map declares subscribes mc:ReadingFeed and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [.gloss.yaml:1]
 
-Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 2   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
+Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 2   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0   Plan items: 0
 gloss drift: 2 failing findings (dangling,violation,gap)
 [exit 1]
 ```
@@ -188,12 +187,8 @@ gloss check: 0 errors, 0 warnings
 $ (cd analytics && gloss drift --fail-on dangling,violation,gap)
 Ontology drift
 
-✗ Violations (boundary exceeds its declared capability)
-  anab:analytics holds grid:Outage but declares holds {grid:SmartMeter, grid:Tariff}  [models/outage_minutes.sql:1]
-
-Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 1   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
-gloss drift: 1 failing finding (dangling,violation,gap)
-[exit 1]
+Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0   Plan items: 0
+[exit 0]
 ```
 
 **Landscape** across all four repositories:
@@ -214,17 +209,16 @@ Imports
 
 Ontology drift
 
-✗ Violations (boundary exceeds its declared capability)
-  anab:analytics holds grid:Outage but declares holds {grid:SmartMeter, grid:Tariff}  [analytics/models/outage_minutes.sql:1]
-
 ○ Gaps (declared, not implemented)
   mcb:meter-core declares publishes mc:ReadingFeed and mc:ReadingIngestor intends it, but no code under it publishes it: mark the code that does, or the declaration is wrong  [meter-core/.gloss.yaml:1]
   omapb:outage-map declares subscribes grid:Outage and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [outage-map/.gloss.yaml:1]
   omapb:outage-map declares subscribes mc:ReadingFeed and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [outage-map/.gloss.yaml:1]
 
-Concepts covered 67% (2/3 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 1   Gaps: 3   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
-gloss landscape: 1 failing finding (violation,dangling,overdue)
-[exit 1]
+△ Implemented but untested
+  mc:ReadingFeed has code but nothing tests or verifies it (nor grid:MeterReading, which it realizes)  [meter-core/ontology/mc.gloss.yaml:7]
+
+Concepts covered 67% (2/3 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 3   Stale: 0   Untested: 1   Proposed links: 0   Proposed concepts: 0   Plan items: 0
+[exit 0]
 ```
 
 ### Step 1a (failure): upstream changes a doc and forgets to bump
@@ -279,7 +273,7 @@ gloss check: 1 error, 0 warnings
 ```text
 $ (cd meter-core && gloss diff --base HEAD)
 Ontology impact — meter-core   base HEAD   gate HARD
-! glossmark.yaml changed                                       glossmark.yaml               [HARD: edit to ontology/ or manifests]
+! glossmark.yaml changed                                       glossmark.yaml               [HARD: edit under hard-paths]
 ! namespace grid: changes require a PATCH bump but version went 1.0.1 → 1.0.1 (none)   ontology/grid.gloss.yaml     [HARD: semver: bump the namespace version; importers' ranges rely on it]
 ! grid:Customer label/doc                                      ontology/grid.gloss.yaml:6   [HARD: definition of a core concept changed (PATCH)]
 Views changed: business, engineering
@@ -311,7 +305,7 @@ gloss check: 0 errors, 1 warning
 ```text
 $ (cd meter-core && gloss diff --base HEAD)
 Ontology impact — meter-core   base HEAD   gate HARD
-! glossmark.yaml changed                                       glossmark.yaml               [HARD: edit to ontology/ or manifests]
+! glossmark.yaml changed                                       glossmark.yaml               [HARD: edit under hard-paths]
 ! namespace grid: changes require a PATCH bump but version went 1.0.1 → none (unknown)   ontology/grid.gloss.yaml     [HARD: semver: bump the namespace version; importers' ranges rely on it]
 ! grid:Customer label/doc                                      ontology/grid.gloss.yaml:5   [HARD: definition of a core concept changed (PATCH)]
 Views changed: business, engineering
@@ -375,7 +369,7 @@ gloss check: 0 errors, 1 warning
 $ (cd billing && gloss drift --fail-on dangling,violation,gap)
 Ontology drift
 
-Concepts covered 100% (1/1 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
+Concepts covered 100% (1/1 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0   Plan items: 0
 [exit 0]
 ```
 
@@ -417,7 +411,7 @@ Ontology drift
   omapb:outage-map declares subscribes grid:Outage and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [.gloss.yaml:1]
   omapb:outage-map declares subscribes mc:ReadingFeed and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [.gloss.yaml:1]
 
-Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 2   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
+Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 2   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0   Plan items: 0
 gloss drift: 2 failing findings (dangling,violation,gap)
 [exit 1]
 ```
@@ -453,12 +447,8 @@ gloss check: 0 errors, 1 warning
 $ (cd analytics && gloss drift --fail-on dangling,violation,gap)
 Ontology drift
 
-✗ Violations (boundary exceeds its declared capability)
-  anab:analytics holds grid:Outage but declares holds {grid:SmartMeter, grid:Tariff}  [models/outage_minutes.sql:1]
-
-Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 1   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
-gloss drift: 1 failing finding (dangling,violation,gap)
-[exit 1]
+Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0   Plan items: 0
+[exit 0]
 ```
 
 **Landscape** across all four repositories:
@@ -479,9 +469,6 @@ Imports
 
 Ontology drift
 
-✗ Violations (boundary exceeds its declared capability)
-  anab:analytics holds grid:Outage but declares holds {grid:SmartMeter, grid:Tariff}  [analytics/models/outage_minutes.sql:1]
-
 ○ Gaps (declared, not implemented)
   mcb:meter-core declares publishes mc:ReadingFeed and mc:ReadingIngestor intends it, but no code under it publishes it: mark the code that does, or the declaration is wrong  [meter-core/.gloss.yaml:1]
   omapb:outage-map declares subscribes grid:Outage and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [outage-map/.gloss.yaml:1]
@@ -490,9 +477,11 @@ Ontology drift
 · Orphan concepts (no artifacts)
   grid:PeakDemand: orphan concept, no code links to it (a documents or instructs link does not count)  [meter-core/ontology/grid.gloss.yaml:14]
 
-Concepts covered 67% (2/3 with an artifact and a verifier)   Orphans: 1   Rogue: 0   Violations: 1   Gaps: 3   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
-gloss landscape: 1 failing finding (violation,dangling,overdue)
-[exit 1]
+△ Implemented but untested
+  mc:ReadingFeed has code but nothing tests or verifies it (nor grid:MeterReading, which it realizes)  [meter-core/ontology/mc.gloss.yaml:7]
+
+Concepts covered 67% (2/3 with an artifact and a verifier)   Orphans: 1   Rogue: 0   Violations: 0   Gaps: 3   Stale: 0   Untested: 1   Proposed links: 0   Proposed concepts: 0   Plan items: 0
+[exit 0]
 ```
 
 ### Step 2a (classification): only a deprecation, Meter deprecated with replaced-by SmartMeter, version 1.1.1
@@ -558,7 +547,7 @@ gloss check: 0 errors, 1 warning
 $ (cd billing && gloss drift --fail-on dangling,violation,gap)
 Ontology drift
 
-Concepts covered 100% (1/1 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
+Concepts covered 100% (1/1 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0   Plan items: 0
 [exit 0]
 ```
 
@@ -600,7 +589,7 @@ Ontology drift
   omapb:outage-map declares subscribes grid:Outage and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [.gloss.yaml:1]
   omapb:outage-map declares subscribes mc:ReadingFeed and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [.gloss.yaml:1]
 
-Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 2   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
+Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 2   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0   Plan items: 0
 gloss drift: 2 failing findings (dangling,violation,gap)
 [exit 1]
 ```
@@ -636,12 +625,8 @@ gloss check: 0 errors, 1 warning
 $ (cd analytics && gloss drift --fail-on dangling,violation,gap)
 Ontology drift
 
-✗ Violations (boundary exceeds its declared capability)
-  anab:analytics holds grid:Outage but declares holds {grid:SmartMeter, grid:Tariff}  [models/outage_minutes.sql:1]
-
-Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 1   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
-gloss drift: 1 failing finding (dangling,violation,gap)
-[exit 1]
+Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0   Plan items: 0
+[exit 0]
 ```
 
 **Landscape** across all four repositories:
@@ -662,9 +647,6 @@ Imports
 
 Ontology drift
 
-✗ Violations (boundary exceeds its declared capability)
-  anab:analytics holds grid:Outage but declares holds {grid:SmartMeter, grid:Tariff}  [analytics/models/outage_minutes.sql:1]
-
 ○ Gaps (declared, not implemented)
   mcb:meter-core declares publishes mc:ReadingFeed and mc:ReadingIngestor intends it, but no code under it publishes it: mark the code that does, or the declaration is wrong  [meter-core/.gloss.yaml:1]
   omapb:outage-map declares subscribes grid:Outage and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [outage-map/.gloss.yaml:1]
@@ -674,15 +656,17 @@ Ontology drift
   grid:PeakDemand: orphan concept, no code links to it (a documents or instructs link does not count)  [meter-core/ontology/grid.gloss.yaml:14]
   grid:SupplyInterruption: orphan concept, no code links to it (a documents or instructs link does not count)  [meter-core/ontology/grid.gloss.yaml:15]
 
+△ Implemented but untested
+  mc:ReadingFeed has code but nothing tests or verifies it (nor grid:MeterReading, which it realizes)  [meter-core/ontology/mc.gloss.yaml:7]
+
 ~ Deprecated in use
   analytics/models/outage_minutes.sql:1 represents grid:Outage: deprecated; replaced-by grid:SupplyInterruption  [analytics/models/outage_minutes.sql:1]
   omapb:outage-map subscribes grid:Outage: deprecated; replaced-by grid:SupplyInterruption  [outage-map/.gloss.yaml:1]
   omap:OutageLayer subscribes grid:Outage: deprecated; replaced-by grid:SupplyInterruption  [outage-map/ontology/omap.gloss.yaml:6]
   outage-map/src/outages.ts:1 represents grid:Outage: deprecated; replaced-by grid:SupplyInterruption  [outage-map/src/outages.ts:1]
 
-Concepts covered 67% (2/3 with an artifact and a verifier)   Orphans: 2   Rogue: 0   Violations: 1   Gaps: 3   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
-gloss landscape: 1 failing finding (violation,dangling,overdue)
-[exit 1]
+Concepts covered 67% (2/3 with an artifact and a verifier)   Orphans: 2   Rogue: 0   Violations: 0   Gaps: 3   Stale: 0   Untested: 1   Proposed links: 0   Proposed concepts: 0   Plan items: 0
+[exit 0]
 ```
 
 ### Step 3a (failure): MINOR declared for a MAJOR change (Outage removed, version 1.3.0)
@@ -690,8 +674,8 @@ gloss landscape: 1 failing finding (violation,dangling,overdue)
 ```text
 $ (cd meter-core && gloss diff --base HEAD)
 Ontology impact — meter-core   base HEAD   gate HARD
-! namespace grid: changes require a MAJOR bump but version went 1.2.0 → 1.3.0 (MINOR)   ontology/grid.gloss.yaml      [HARD: semver: bump the namespace version; importers' ranges rely on it]
 ! namespace grid: MAJOR change (removal, retype, or is-a/part-of change)   ontology/grid.gloss.yaml      [HARD: MAJOR bump]
+! namespace grid: changes require a MAJOR bump but version went 1.2.0 → 1.3.0 (MINOR)   ontology/grid.gloss.yaml      [HARD: semver: bump the namespace version; importers' ranges rely on it]
 - concept grid:Outage removed (deprecated since base, replaced-by grid:SupplyInterruption)   ontology/grid.gloss.yaml:13   [HARD: edit to ontology (MAJOR)]
 Views changed: business, engineering
 Concepts covered 50% → 50%   Files 100% → 100%   Orphans: 7 (grid:Billing, grid:Customer, grid:Meter, …)   Rogue: 0   Proposed links: 0   Proposed concepts: 0   Stale: 0
@@ -720,8 +704,8 @@ gloss check: 0 errors, 1 warning
 ```text
 $ (cd meter-core && gloss diff --base HEAD)
 Ontology impact — meter-core   base HEAD   gate HARD
-! namespace grid: changes require a MAJOR bump but version went 1.2.0 → 1.3.0 (MINOR)   ontology/grid.gloss.yaml      [HARD: semver: bump the namespace version; importers' ranges rely on it]
 ! namespace grid: MAJOR change (removal, retype, or is-a/part-of change)   ontology/grid.gloss.yaml      [HARD: MAJOR bump]
+! namespace grid: changes require a MAJOR bump but version went 1.2.0 → 1.3.0 (MINOR)   ontology/grid.gloss.yaml      [HARD: semver: bump the namespace version; importers' ranges rely on it]
 ! grid:Tariff kind entity → constraint                         ontology/grid.gloss.yaml:11   [HARD: edit to ontology]
 Views changed: business, engineering
 Concepts covered 50% → 50%   Files 100% → 100%   Orphans: 7 (grid:Billing, grid:Customer, grid:Meter, …)   Rogue: 0   Proposed links: 0   Proposed concepts: 0   Stale: 0
@@ -742,8 +726,8 @@ gloss check: 0 errors, 1 warning
 ```text
 $ (cd meter-core && gloss diff --base HEAD)
 Ontology impact — meter-core   base HEAD   gate HARD
-! namespace grid: changes require a MAJOR bump but version went 1.2.0 → 1.3.0 (MINOR)   ontology/grid.gloss.yaml      [HARD: semver: bump the namespace version; importers' ranges rely on it]
 ! namespace grid: MAJOR change (removal, retype, or is-a/part-of change)   ontology/grid.gloss.yaml      [HARD: MAJOR bump]
+! namespace grid: changes require a MAJOR bump but version went 1.2.0 → 1.3.0 (MINOR)   ontology/grid.gloss.yaml      [HARD: semver: bump the namespace version; importers' ranges rely on it]
 ! grid:SmartMeter is-a grid:ConnectedDevice added              ontology/grid.gloss.yaml:8    [HARD: edit to ontology]
 - grid:SmartMeter is-a grid:Meter removed                      ontology/grid.gloss.yaml:8    [HARD: edit to ontology]
 ! concept grid:ConnectedDevice added (entity)                  ontology/grid.gloss.yaml:16   [HARD: edit to ontology]
@@ -761,8 +745,8 @@ gloss diff: HARD changes need a human decision
 ```text
 $ (cd meter-core && gloss diff --base HEAD)
 Ontology impact — meter-core   base HEAD   gate HARD
-! namespace mc: changes require a MAJOR bump but version went 1.0.0 → 1.1.0 (MINOR)   ontology/mc.gloss.yaml     [HARD: semver: bump the namespace version; importers' ranges rely on it]
 ! namespace mc: MAJOR change (removal, retype, or is-a/part-of change)   ontology/mc.gloss.yaml     [HARD: MAJOR bump]
+! namespace mc: changes require a MAJOR bump but version went 1.0.0 → 1.1.0 (MINOR)   ontology/mc.gloss.yaml     [HARD: semver: bump the namespace version; importers' ranges rely on it]
 ! published mc:ReadingFeed published grid:MeterReading → none   ontology/mc.gloss.yaml:7   [HARD: edit to ontology; business view affected: published concept]
 - published mc:ReadingFeed published-as grid:MeterReading removed   ontology/mc.gloss.yaml:7   [HARD: edit to ontology; business view affected: published concept]
 Views changed: business, engineering
@@ -814,9 +798,6 @@ Imports
 
 Ontology drift
 
-✗ Violations (boundary exceeds its declared capability)
-  anab:analytics holds grid:Outage but declares holds {grid:SmartMeter, grid:Tariff}  [analytics/models/outage_minutes.sql:1]
-
 ○ Gaps (declared, not implemented)
   mcb:meter-core declares publishes mc:ReadingFeed and mc:ReadingIngestor intends it, but no code under it publishes it: mark the code that does, or the declaration is wrong  [meter-core/.gloss.yaml:1]
   omapb:outage-map declares subscribes grid:Outage and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [outage-map/.gloss.yaml:1]
@@ -826,15 +807,17 @@ Ontology drift
   grid:PeakDemand: orphan concept, no code links to it (a documents or instructs link does not count)  [meter-core/ontology/grid.gloss.yaml:14]
   grid:SupplyInterruption: orphan concept, no code links to it (a documents or instructs link does not count)  [meter-core/ontology/grid.gloss.yaml:15]
 
+△ Implemented but untested
+  mc:ReadingFeed has code but nothing tests or verifies it (nor grid:MeterReading, which it realizes)  [meter-core/ontology/mc.gloss.yaml:7]
+
 ~ Deprecated in use
   analytics/models/outage_minutes.sql:1 represents grid:Outage: deprecated; replaced-by grid:SupplyInterruption  [analytics/models/outage_minutes.sql:1]
   omapb:outage-map subscribes grid:Outage: deprecated; replaced-by grid:SupplyInterruption  [outage-map/.gloss.yaml:1]
   omap:OutageLayer subscribes grid:Outage: deprecated; replaced-by grid:SupplyInterruption  [outage-map/ontology/omap.gloss.yaml:6]
   outage-map/src/outages.ts:1 represents grid:Outage: deprecated; replaced-by grid:SupplyInterruption  [outage-map/src/outages.ts:1]
 
-Concepts covered 67% (2/3 with an artifact and a verifier)   Orphans: 2   Rogue: 0   Violations: 1   Gaps: 3   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
-gloss landscape: 1 failing finding (violation,dangling,overdue)
-[exit 1]
+Concepts covered 67% (2/3 with an artifact and a verifier)   Orphans: 2   Rogue: 0   Violations: 0   Gaps: 3   Stale: 0   Untested: 1   Proposed links: 0   Proposed concepts: 0   Plan items: 0
+[exit 0]
 ```
 
 ### Step 3e (failure): an importer references an implementation concept that was never published
@@ -901,7 +884,7 @@ gloss check: 0 errors, 1 warning
 $ (cd billing && gloss drift --fail-on dangling,violation,gap)
 Ontology drift
 
-Concepts covered 100% (1/1 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
+Concepts covered 100% (1/1 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0   Plan items: 0
 [exit 0]
 ```
 
@@ -943,7 +926,7 @@ Ontology drift
   omapb:outage-map declares subscribes grid:Outage and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [.gloss.yaml:1]
   omapb:outage-map declares subscribes mc:ReadingFeed and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [.gloss.yaml:1]
 
-Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 2   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
+Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 2   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0   Plan items: 0
 gloss drift: 2 failing findings (dangling,violation,gap)
 [exit 1]
 ```
@@ -979,12 +962,8 @@ gloss check: 0 errors, 1 warning
 $ (cd analytics && gloss drift --fail-on dangling,violation,gap)
 Ontology drift
 
-✗ Violations (boundary exceeds its declared capability)
-  anab:analytics holds grid:Outage but declares holds {grid:SmartMeter, grid:Tariff}  [models/outage_minutes.sql:1]
-
-Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 1   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
-gloss drift: 1 failing finding (dangling,violation,gap)
-[exit 1]
+Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0   Plan items: 0
+[exit 0]
 ```
 
 **Landscape** across all four repositories:
@@ -1005,9 +984,6 @@ Imports
 
 Ontology drift
 
-✗ Violations (boundary exceeds its declared capability)
-  anab:analytics holds grid:Outage but declares holds {grid:SmartMeter, grid:Tariff}  [analytics/models/outage_minutes.sql:1]
-
 ○ Gaps (declared, not implemented)
   mcb:meter-core declares publishes mc:ReadingFeed and mc:ReadingIngestor intends it, but no code under it publishes it: mark the code that does, or the declaration is wrong  [meter-core/.gloss.yaml:1]
   omapb:outage-map declares subscribes grid:Outage and omap:OutageLayer intends it, but no code under it subscribes to it: mark the code that does, or the declaration is wrong  [outage-map/.gloss.yaml:1]
@@ -1017,9 +993,11 @@ Ontology drift
   grid:PeakDemand: orphan concept, no code links to it (a documents or instructs link does not count)  [meter-core/ontology/grid.gloss.yaml:14]
   grid:SupplyInterruption: orphan concept, no code links to it (a documents or instructs link does not count)  [meter-core/ontology/grid.gloss.yaml:15]
 
-Concepts covered 67% (2/3 with an artifact and a verifier)   Orphans: 2   Rogue: 0   Violations: 1   Gaps: 3   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
-gloss landscape: 1 failing finding (violation,dangling,overdue)
-[exit 1]
+△ Implemented but untested
+  mc:ReadingFeed has code but nothing tests or verifies it (nor grid:MeterReading, which it realizes)  [meter-core/ontology/mc.gloss.yaml:7]
+
+Concepts covered 67% (2/3 with an artifact and a verifier)   Orphans: 2   Rogue: 0   Violations: 0   Gaps: 3   Stale: 0   Untested: 1   Proposed links: 0   Proposed concepts: 0   Plan items: 0
+[exit 0]
 ```
 
 ### Step 4a: lockfile diagnostics GM108, GM109 and GM105 on the 2.0.0 state
@@ -1095,7 +1073,7 @@ Ontology drift
   ontology/omap.gloss.yaml:6 omap:OutageLayer subscribes grid:SupplyInterruption: concept does not exist (ontology reference)  [ontology/omap.gloss.yaml:6]
   src/outages.ts:1 represents grid:SupplyInterruption: concept does not exist (write grid:NEW:SupplyInterruption with @gloss? to propose it)  [src/outages.ts:1]
 
-Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 2   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
+Concepts covered n/a (0/0 with an artifact and a verifier)   Orphans: 0   Rogue: 0   Violations: 0   Gaps: 2   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0   Plan items: 0
 gloss drift: 5 failing findings (dangling,violation,gap)
 [exit 1]
 ```
@@ -1116,9 +1094,6 @@ Imports
 
 Ontology drift
 
-✗ Violations (boundary exceeds its declared capability)
-  anab:analytics holds grid:Outage but declares holds {grid:SmartMeter, grid:Tariff}  [analytics/models/outage_minutes.sql:1]
-
 ✗ Imports out of range
   outage-map imports grid: ^2.0 but resolves 1.0.1  [outage-map/glossmark.yaml:1]
 
@@ -1130,8 +1105,10 @@ Ontology drift
 · Orphan concepts (no artifacts)
   grid:PeakDemand: orphan concept, no code links to it (a documents or instructs link does not count)  [meter-core/ontology/grid.gloss.yaml:14]
 
-Concepts covered 67% (2/3 with an artifact and a verifier)   Orphans: 1   Rogue: 0   Violations: 1   Gaps: 3   Stale: 0   Untested: 0   Proposed links: 0   Proposed concepts: 0
-gloss landscape: 1 failing finding (violation,dangling,overdue)
-[exit 1]
+△ Implemented but untested
+  mc:ReadingFeed has code but nothing tests or verifies it (nor grid:MeterReading, which it realizes)  [meter-core/ontology/mc.gloss.yaml:7]
+
+Concepts covered 67% (2/3 with an artifact and a verifier)   Orphans: 1   Rogue: 0   Violations: 0   Gaps: 3   Stale: 0   Untested: 1   Proposed links: 0   Proposed concepts: 0   Plan items: 0
+[exit 0]
 ```
 

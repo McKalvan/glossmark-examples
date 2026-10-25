@@ -36,4 +36,4 @@ Decision requests
   accept or reject proposed lib:FinePayment (ontology/lib.gloss.yaml:185)
   accept or reject proposed lib:TurnoverRate (ontology/lib.gloss.yaml:110)
 
-Concepts covered 76% (13/17 with an artifact and a verifier)   Orphans: 7   Rogue: 0   Violations: 0   Gaps: 1   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 4
+Concepts covered 76% (13/17 with an artifact and a verifier)   Orphans: 7   Rogue: 0   Violations: 0   Gaps: 1   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 4   Plan items: 0

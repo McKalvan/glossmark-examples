@@ -19,7 +19,7 @@ jobs:
         run: |
           ref=$(sed -n '/^[^#]/{p;q;}' GLOSS_REF)
           grep -q "uses: mckalvan/glossmark@$ref" .github/workflows/showcase.yml \
-            || { echo "::error::showcase.yml pins a different GlossMark than GLOSS_REF ($ref): use the full commit SHA in both"; exit 1; }
+            || { echo "::error::showcase.yml pins a different GlossMark than GLOSS_REF ($ref): pin the same release tag or full commit SHA in both"; exit 1; }
       - id: read
         run: |
           ws=$(grep -v '^#' showcase/workspaces.tsv | jq -R -s -c 'split("\n") | map(select(length>0) | split("\t") | {root: .[0], "fail-on": .[1], action: .[2], coverage: .[3]})')
@@ -45,10 +45,10 @@ jobs:
       # The Action and its version follow GLOSS_REF; `uses:` takes no expression, so bump both together.
       - name: GlossMark Action
         if: matrix.action == 'true'
-        uses: mckalvan/glossmark@e24677c4c9c0f2588058a3c6af1cf5c3076ecde8
+        uses: mckalvan/glossmark@v0.3.0
         with:
           root: ${{ matrix.root }}
-          version: e24677c4c9c0f2588058a3c6af1cf5c3076ecde8
+          version: v0.3.0
           fail-on: none
           coverage-fail-under: ${{ matrix.coverage }}
       - uses: actions/setup-go@v5

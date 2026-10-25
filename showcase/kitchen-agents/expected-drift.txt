@@ -17,4 +17,4 @@ Decision requests
   propose pepper:SplitBill (implements at api/ordering/services/payment_handoff.py:65)  — guests ask to split the bill; Checkout assumes one payment per order
   accept or reject proposed pepper:MenuAvailability (ontology/pepper.gloss.yaml:53)
 
-Concepts covered 80% (8/10 with an artifact and a verifier)   Orphans: 0   Rogue: 1   Violations: 0   Gaps: 0   Stale: 1   Untested: 2   Proposed links: 8   Proposed concepts: 1
+Concepts covered 80% (8/10 with an artifact and a verifier)   Orphans: 0   Rogue: 1   Violations: 0   Gaps: 0   Stale: 1   Untested: 2   Proposed links: 8   Proposed concepts: 1   Plan items: 0

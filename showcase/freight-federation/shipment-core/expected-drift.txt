@@ -16,4 +16,4 @@ Ontology drift
   frt:ShipmentVisibility is implemented but nothing tests or verifies it  [ontology/frt.gloss.yaml:50]
   shc:ShipmentBookedEmitter is implemented but nothing tests or verifies it (nor frt:ShipmentBooked, which it realizes)  [ontology/shc.gloss.yaml:19]
 
-Concepts covered 75% (6/8 with an artifact and a verifier)   Orphans: 6   Rogue: 0   Violations: 0   Gaps: 2   Stale: 0   Untested: 2   Proposed links: 0   Proposed concepts: 0
+Concepts covered 75% (6/8 with an artifact and a verifier)   Orphans: 6   Rogue: 0   Violations: 0   Gaps: 2   Stale: 0   Untested: 2   Proposed links: 0   Proposed concepts: 0   Plan items: 0

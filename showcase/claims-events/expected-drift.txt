@@ -4,7 +4,7 @@ Ontology drift
   claimb:assessment publishes claim:ClaimReferred but declares publishes {claim:ClaimDecided, claim:PayoutAuthorized}; rollup: publishes {claim:ClaimEvent} (from claim:ClaimApproved, claim:ClaimDenied, claim:ClaimReferred, claim:PayoutAuthorized) ⊄ declared  [services/assessment/assessment/referral.py:33]
 
 ≠ Published values drifted (the bound code changed, the value did not)
-  published value drifted: tide:FraudReferralPolicy publishes "0.80", bound to services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.kt:9, which changed from "const val REFERRAL_SCORE_THRESHOLD = 0.80" to "const val REFERRAL_SCORE_THRESHOLD = 0.75"; update value: in the ontology, or confirm with gloss accept --value tide:FraudReferralPolicy  [services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.kt]
+  published value drifted: tide:FraudReferralPolicy publishes "0.80", bound to services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.kt:9, which changed from "const val REFERRAL_SCORE_THRESHOLD = 0.80" to "const val REFERRAL_SCORE_THRESHOLD = 0.75"; update value: in the ontology, or confirm the line as is with gloss accept --value --force tide:FraudReferralPolicy  [services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.kt]
 
 ○ Gaps (declared, not implemented)
   claimb:payout-notifier declares subscribes claim:PayoutFailed but nothing under it subscribes to it: intended capability not implemented, or the declaration is wrong  [services/payout-notifier/.gloss.yaml:1]
@@ -16,5 +16,7 @@ Ontology drift
 
 △ Implemented but untested
   claim:ClaimWithdrawal is implemented but nothing tests or verifies it  [ontology/claim.gloss.yaml:102]
+  tide:AssessmentService has code but nothing tests or verifies it; claim:ClaimAssessment, which it realizes, counts as tested only because tide:AssessmentPipeline, tide:AssessmentRules are tested  [ontology/tide.gloss.yaml:12]
+  tide:FraudScreeningService has code but nothing tests or verifies it; claim:FraudScreening, which it realizes, counts as tested only because tide:FraudScorer, tide:ScreeningTopology are tested  [ontology/tide.gloss.yaml:16]
 
-Concepts covered 71% (10/14 with an artifact and a verifier)   Orphans: 3   Rogue: 0   Violations: 1   Gaps: 1   Stale: 0   Untested: 1   Proposed links: 0   Proposed concepts: 0
+Concepts covered 71% (10/14 with an artifact and a verifier)   Orphans: 3   Rogue: 0   Violations: 1   Gaps: 1   Stale: 0   Untested: 3   Proposed links: 0   Proposed concepts: 0   Plan items: 0
