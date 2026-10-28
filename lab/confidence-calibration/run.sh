@@ -4,7 +4,7 @@
 # F-CAL-2 and F-CAL-6 repros, and recomputes the tables from data/labels.csv.
 # Never writes inside the repository.
 set -uo pipefail
-GLOSS="${GLOSS:-/home/ckessler/dev/glossmark-examples/.tools/bin/gloss}"
+GLOSS="${GLOSS:-$(cd "$(dirname "$0")/../.." && pwd)/.tools/bin/gloss}"
 export GLOSS_ACTOR=agent:claude-code
 HERE="$(cd "$(dirname "$0")" && pwd)"
 REPO="$(cd "$HERE/../.." && pwd)"

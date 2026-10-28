@@ -4,7 +4,7 @@
 set -uo pipefail
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
-GLOSS="${GLOSS:-/home/ckessler/dev/glossmark-examples/.tools/bin/gloss}"
+GLOSS="${GLOSS:-$(cd "$(dirname "$0")/../.." && pwd)/.tools/bin/gloss}"
 export GLOSS_ACTOR="${GLOSS_ACTOR:-agent:claude-code}"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT

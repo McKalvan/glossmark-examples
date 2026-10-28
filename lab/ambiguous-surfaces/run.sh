@@ -2,7 +2,7 @@
 # Reproduces lab/ambiguous-surfaces: one table row per variant workspace.
 # Read-only on the committed files: view --json goes to a temp dir.
 set -uo pipefail
-GLOSS="${GLOSS:-/home/ckessler/dev/glossmark-examples/.tools/bin/gloss}"
+GLOSS="${GLOSS:-$(cd "$(dirname "$0")/../.." && pwd)/.tools/bin/gloss}"
 case "$GLOSS" in /*) ;; */*) GLOSS="$(cd "$(dirname "$GLOSS")" && pwd)/$(basename "$GLOSS")" ;; esac
 HERE="$(cd "$(dirname "$0")" && pwd)"
 TMP="$(mktemp -d)"
