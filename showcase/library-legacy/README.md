@@ -63,34 +63,39 @@ $ gloss drift
 Ontology drift
 
 ○ Gaps (declared, not implemented)
+  → Implement it, or remove the declaration.
   libb:ill declares realizes lib:InterlibraryLoan but nothing under it implements it; its code configures it instead: declare configures, or change the marker  [ill/.gloss.yaml:1]  (waived: circulation-dept until 2027-06-30)
 
 ? Proposed concepts (awaiting acceptance)
+  → Accept with gloss accept --concept, or reject it in gloss review.
   lib:ClaimsReturned is a proposed process by agent:claude-code; accept with gloss accept --concept lib:ClaimsReturned  [ontology/lib.gloss.yaml:122]
   lib:DigitalLending is a proposed process by agent:claude-code; accept with gloss accept --concept lib:DigitalLending  [ontology/lib.gloss.yaml:116]
   lib:FinePayment is a proposed process by agent:claude-code; accept with gloss accept --concept lib:FinePayment  [ontology/lib.gloss.yaml:185]
   lib:TurnoverRate is a proposed measure by agent:claude-code; accept with gloss accept --concept lib:TurnoverRate  [ontology/lib.gloss.yaml:110]
 
 · Orphan concepts (no artifacts)
-  lib:ClaimsReturned: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:122]
-  lib:Damage: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:148]
-  lib:DigitalLending: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:116]
-  lib:LibraryCard: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:13]
-  lib:LostItem: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:98]
-  lib:Overdue: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:145]
-  lib:TurnoverRate: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:110]
+  → Link code to it with a marker, or delete the concept.
+  lib:ClaimsReturned: no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:122]
+  lib:Damage: no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:148]
+  lib:DigitalLending: no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:116]
+  lib:LibraryCard: no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:13]
+  lib:LostItem: no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:98]
+  lib:Overdue: no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:145]
+  lib:TurnoverRate: no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:110]
 
 △ Implemented but untested
-  circ:CheckinHandler is implemented but nothing tests or verifies it; lib:Checkin, which it realizes, counts as tested only because circ:CircWebApp is tested  [ontology/circ.gloss.yaml:27]
-  circ:NightlyFineJob is implemented but nothing tests or verifies it; lib:FineAssessment, which it realizes, counts as tested only because circ:DeskFineCalculator, circ:NightlyBatch are tested  [ontology/circ.gloss.yaml:65]
-  lib:FinePayment is implemented but nothing tests or verifies it  [ontology/lib.gloss.yaml:185]
-  lib:SelfCheckout is implemented but nothing tests or verifies it  [ontology/lib.gloss.yaml:101]
+  → Add a verifies marker on a test that exercises it.
+  circ:CheckinHandler: nothing tests or verifies it; lib:Checkin, which it realizes, counts as tested only because circ:CircWebApp is tested  [ontology/circ.gloss.yaml:27]
+  circ:NightlyFineJob: nothing tests or verifies it; lib:FineAssessment, which it realizes, counts as tested only because circ:DeskFineCalculator, circ:NightlyBatch are tested  [ontology/circ.gloss.yaml:65]
+  lib:FinePayment: nothing tests or verifies it  [ontology/lib.gloss.yaml:185]
+  lib:SelfCheckout: nothing tests or verifies it  [ontology/lib.gloss.yaml:101]
 
 ~ Deprecated in use
+  → Move to the replacement (replaced-by), then remove the reference.
   libb:db holds lib:Borrower: deprecated; replaced-by lib:Patron  [db/.gloss.yaml:1]
-  db/schema/007_legacy_borrowers_view.sql:5 represents lib:Borrower: deprecated; replaced-by lib:Patron  [db/schema/007_legacy_borrowers_view.sql:5]
+  represents lib:Borrower: deprecated; replaced-by lib:Patron  [db/schema/007_legacy_borrowers_view.sql:5]
   libb:web holds lib:Borrower: deprecated; replaced-by lib:Patron  [src/.gloss.yaml:1]
-  src/main/java/gov/riverbend/circ/model/Borrower.java:12 represents lib:Borrower: deprecated; replaced-by lib:Patron  [src/main/java/gov/riverbend/circ/model/Borrower.java:12]
+  represents lib:Borrower: deprecated; replaced-by lib:Patron  [src/main/java/gov/riverbend/circ/model/Borrower.java:12]
 
 Decision requests
   accept or reject proposed lib:ClaimsReturned (ontology/lib.gloss.yaml:122)
@@ -98,7 +103,8 @@ Decision requests
   accept or reject proposed lib:FinePayment (ontology/lib.gloss.yaml:185)
   accept or reject proposed lib:TurnoverRate (ontology/lib.gloss.yaml:110)
 
-Concepts covered 76% (13/17 with an artifact and a verifier)   Orphans: 7   Rogue: 0   Violations: 0   Gaps: 1   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 4
+Concepts covered 76% (13/17 with an artifact and a verifier)   Orphans: 7   Rogue: 0   Violations: 0   Gaps: 1   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 4   Plan items: 0
+What these mean: https://github.com/McKalvan/GlossMark/blob/main/docs/GLOSSARY.md (--explain prints the declared and derived sets)
 ```
 
 `expected-check.txt` holds five warnings, all intentional: four GM222 (the deprecated `Borrower`, used by two code files and declared by two manifests) and one GM240 (one `tests` marker). With v0.1.0 there were seven: GM240 came once per target.
@@ -232,7 +238,7 @@ $ gloss impact src/main/java/gov/riverbend/circ/model/Borrower.java
 src/main/java/gov/riverbend/circ/model/Borrower.java  [HARD, libb:web]
   @gloss represents lib:Borrower  (line 12 Borrower)
   lib:Borrower (entity, core)
-      boundaries: libb:circ holds; libb:circ represents; libb:db holds; libb:db represents; libb:web holds; libb:web represents
+      boundaries: libb:circ represents; libb:db holds; libb:db represents; libb:web holds; libb:web represents
       also linked from: db/schema/007_legacy_borrowers_view.sql
       ! deprecated; use lib:Patron
 ```
@@ -258,7 +264,7 @@ exit 0
 
 $ gloss drift --fail-on violation,gap,value-drift,dangling,rogue,stale   # expires: 2026-06-30
   libb:ill declares realizes lib:InterlibraryLoan but nothing under it implements it; its code configures it instead: declare configures, or change the marker [waiver by circulation-dept expired 2026-06-30]  [ill/.gloss.yaml:1]
-gloss drift: 1 failing finding (violation,gap,value-drift,dangling,rogue,stale)
+gloss drift: failed: 1 gap (fail-on: violation, gap, value-drift, dangling, rogue, stale)
 exit 1
 
 $ gloss check | tail -1   # check does not mention the expired waiver
@@ -266,12 +272,12 @@ gloss check: 0 errors, 6 warnings; 4 proposals, 0 rogues (run gloss status)
 
 $ gloss drift --fail-on violation,gap,value-drift,dangling,rogue,stale   # expires: 30 June 2020
   libb:ill declares realizes lib:InterlibraryLoan but nothing under it implements it; its code configures it instead: declare configures, or change the marker [waiver by circulation-dept ignored: expires "30 June 2020" is not a YYYY-MM-DD date]  [ill/.gloss.yaml:1]
-gloss drift: 1 failing finding (violation,gap,value-drift,dangling,rogue,stale)
+gloss drift: failed: 1 gap (fail-on: violation, gap, value-drift, dangling, rogue, stale)
 exit 1
 
 $ gloss drift --fail-on violation,gap,value-drift,dangling,rogue,stale   # no expires
   libb:ill declares realizes lib:InterlibraryLoan but nothing under it implements it; its code configures it instead: declare configures, or change the marker [waiver by circulation-dept ignored: expires "" is not a YYYY-MM-DD date]  [ill/.gloss.yaml:1]
-gloss drift: 1 failing finding (violation,gap,value-drift,dangling,rogue,stale)
+gloss drift: failed: 1 gap (fail-on: violation, gap, value-drift, dangling, rogue, stale)
 exit 1
 ```
 
@@ -304,8 +310,8 @@ config/loan-rules.json has 11 lines; the sidecar has 7
 stale links: 2
 
 == 3. reword the comment line of config/loan-rules.json.gloss
-  config/loan-rules.json.gloss: configures circ:LoanPeriodRule  [config/loan-rules.json.gloss]
-  config/loan-rules.json.gloss: configures lib:Dvd  [config/loan-rules.json.gloss]
+  configures circ:LoanPeriodRule  [config/loan-rules.json.gloss]
+  configures lib:Dvd  [config/loan-rules.json.gloss]
 ```
 
 A pointer to a key that does not exist (`/formats/EBOOK`), or a note that is not a pointer at all, is a `gloss check` warning and anchors to the sidecar (`JSON Pointer /formats/EBOOK does not resolve in config/loan-rules.json; anchored to the sidecar [GM123]`). In v0.1.0 both passed silently.
@@ -327,26 +333,26 @@ CI runs `gloss coverage --fail-under current` for this workspace (`coverage-fail
 ```
 == (a) push to main: base = origin/main = HEAD, which has the workspace and its graph
 $ gloss coverage --fail-under current
-concepts 76.5% (13 of 17 concepts in scope have an artifact and a verifier: implementation concepts, and core concepts code implements directly)
+concepts 76% (13 of 17 concepts in scope have an artifact and a verifier: implementation concepts, and core concepts code implements directly)
 ...
 exit 0
 
 == (b) first PR: base = HEAD~1, which has no showcase/library-legacy
 $ gloss coverage --fail-under current --base HEAD~1
 gloss coverage: base HEAD~1 has no workspace at showcase/library-legacy (no glossmark.yaml); ratchet skipped
-concepts 76.5% (13 of 17 concepts in scope have an artifact and a verifier: implementation concepts, and core concepts code implements directly)
+concepts 76% (13 of 17 concepts in scope have an artifact and a verifier: implementation concepts, and core concepts code implements directly)
 ...
 exit 0
 
 == (c0) a PR deletes the verifies marker on HoldQueueTest (features/holds.feature still verifies hold trapping)
 $ gloss coverage --fail-under current --base HEAD
-concepts 76.5% (13 of 17 concepts in scope have an artifact and a verifier: implementation concepts, and core concepts code implements directly)
+concepts 76% (13 of 17 concepts in scope have an artifact and a verifier: implementation concepts, and core concepts code implements directly)
 ...
 exit 0
 
 == (c) a PR deletes the only test marker on FineCalculatorTest (the legacy 'tests' one)
 $ gloss coverage --fail-under current --base HEAD
-concepts 58.8% (10 of 17 concepts in scope have an artifact and a verifier: implementation concepts, and core concepts code implements directly)
+concepts 59% (10 of 17 concepts in scope have an artifact and a verifier: implementation concepts, and core concepts code implements directly)
 ...
 gloss coverage: concept coverage 58.8% is below the base's 76.5% (--fail-under current)
 exit 1
@@ -372,14 +378,14 @@ Because this workspace has no intentional violation, value-drift or dangling fin
 
 ```
 $ gloss coverage --changed-only --base HEAD
-files 0.0% (0 of 1 files changed since HEAD carry an accepted link)
+files 0% (0 of 1 files changed since HEAD carry an accepted link)
 exit 0
 $ gloss coverage --changed-only --fail-under-files 50 --base HEAD
-files 0.0% (0 of 1 files changed since HEAD carry an accepted link)
+files 0% (0 of 1 files changed since HEAD carry an accepted link)
 gloss coverage: file coverage 0.0% is below --fail-under-files 50.0%
 exit 1
 $ gloss coverage --fail-under-files 80
-files 62.1% (59 of 95 in-scope files carry an accepted link)
+files 62% (59 of 95 in-scope files carry an accepted link)
 gloss coverage: file coverage 62.1% is below --fail-under-files 80.0%
 exit 1
 ```
@@ -392,13 +398,13 @@ Run on a committed copy of this repository (the workspace at `showcase/library-l
 
 ```
 $ GLOSS_ACTOR=agent:claude-code gloss doctor
-✗ gloss on PATH: not found; the SessionStart hook and the MCP server run `gloss` by name and fail silently without it → curl -fsSL https://raw.githubusercontent.com/mckalvan/glossmark/main/install.sh | sh, or go install github.com/mckalvan/glossmark/cmd/gloss@v0.1.0, then add the directory to PATH
+✗ gloss on PATH: not found; the SessionStart hook and the MCP server run `gloss` by name and fail silently without it → curl -fsSL https://raw.githubusercontent.com/mckalvan/glossmark/main/install.sh | sh, or go install github.com/mckalvan/glossmark/cmd/gloss@v0.3.0, then add the directory to PATH
 ✓ GLOSS_ACTOR: agent:claude-code
 ! agent hook: no SessionStart hook in .claude/settings.json and no MCP server in .mcp.json → gloss hook install
 ✓ graph: .glossmark/graph.jsonl matches the tree
 ✓ ledger: .glossmark/ledger.jsonl is tracked in git
 ✓ lockfile: no imports, nothing to lock
-! CI pins: no GitHub workflow at the git root (/home/user/glossmark-examples) or in this workspace references GlossMark for this workspace → add the Action pinned to a release to a workflow at the git root, with root: set to this workspace: uses: mckalvan/glossmark@v0.1.0
+✓ CI pins: release pinned in ../../.github/workflows/showcase.yml (root: from a computed matrix, not checked against this workspace)
 ✓ ontology docs: no truncated docs or null keys; gloss check reports no errors
 ✓ waivers: 1 waiver(s), none expiring within 30 days
 ✓ auto-accept: conf >= 0.70 (policy.soft-conf-threshold); on the shipped calibration: precision 84.0%, 46.2% of proposals (150 of 325)
@@ -412,7 +418,7 @@ $ GLOSS_ACTOR=agent:claude-code gloss doctor
 | graph | The committed graph matches the tree. Before the first commit this line is `✗ ... current but not in git`, and doctor exits 1. |
 | ledger | The review record is in git. Same `✗` before the first commit. |
 | lockfile | No imports, so nothing to pin. |
-| CI pins | Still a false warning. Doctor now reads the workflows at the git root, but the root workflow runs the Action with `root: ${{ matrix.root }}` from the registry, which doctor does not match to this workspace. It also suggests `@v0.1.0`, not the pinned commit. Logged as C5 ([F-ADOPT-2](../../lab/FINDINGS-ADOPTION.md#f-adopt-2-init-and-doctor-assume-the-workspace-is-the-git-root)). |
+| CI pins | Correct now. Doctor finds the Action pinned to the full commit in the root workflow, and says it does not check `root: ${{ matrix.root }}` against this workspace. With the previous pin this was a false warning (C5, [F-ADOPT-2](../../lab/FINDINGS-ADOPTION.md#f-adopt-2-init-and-doctor-assume-the-workspace-is-the-git-root)). The `gloss on PATH` fix still suggests `@v0.3.0`, not the pinned commit. |
 | ontology docs | No doc was cut at a comma; every imported doc is quoted. |
 | waivers | New: lists waivers that expired or expire within 30 days. It still reports `none expiring` for a waiver whose `expires:` is malformed, which `gloss check` fails (GM610). |
 | auto-accept | New: what `soft-conf-threshold` means on GlossMark's shipped calibration set. |

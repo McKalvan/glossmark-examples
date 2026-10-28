@@ -87,6 +87,7 @@ Every finding below is intentional. CI compares the full output with [expected-d
 | `REFERRAL_SCORE_THRESHOLD = 0.75` in `Thresholds.kt` | `tide:FraudReferralPolicy` publishes `value: "0.80"` | **value-drift**: the threshold was tuned in code; the business still reads 0.80 ([demo/value-drift.sh](demo/value-drift.sh) resolves it two ways) |
 | nothing implements `AdjusterReview`, `SpecialInvestigation` or `LossEvidence` | core concepts | **orphan**: the adjuster workbench, the SIU and the evidence upload service live outside this repository |
 | `WithdrawalService` implements `tide:WithdrawalHandler` | no test verifies it or `claim:ClaimWithdrawal` | **untested**: the withdrawal path has no test |
+| only `deploys` and `configures` markers link `tide:AssessmentService` and `tide:FraudScreeningService` | no test verifies either service | **untested**: coverage and untested share one scope since GlossMark #170, so the two system-types are reported. The finding adds that `claim:ClaimAssessment` and `claim:FraudScreening` count as tested only through the other concepts that realize them |
 | the three published rules | `criticality: high` on the core rules | Implementation concepts inherit `high`; `PayoutNotification` stays `medium` (see How it was adopted) |
 
 ```
@@ -94,24 +95,32 @@ $ gloss drift
 Ontology drift
 
 ✗ Violations (boundary exceeds its declared capability)
-  claimb:assessment publishes claim:ClaimReferred but declares publishes {claim:ClaimDecided, claim:PayoutAuthorized}; rollup: publishes {claim:ClaimEvent} (from claim:ClaimApproved, claim:ClaimDenied, claim:ClaimReferred, claim:PayoutAuthorized) ⊄ declared  [services/assessment/assessment/referral.py:33]
+  → Widen the manifest or move the code; gloss review to waive.
+  claimb:assessment now publishes claim:ClaimReferred, which its manifest does not allow. Add it to publishes: in services/assessment/.gloss.yaml, or move the code.  [services/assessment/assessment/referral.py:33]
 
 ≠ Published values drifted (the bound code changed, the value did not)
-  published value drifted: tide:FraudReferralPolicy publishes "0.80", bound to services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.kt:9, which changed from "const val REFERRAL_SCORE_THRESHOLD = 0.80" to "const val REFERRAL_SCORE_THRESHOLD = 0.75"; update value: in the ontology, or confirm with gloss accept --value tide:FraudReferralPolicy  [services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.kt]
+  → Update value: in the ontology to match the code, or confirm the code with gloss accept --value.
+  tide:FraudReferralPolicy publishes "0.80", bound to services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.kt:9, which changed from "const val REFERRAL_SCORE_THRESHOLD = 0.80" to "const val REFERRAL_SCORE_THRESHOLD = 0.75"; update value: in the ontology, or confirm the line as is with gloss accept --value --force tide:FraudReferralPolicy  [services/fraud-screening/src/main/kotlin/com/tidewater/claims/fraud/Thresholds.kt]
 
 ○ Gaps (declared, not implemented)
-  claimb:payout-notifier declares subscribes claim:PayoutFailed but nothing under it subscribes to it: intended capability not implemented, or the declaration is wrong  [services/payout-notifier/.gloss.yaml:1]
+  → Implement it, or remove the declaration.
+  claimb:payout-notifier declares subscribes claim:PayoutFailed, but no code under it subscribes to it. Implement it, or remove it from subscribes: in services/payout-notifier/.gloss.yaml.  [services/payout-notifier/.gloss.yaml:1]
 
 · Orphan concepts (no artifacts)
-  claim:AdjusterReview: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/claim.gloss.yaml:117]
-  claim:LossEvidence: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/claim.gloss.yaml:31]
-  claim:SpecialInvestigation: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/claim.gloss.yaml:127]
+  → Link code to it with a marker, or delete the concept.
+  claim:AdjusterReview: no code links to it (a documents or instructs link does not count)  [ontology/claim.gloss.yaml:117]
+  claim:LossEvidence: no code links to it (a documents or instructs link does not count)  [ontology/claim.gloss.yaml:31]
+  claim:SpecialInvestigation: no code links to it (a documents or instructs link does not count)  [ontology/claim.gloss.yaml:127]
 
 △ Implemented but untested
-  claim:ClaimWithdrawal is implemented but nothing tests or verifies it  [ontology/claim.gloss.yaml:102]
+  → Add a verifies marker on a test that exercises it.
+  claim:ClaimWithdrawal: nothing tests or verifies it  [ontology/claim.gloss.yaml:102]
+  tide:AssessmentService: has code, but nothing tests or verifies it; claim:ClaimAssessment, which it realizes, counts as tested only because tide:AssessmentPipeline, tide:AssessmentRules are tested  [ontology/tide.gloss.yaml:12]
+  tide:FraudScreeningService: has code, but nothing tests or verifies it; claim:FraudScreening, which it realizes, counts as tested only because tide:FraudScorer, tide:ScreeningTopology are tested  [ontology/tide.gloss.yaml:16]
 
-Concepts covered 71% (10/14 with an artifact and a verifier)   Orphans: 3   Rogue: 0   Violations: 1   Gaps: 1   Stale: 0   Untested: 1   Proposed links: 0   Proposed concepts: 0
-gloss drift: 3 failing findings (violation,value-drift,gap,dangling,overdue)
+Concepts covered 71% (10/14 with an artifact and a verifier)   Orphans: 3   Rogue: 0   Violations: 1   Gaps: 1   Stale: 0   Untested: 3   Proposed links: 0   Proposed concepts: 0   Plan items: 0
+What these mean: https://github.com/McKalvan/GlossMark/blob/main/docs/GLOSSARY.md (--explain prints the declared and derived sets)
+gloss drift: failed: 1 violation, 1 drifted value, 1 gap (fail-on: violation, value-drift, gap, dangling, overdue, planned-closed, plan-overdue)
 ```
 
 ## The system-level rollup and the taxonomic lift
@@ -149,14 +158,15 @@ The consistency depends on the taxonomy, not on the manifests. [demo/taxonomy.sh
 ```
 == 3. FloodClaimFiled cut out of the taxonomy (is-a: PropertyClaimFiled -> kind: event)
 ✗ Violations (boundary exceeds its declared capability)
-  claimb:assessment publishes claim:ClaimReferred but declares ...                (the documented one)
-  claimb:assessment subscribes claim:FloodClaimFiled but declares subscribes {claim:ClaimFiled, claim:ClaimWithdrawn, claim:FraudSuspected}; rollup: subscribes {...} ⊄ declared  [services/assessment/assessment/consumer.py:58]
-  claimb:claim-intake publishes claim:FloodClaimFiled but declares publishes {claim:ClaimFiled, claim:ClaimWithdrawn}; rollup: publishes {...} ⊄ declared  [.../ClaimEventPublisher.kt:35]
-  claimb:claims-events publishes claim:FloodClaimFiled but declares publishes {claim:ClaimEvent}; rollup: publishes {...} ⊄ declared  [.../ClaimEventPublisher.kt:35]
-  claimb:claims-events subscribes claim:FloodClaimFiled but declares subscribes {claim:ClaimEvent}; rollup: subscribes {...} ⊄ declared  [services/assessment/assessment/consumer.py:58]
+  → Widen the manifest or move the code; gloss review to waive.
+  claimb:assessment now publishes claim:ClaimReferred, which its manifest does not allow. Add it to publishes: in services/assessment/.gloss.yaml, or move the code.  [services/assessment/assessment/referral.py:33]
+  claimb:assessment now subscribes to claim:FloodClaimFiled, which its manifest does not allow. Add it to subscribes: in services/assessment/.gloss.yaml, or move the code.  [services/assessment/assessment/consumer.py:59]
+  claimb:claim-intake now publishes claim:FloodClaimFiled, which its manifest does not allow. Add it to publishes: in services/claim-intake/.gloss.yaml, or move the code.  [services/claim-intake/src/main/kotlin/com/tidewater/claims/intake/events/ClaimEventPublisher.kt:35]
+  claimb:claims-events now publishes claim:FloodClaimFiled, which its manifest does not allow. Add it to publishes: in .gloss.yaml, or move the code.  [services/claim-intake/src/main/kotlin/com/tidewater/claims/intake/events/ClaimEventPublisher.kt:35]
+  claimb:claims-events now subscribes to claim:FloodClaimFiled, which its manifest does not allow. Add it to subscribes: in .gloss.yaml, or move the code.  [services/assessment/assessment/consumer.py:59]
 ```
 
-**What the ontology's `lift:` entries do.** The core file declares `relations: { publishes: { lift: range-lcs } }` and the same for the other three flow relations. Step 2 of the demo deletes those four lines and the drift output is byte-identical (`drift output identical`), because `range-lcs` is already the builtin for the four flow relations. Since GlossMark ADR 0011 a relation's `lift` sets only how drift prints a boundary's derived set; it never changes the comparison, which always subsumes. Writing `lift: none` instead does change the output: the violation above loses its `rollup:` clause. In v0.1.0 the entries changed nothing at all, which was logged as an adoption finding (E15). The lift is also partial now (ADR 0026): each subset of members that shares a subsumer is lifted on its own, and the `rollup:` clause names what each lifted concept summarizes (`(from claim:ClaimApproved, ...)`). A view lifts when the *view* says `lift: range-lcs`. The entries stay in the file because they state the intent.
+**What the ontology's `lift:` entries do.** The core file declares `relations: { publishes: { lift: range-lcs } }` and the same for the other three flow relations. Step 2 of the demo deletes those four lines and the drift output is byte-identical (`drift output identical`), because `range-lcs` is already the builtin for the four flow relations. Since GlossMark ADR 0011 a relation's `lift` sets only how drift prints a boundary's derived set; it never changes the comparison, which always subsumes. Writing `lift: none` instead changes only `gloss drift --explain`, which prints the declared and derived sets: the violation there loses its `rollup:` clause. The plain `gloss drift` message no longer carries the sets, so it is the same either way. In v0.1.0 the entries changed nothing at all, which was logged as an adoption finding (E15). The lift is also partial now (ADR 0026): each subset of members that shares a subsumer is lifted on its own, and the `rollup:` clause in `--explain` names what each lifted concept summarizes (`(from claim:ClaimApproved, ...)`). A view lifts when the *view* says `lift: range-lcs`. The entries stay in the file because they state the intent.
 
 Two other consequences of the rollup rules shaped the manifests:
 
@@ -226,12 +236,14 @@ services/payout-notifier/internal/consumer/consumer.go:56: error: dangling refer
 gloss check: 1 error, 1 warning
 (gloss check exit 1)
 ! Dangling references
-  services/payout-notifier/internal/consumer/consumer.go:56 subscribes claim:ClaimReopened: concept does not exist (write claim:NEW:ClaimReopened with @gloss? to propose it)  [...]
+  → Fix the name, or define the concept in the ontology.
+  subscribes claim:ClaimReopened: concept does not exist (write claim:NEW:ClaimReopened with @gloss? to propose it)  [services/payout-notifier/internal/consumer/consumer.go:56]
 
 == 2. // @gloss? subscribes claim:NEW:ClaimReopened conf=0.6
 gloss check: 0 errors, 1 warning; 1 proposal, 1 rogue (run gloss status)
 ? Rogue concepts (decision requests)
-  services/payout-notifier/internal/consumer/consumer.go:56 subscribes claim:NEW:ClaimReopened: rogue concept; becomes a decision request  [...]
+  → Add the concept with gloss propose --from-new, or rename the marker to an existing concept.
+  subscribes claim:NEW:ClaimReopened: not in the ontology; its namespace owner decides (see Decision requests)  [services/payout-notifier/internal/consumer/consumer.go:56]
 ```
 
 The same GM215 error comes from a dangling target in a `@gloss?` proposal, a sidecar, a manifest and an ontology relation. The one exception with the pinned GlossMark is a manifest's `allowed:` entry: `allowed: [derived, claim:ClaimReopened]` is only a check warning (`allowed lists claim:ClaimReopened, which does not exist [GM501]`), and drift reports it under `! Dangling references`. The showcase does not use it, because `expected-check.txt` would then carry the warning.

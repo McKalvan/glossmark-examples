@@ -38,17 +38,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      # The Action's drift step hard-codes --fail-on violation,value-drift,dangling,overdue, so it runs
-      # only on workspaces with none of those findings by design (use-action = true).
+      # The Action's drift step fails by default on violation,value-drift,dangling,overdue,planned-closed,plan-overdue,
+      # so it runs only on workspaces with none of those findings by design (use-action = true).
       # fail-on: none keeps the PR impact comment informational: every PR here edits
       # ontologies and manifests, which is HARD by construction.
       # The Action and its version follow GLOSS_REF; `uses:` takes no expression, so bump both together.
       - name: GlossMark Action
         if: matrix.action == 'true'
-        uses: mckalvan/glossmark@e24677c4c9c0f2588058a3c6af1cf5c3076ecde8
+        uses: mckalvan/glossmark@0be26e3d2682528175f72aa3de6820722d5b3029
         with:
           root: ${{ matrix.root }}
-          version: e24677c4c9c0f2588058a3c6af1cf5c3076ecde8
+          version: 0be26e3d2682528175f72aa3de6820722d5b3029
           fail-on: none
           coverage-fail-under: ${{ matrix.coverage }}
       - uses: actions/setup-go@v5

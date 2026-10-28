@@ -4,11 +4,11 @@
 # repository, as it will once GlossMark can fetch imports remotely. Nothing in this
 # directory is modified.
 #   1. shipment-core shortens the published delivery window (2h -> 90m): gloss diff is HARD
-#   2. the importers notice: gloss check reports GM107 (content changed under the same version)
-#   3. shipment-core bumps shc: to 1.1.1; the importers see GM107 (new version), re-pin with gloss lock
+#   2. the importers notice: gloss check warns GM116 (content changed under the same version) and keeps the pinned copy
+#   3. shipment-core bumps shc: to 1.1.1; the importers see GM116 (new version), re-pin with gloss lock --update
 #   4. the own-subject rule: dispatch tries to add a part to an imported concept (GM400, GM401)
 #   5. the published seam: tracking references an unpublished shc: concept (GM230)
-#   6. shipment-core retypes a core concept and bumps frt: to 2.0.0: MAJOR, HARD; importers GM106
+#   6. shipment-core retypes a core concept and bumps frt: to 2.0.0: MAJOR, HARD; importers GM116 (outside their range, still on the pin)
 set -uo pipefail
 HERE=$(cd "$(dirname "$0")/.." && pwd)
 ROOT=$(cd "$HERE/../.." && pwd)
@@ -47,11 +47,11 @@ sed -i 's/tier: implementation, version: 1.1.0/tier: implementation, version: 1.
 g $core diff --base HEAD --fail-on none | grep -E '^Version|bump'
 commit $core "shc 1.1.1: delivery window 90m"
 g dispatch check
-g dispatch lock
+g dispatch lock --update
 g dispatch check
 run dispatch git --no-pager diff --unified=0 glossmark.lock
 g dispatch diff --base HEAD
-g tracking lock
+g tracking lock --update
 run tracking grep -n 'DELIVERY_WINDOW: Duration' src/delivery/window.rs
 g tracking impact tests/window.rs
 commit dispatch "re-pin shc 1.1.1"; commit tracking "re-pin shc 1.1.1"
@@ -71,7 +71,7 @@ sed -i 's|^allowed: \[derived, shc:DeliveryWindowPolicy\]|allowed: [derived, shc
 g tracking check
 echo; echo "# the same reference after shipment-core drops tier: implementation from shc.gloss.yaml (tracking re-pinned)"
 sed -i '/^tier: implementation$/d' "$TMP/$core/ontology/shc.gloss.yaml"
-"$GLOSS" lock --root "$TMP/tracking" >/dev/null
+"$GLOSS" lock --update --root "$TMP/tracking" >/dev/null
 g tracking check
 git -C "$TMP/$core" checkout -q -- ontology/shc.gloss.yaml
 git -C "$TMP/tracking" checkout -q -- tests/scan_parse.rs .gloss.yaml glossmark.lock
