@@ -23,9 +23,9 @@ printf 'config/loan-rules.json has %s lines; the sidecar has %s\n' "$(wc -l < co
 echo; echo "== 2. DVD loan period 7 -> 14 days in config/loan-rules.json"
 sed -i 's/"DVD": { "loanDays": 7/"DVD": { "loanDays": 14/' config/loan-rules.json
 "$GLOSS" build -q
-printf 'stale links: %s\n' "$("$GLOSS" drift 2>/dev/null | grep -c 'is stale')"
+printf 'stale links: %s\n' "$("$GLOSS" drift 2>/dev/null | grep -c 'the code changed since the link was accepted')"
 
 echo; echo "== 3. reword the comment line of config/loan-rules.json.gloss"
 sed -i '1s/.*/# Sidecar for loan-rules.json; note= holds a JSON Pointer./' config/loan-rules.json.gloss
 "$GLOSS" build -q
-"$GLOSS" drift 2>/dev/null | grep 'is stale' | sed -E 's/ is stale, the anchored signature changed since it was accepted; re-confirm with gloss accept m-[0-9a-f]+//'
+"$GLOSS" drift 2>/dev/null | grep 'the code changed since the link was accepted' | sed -E 's/: the code changed since the link was accepted; if it still holds, re-confirm with gloss accept m-[0-9a-f]+//'

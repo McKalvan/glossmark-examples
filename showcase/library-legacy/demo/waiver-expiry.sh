@@ -17,7 +17,7 @@ cd "$TMP/ws"
 FAIL_ON=violation,gap,value-drift,dangling,rogue,stale
 show() {
   printf '\n$ gloss drift --fail-on %s   # %s\n' "$FAIL_ON" "$1"
-  "$GLOSS" drift --fail-on "$FAIL_ON" 2>&1 | grep -E -A1 '^○ Gaps|failing finding' | grep -v '^--$' | grep -v '^○'
+  "$GLOSS" drift --fail-on "$FAIL_ON" 2>&1 | grep -E -A2 '^○ Gaps|failed:' | grep -v -E '^--$|^○|^  → '
   "$GLOSS" drift --fail-on "$FAIL_ON" >/dev/null 2>&1; echo "exit $?"
 }
 show "expires: 2027-06-30 (committed)"

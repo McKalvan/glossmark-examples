@@ -30,8 +30,8 @@ Scopes	file	clinic-booking	deploy/k8s/booking-api/configmap.yaml@@@gloss configu
 Scopes	line	clinic-booking	services/reminders/reminders/settings.py@@@gloss publishes-value
 Marker keys	conf	clinic-booking	services/booking-api/internal/booking/availability.go@@conf=0.36
 Marker keys	scope	clinic-booking	services/booking-api/internal/outbox/relay.go@@scope=symbol
-Drift findings	orphan	clinic-booking	expected-drift.txt@@orphan concept
-Drift findings	untested	clinic-booking	expected-drift.txt@@is implemented but nothing tests
+Drift findings	orphan	clinic-booking	expected-drift.txt@@Orphan concepts (no artifacts)
+Drift findings	untested	clinic-booking	expected-drift.txt@@Implemented but untested
 Drift findings	presented-only	clinic-booking	expected-drift.txt@@is presented (
 Drift findings	value-drift	clinic-booking	demo/gates.sh@@const CancellationWindow = 12
 Gates	AUTO	clinic-booking	demo/gates.sh@@# AUTO:
@@ -94,11 +94,11 @@ Scopes	block	claims-events	contracts/asyncapi.yaml@@scope=block
 Scopes	range	claims-events	schemas/MotorClaimFiled.avsc.gloss@@scope=range
 Scopes	line	claims-events	services/claim-intake/src/main/kotlin/com/tidewater/claims/intake/domain/FilingWindow.kt@@scope=line
 Marker keys	note	claims-events	schemas/MotorClaimFiled.avsc.gloss@@note=
-Drift findings	violation	claims-events	expected-drift.txt@@publishes claim:ClaimReferred but declares
+Drift findings	violation	claims-events	expected-drift.txt@@now publishes claim:ClaimReferred
 Drift findings	gap	claims-events	expected-drift.txt@@declares subscribes claim:PayoutFailed
-Drift findings	value-drift	claims-events	expected-drift.txt@@published value drifted
+Drift findings	value-drift	claims-events	expected-drift.txt@@Published values drifted
 Drift findings	dangling	claims-events	demo/dangling.sh@@does not exist is a gloss check error
-Drift findings	orphan	claims-events	expected-drift.txt@@orphan concept
+Drift findings	orphan	claims-events	expected-drift.txt@@Orphan concepts (no artifacts)
 Concept kinds	event	claims-events	ontology/claim.gloss.yaml@@kind: event
 Concept kinds	entity	claims-events	ontology/claim.gloss.yaml@@kind: entity
 File-format features	lift: range-lcs	claims-events	ontology/claim.gloss.yaml@@lift: range-lcs
@@ -111,9 +111,9 @@ Scopes	file	kitchen-agents	CLAUDE.md@@scope=file
 Marker keys	conf	kitchen-agents	api/ordering/routers/menu.py@@conf=0.85
 Marker keys	note	kitchen-agents	api/ordering/routers/menu.py@@note=
 Marker keys	id	kitchen-agents	api/ordering/routers/menu.py@@id=menu-get-route
-Drift findings	rogue	kitchen-agents	expected-drift.txt@@rogue concept
+Drift findings	rogue	kitchen-agents	expected-drift.txt@@Rogue concepts
 Drift findings	proposed	kitchen-agents	expected-drift.txt@@is a proposed process
-Drift findings	stale	kitchen-agents	expected-drift.txt@@is stale
+Drift findings	stale	kitchen-agents	expected-drift.txt@@Stale links
 Drift findings	untested	kitchen-agents	expected-drift.txt@@nothing tests
 Gates	AUTO	kitchen-agents	README.md@@[AUTO]
 Gates	SOFT	kitchen-agents	demo/remit.sh@@conf=0.88
@@ -145,7 +145,7 @@ Scopes	range	library-legacy	config/loan-rules.json.gloss@@scope=range
 Scopes	file	library-legacy	batch/overdue_notices.pl@@scope=file
 Marker keys	scope	library-legacy	config/loan-rules.json.gloss@@scope=range
 Drift findings	gap	library-legacy	expected-drift.txt@@(waived: circulation-dept
-Drift findings	orphan	library-legacy	expected-drift.txt@@orphan concept
+Drift findings	orphan	library-legacy	expected-drift.txt@@Orphan concepts (no artifacts)
 Drift findings	proposed	library-legacy	expected-drift.txt@@is a proposed process
 Drift findings	untested	library-legacy	expected-drift.txt@@nothing tests
 CLI commands	import	library-legacy	demo/reimport.sh@@import --from enums

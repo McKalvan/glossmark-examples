@@ -1,16 +1,20 @@
 Ontology drift
 
 · Orphan concepts (no artifacts)
-  clinic:Waitlist: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/clinic.gloss.yaml:45]
+  → Link code to it with a marker, or delete the concept.
+  clinic:Waitlist: no code links to it (a documents or instructs link does not count)  [ontology/clinic.gloss.yaml:45]
 
 ◇ Presented but not implemented (a surface with no mechanism)
-  clinic:Waitlist is presented (lark:WaitlistPage) but nothing implements it: a surface with no mechanism behind it  [ontology/clinic.gloss.yaml:45]
+  → Mark the code that implements it, or remove the presents link.
+  clinic:Waitlist is presented (lark:WaitlistPage) but nothing implements it  [ontology/clinic.gloss.yaml:45]
 
 △ Implemented but untested
-  lark:NoShowDashboard is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:93]
-  lark:PatientSite is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:16]
-  lark:PractitionerDirectory is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:89]
-  lark:SlotSearch is implemented but nothing tests or verifies it; clinic:Availability, which it realizes, counts as tested only because lark:BookingApiService is tested  [ontology/lark.gloss.yaml:30]
-  lark:WaitlistPage is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:97]
+  → Add a verifies marker on a test that exercises it.
+  lark:NoShowDashboard: nothing tests or verifies it  [ontology/lark.gloss.yaml:93]
+  lark:PatientSite: nothing tests or verifies it  [ontology/lark.gloss.yaml:16]
+  lark:PractitionerDirectory: nothing tests or verifies it  [ontology/lark.gloss.yaml:89]
+  lark:SlotSearch: nothing tests or verifies it; clinic:Availability, which it realizes, counts as tested only because lark:BookingApiService is tested  [ontology/lark.gloss.yaml:30]
+  lark:WaitlistPage: nothing tests or verifies it  [ontology/lark.gloss.yaml:97]
 
-Concepts covered 69% (11/16 with an artifact and a verifier)   Orphans: 1   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 5   Proposed links: 0   Proposed concepts: 0
+Concepts covered 69% (11/16 with an artifact and a verifier)   Orphans: 1   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 5   Proposed links: 0   Proposed concepts: 0   Plan items: 0
+What these mean: https://github.com/McKalvan/GlossMark/blob/main/docs/GLOSSARY.md (--explain prints the declared and derived sets)

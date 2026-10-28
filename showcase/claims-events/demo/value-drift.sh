@@ -23,7 +23,7 @@ git -c user.name=demo -c user.email=demo@example.invalid commit -qm before
 export GLOSS_ACTOR=agent:claude-code
 
 echo "== as committed"
-"$GLOSS" drift --fail-on none | grep -A1 'Published values drifted'
+"$GLOSS" drift --fail-on none | grep -A2 'Published values drifted' | grep -v '^  → '
 
 echo
 echo "== A. value: \"0.80\" -> \"0.75\" in ontology/tide.gloss.yaml"

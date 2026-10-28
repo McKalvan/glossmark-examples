@@ -1,4 +1,4 @@
-# glossmark.lock: resolved import versions, written by gloss lock. Commit it.
+# glossmark.lock: resolved import versions, written by gloss lock. Commit it with .glossmark/imports/.
 format: 1
 imports:
     frt:
