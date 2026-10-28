@@ -4,11 +4,11 @@
 # repository, as it will once GlossMark can fetch imports remotely. Nothing in this
 # directory is modified.
 #   1. shipment-core shortens the published delivery window (2h -> 90m): gloss diff is HARD
-#   2. the importers notice: gloss check reports GM107 (content changed under the same version)
-#   3. shipment-core bumps shc: to 1.1.1; the importers see GM107 (new version), re-pin with gloss lock --update
+#   2. the importers notice: gloss check warns GM116 (content changed under the same version) and keeps the pinned copy
+#   3. shipment-core bumps shc: to 1.1.1; the importers see GM116 (new version), re-pin with gloss lock --update
 #   4. the own-subject rule: dispatch tries to add a part to an imported concept (GM400, GM401)
 #   5. the published seam: tracking references an unpublished shc: concept (GM230)
-#   6. shipment-core retypes a core concept and bumps frt: to 2.0.0: MAJOR, HARD; importers GM106
+#   6. shipment-core retypes a core concept and bumps frt: to 2.0.0: MAJOR, HARD; importers GM116 (outside their range, still on the pin)
 set -uo pipefail
 HERE=$(cd "$(dirname "$0")/.." && pwd)
 ROOT=$(cd "$HERE/../.." && pwd)
