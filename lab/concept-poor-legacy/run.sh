@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Reproduces every number and probe in FINDINGS.md. Writes only to a temp directory.
 set -uo pipefail
-GLOSS="${GLOSS:-/home/ckessler/dev/glossmark-examples/.tools/bin/gloss}"
+GLOSS="${GLOSS:-$(cd "$(dirname "$0")/../.." && pwd)/.tools/bin/gloss}"
 export GLOSS_ACTOR=agent:claude-code
 HERE="$(cd "$(dirname "$0")" && pwd)"
 WS="$HERE/opstool"
