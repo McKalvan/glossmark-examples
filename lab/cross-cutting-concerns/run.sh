@@ -2,7 +2,7 @@
 # Reproduces every claim in FINDINGS.md. Read-only: anything that writes runs
 # on a copy in a temporary directory.
 set -uo pipefail
-GLOSS="${GLOSS:-/home/ckessler/dev/glossmark-examples/.tools/bin/gloss}"
+GLOSS="${GLOSS:-$(cd "$(dirname "$0")/../.." && pwd)/.tools/bin/gloss}"
 HERE="$(cd "$(dirname "$0")" && pwd)"
 T="$(mktemp -d)"
 trap 'rm -rf "$T"' EXIT

@@ -8,7 +8,7 @@
 # Nothing under this directory is modified (except TRANSCRIPT.md with UPDATE=1): every step runs on a copy
 # in a fresh git repository, so `gloss diff --base HEAD` compares each release with the previous one.
 set -uo pipefail
-GLOSS="${GLOSS:-/home/ckessler/dev/glossmark-examples/.tools/bin/gloss}"
+GLOSS="${GLOSS:-$(cd "$(dirname "$0")/../.." && pwd)/.tools/bin/gloss}"
 HERE="$(cd "$(dirname "$0")" && pwd)"
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
