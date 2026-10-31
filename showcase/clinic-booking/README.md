@@ -1,6 +1,6 @@
 # Larkspur Clinics: appointment booking
 
-**Shape:** a monorepo web product. **Shows:** pages and shells (`presents`, `hosts`), infrastructure, configuration and deployment links (`provisions`, `configures`, `deploys`), `holds` derived from `represents`, published values bound to code (`value-from`, `publishes-value`), criticality with a floor and `gloss criticality suggest`, a curated `views.yaml`, `realizes: inherit` and `allowed: [derived, ...]`.
+**Shape:** a monorepo web product. **Shows:** pages and shells (`presents`, `hosts`), infrastructure, configuration and deployment links (`provisions`, `configures`, `deploys`), declared `holds` checked against `represents`, published values bound to code (`value-from`, `publishes-value`), criticality with a floor and `gloss criticality suggest`, a curated `views.yaml`, `realizes: inherit` and `allowed: [derived, ...]`.
 
 Patients of Larkspur Clinics book and cancel outpatient appointments online. Reminders go out by SMS or email before each visit, and operations watch the no-show rate every Monday.
 
@@ -50,7 +50,7 @@ Every finding below is intentional. CI compares the full output with [expected-d
 | Derived from code | Declared | Result |
 | --- | --- | --- |
 | `booking-api` implements BookingHandler, CancellationHandler, SlotSearch, CancellationPolicy | manifest realizes Booking, Cancellation, Availability, CancellationPolicy | Consistent: each handler lifts through `realizes` to its core process |
-| models and tables `represents` Patient, Appointment, Practitioner, Slot, Clinic | `booking-api` and `db` declare `holds` | Consistent: `holds` is derived from `represents` on entities |
+| models and tables `represents` Patient, Appointment, Practitioner, Slot, Clinic | `booking-api` and `db` declare `holds` | Consistent: each declared `holds` is covered by a `represents` under the boundary. `holds` is declared only; `represents` is a shape, not ownership (GlossMark ADR 0037) |
 | `infra` `provisions` three internal resources; `deploy` `deploys` and `configures` three system-types | `realizes` the same | Consistent: `provisions`, `deploys` and `configures` lift to `realizes` on resources and system-types |
 | the root realizes everything its containers realize | `realizes: inherit` | Consistent, with no list repeated at the root |
 | `WaitlistPage` presents `clinic:Waitlist`; nothing implements it | `clinic:Waitlist` in core | **presented-only** and **orphan**: the page ships before the backend; a surface with no mechanism behind it |
@@ -64,19 +64,23 @@ $ gloss drift
 Ontology drift
 
 · Orphan concepts (no artifacts)
-  clinic:Waitlist: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/clinic.gloss.yaml:45]
+  → Link code to it with a marker, or delete the concept.
+  clinic:Waitlist: no code links to it (a documents or instructs link does not count)  [ontology/clinic.gloss.yaml:45]
 
 ◇ Presented but not implemented (a surface with no mechanism)
-  clinic:Waitlist is presented (lark:WaitlistPage) but nothing implements it: a surface with no mechanism behind it  [ontology/clinic.gloss.yaml:45]
+  → Mark the code that implements it, or remove the presents link.
+  clinic:Waitlist is presented (lark:WaitlistPage) but nothing implements it  [ontology/clinic.gloss.yaml:45]
 
 △ Implemented but untested
-  lark:NoShowDashboard is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:93]
-  lark:PatientSite is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:16]
-  lark:PractitionerDirectory is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:89]
-  lark:SlotSearch is implemented but nothing tests or verifies it; clinic:Availability, which it realizes, counts as tested only because lark:BookingApiService is tested  [ontology/lark.gloss.yaml:30]
-  lark:WaitlistPage is implemented but nothing tests or verifies it  [ontology/lark.gloss.yaml:97]
+  → Add a verifies marker on a test that exercises it.
+  lark:NoShowDashboard: nothing tests or verifies it  [ontology/lark.gloss.yaml:93]
+  lark:PatientSite: nothing tests or verifies it  [ontology/lark.gloss.yaml:16]
+  lark:PractitionerDirectory: nothing tests or verifies it  [ontology/lark.gloss.yaml:89]
+  lark:SlotSearch: nothing tests or verifies it; clinic:Availability, which it realizes, counts as tested only because lark:BookingApiService is tested  [ontology/lark.gloss.yaml:30]
+  lark:WaitlistPage: nothing tests or verifies it  [ontology/lark.gloss.yaml:97]
 
-Concepts covered 69% (11/16 with an artifact and a verifier)   Orphans: 1   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 5   Proposed links: 0   Proposed concepts: 0
+Concepts covered 69% (11/16 with an artifact and a verifier)   Orphans: 1   Rogue: 0   Violations: 0   Gaps: 0   Stale: 0   Untested: 5   Proposed links: 0   Proposed concepts: 0   Plan items: 0
+What these mean: https://github.com/McKalvan/GlossMark/blob/main/docs/GLOSSARY.md (--explain prints the declared and derived sets)
 ```
 
 ## Criticality

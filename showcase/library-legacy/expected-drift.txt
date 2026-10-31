@@ -1,34 +1,39 @@
 Ontology drift
 
 ○ Gaps (declared, not implemented)
+  → Implement it, or remove the declaration.
   libb:ill declares realizes lib:InterlibraryLoan but nothing under it implements it; its code configures it instead: declare configures, or change the marker  [ill/.gloss.yaml:1]  (waived: circulation-dept until 2027-06-30)
 
 ? Proposed concepts (awaiting acceptance)
+  → Accept with gloss accept --concept, or reject it in gloss review.
   lib:ClaimsReturned is a proposed process by agent:claude-code; accept with gloss accept --concept lib:ClaimsReturned  [ontology/lib.gloss.yaml:122]
   lib:DigitalLending is a proposed process by agent:claude-code; accept with gloss accept --concept lib:DigitalLending  [ontology/lib.gloss.yaml:116]
   lib:FinePayment is a proposed process by agent:claude-code; accept with gloss accept --concept lib:FinePayment  [ontology/lib.gloss.yaml:185]
   lib:TurnoverRate is a proposed measure by agent:claude-code; accept with gloss accept --concept lib:TurnoverRate  [ontology/lib.gloss.yaml:110]
 
 · Orphan concepts (no artifacts)
-  lib:ClaimsReturned: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:122]
-  lib:Damage: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:148]
-  lib:DigitalLending: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:116]
-  lib:LibraryCard: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:13]
-  lib:LostItem: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:98]
-  lib:Overdue: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:145]
-  lib:TurnoverRate: orphan concept, no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:110]
+  → Link code to it with a marker, or delete the concept.
+  lib:ClaimsReturned: no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:122]
+  lib:Damage: no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:148]
+  lib:DigitalLending: no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:116]
+  lib:LibraryCard: no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:13]
+  lib:LostItem: no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:98]
+  lib:Overdue: no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:145]
+  lib:TurnoverRate: no code links to it (a documents or instructs link does not count)  [ontology/lib.gloss.yaml:110]
 
 △ Implemented but untested
-  circ:CheckinHandler is implemented but nothing tests or verifies it; lib:Checkin, which it realizes, counts as tested only because circ:CircWebApp is tested  [ontology/circ.gloss.yaml:27]
-  circ:NightlyFineJob is implemented but nothing tests or verifies it; lib:FineAssessment, which it realizes, counts as tested only because circ:DeskFineCalculator, circ:NightlyBatch are tested  [ontology/circ.gloss.yaml:65]
-  lib:FinePayment is implemented but nothing tests or verifies it  [ontology/lib.gloss.yaml:185]
-  lib:SelfCheckout is implemented but nothing tests or verifies it  [ontology/lib.gloss.yaml:101]
+  → Add a verifies marker on a test that exercises it.
+  circ:CheckinHandler: nothing tests or verifies it; lib:Checkin, which it realizes, counts as tested only because circ:CircWebApp is tested  [ontology/circ.gloss.yaml:27]
+  circ:NightlyFineJob: nothing tests or verifies it; lib:FineAssessment, which it realizes, counts as tested only because circ:DeskFineCalculator, circ:NightlyBatch are tested  [ontology/circ.gloss.yaml:65]
+  lib:FinePayment: nothing tests or verifies it  [ontology/lib.gloss.yaml:185]
+  lib:SelfCheckout: nothing tests or verifies it  [ontology/lib.gloss.yaml:101]
 
 ~ Deprecated in use
+  → Move to the replacement (replaced-by), then remove the reference.
   libb:db holds lib:Borrower: deprecated; replaced-by lib:Patron  [db/.gloss.yaml:1]
-  db/schema/007_legacy_borrowers_view.sql:5 represents lib:Borrower: deprecated; replaced-by lib:Patron  [db/schema/007_legacy_borrowers_view.sql:5]
+  represents lib:Borrower: deprecated; replaced-by lib:Patron  [db/schema/007_legacy_borrowers_view.sql:5]
   libb:web holds lib:Borrower: deprecated; replaced-by lib:Patron  [src/.gloss.yaml:1]
-  src/main/java/gov/riverbend/circ/model/Borrower.java:12 represents lib:Borrower: deprecated; replaced-by lib:Patron  [src/main/java/gov/riverbend/circ/model/Borrower.java:12]
+  represents lib:Borrower: deprecated; replaced-by lib:Patron  [src/main/java/gov/riverbend/circ/model/Borrower.java:12]
 
 Decision requests
   accept or reject proposed lib:ClaimsReturned (ontology/lib.gloss.yaml:122)
@@ -36,4 +41,5 @@ Decision requests
   accept or reject proposed lib:FinePayment (ontology/lib.gloss.yaml:185)
   accept or reject proposed lib:TurnoverRate (ontology/lib.gloss.yaml:110)
 
-Concepts covered 76% (13/17 with an artifact and a verifier)   Orphans: 7   Rogue: 0   Violations: 0   Gaps: 1   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 4
+Concepts covered 76% (13/17 with an artifact and a verifier)   Orphans: 7   Rogue: 0   Violations: 0   Gaps: 1   Stale: 0   Untested: 4   Proposed links: 0   Proposed concepts: 4   Plan items: 0
+What these mean: https://github.com/McKalvan/GlossMark/blob/main/docs/GLOSSARY.md (--explain prints the declared and derived sets)
