@@ -8,6 +8,7 @@ The small examples and the conformance corpus stay in the main repository, where
 | --- | --- |
 | [`showcase/`](showcase) | Five stable examples, each a different shape. Gated by [showcase.yml](.github/workflows/showcase.yml) on every push and pull request |
 | [`lab/`](lab) | Seven experiments that may break, run weekly by [lab.yml](.github/workflows/lab.yml). Each ends in a `FINDINGS.md` written as GlossMark issues |
+| [`plugins/`](plugins) | Link-source plugins for `gloss suggest` built outside GlossMark: [gloss-source-graphql](plugins/gloss-source-graphql), the reference plugin for the external-source protocol. Tested by [plugins.yml](.github/workflows/plugins.yml) |
 | [`scripts/`](scripts) | Install the GlossMark pinned in `GLOSS_REF`, run the showcase checks locally, verify the feature matrix |
 | [PLAN.md](PLAN.md) | The plan, the progress log and the final report |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | What is stable (showcase) and what is not (lab) |
