@@ -1,0 +1,14 @@
+# Plugins CI: each plugin under plugins/ is its own Go module with its own tests.
+name: plugins
+on: [push, pull_request]
+permissions: { contents: read }
+
+jobs:
+  graphql:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: plugins/gloss-source-graphql } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: { go-version-file: plugins/gloss-source-graphql/go.mod }
+      - run: go vet ./... && go test ./...
